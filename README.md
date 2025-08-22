@@ -1,4 +1,4 @@
-# 📑 Organização do Projeto de Qualidade
+# 📑 Organização do Repositorio
 
 Este repositório foi estruturado para centralizar toda a documentação, relatórios e evidências relacionadas ao processo de **Qualidade de Software (QA)**.  
 Abaixo está descrita a organização das pastas e o que será abordado em cada uma delas.
