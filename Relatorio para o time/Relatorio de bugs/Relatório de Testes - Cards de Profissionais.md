@@ -8,7 +8,8 @@
 
 ## 🧪 Ambiente de Testes
 - **Sistema Operacional:** Windows 11  
-- **Navegador:** Firefox v142.0 (64 bits)  
+- **Navegador:** Firefox v142.0 (64 bits)
+- **Navegador 2:** Google Chrome V138 
 
 ---
 
@@ -29,7 +30,7 @@ GET [https://conecta-bem-front-git-feat-update-c-62582b-conectabems-projects.ver
 Status: 502 (Vercel)
 
 ```
-- Indica falha na autorização para otimização de imagens externas via Vercel.  
+- Indica falha na autorização para otimização de imagens externas via Vercel. Esse erro está ocorrendo em outros navegadores também.  
 
 ---
 
