@@ -3,7 +3,7 @@
 ## 🔗 Links
 - **Design de Referência (Figma):** [Fluxo base](https://www.figma.com/design/JFNgLEfOSw4kJmBh2gHHQQ/Squad-Design_ConectaBem--Copy-?node-id=3498-33452&p=f&t=NTC8mZdirp5ZsBU0-0)  
 - **Ambiente testado:** [conectabems-projects.vercel.app](https://conecta-bem-front-git-feat-update-c-62582b-conectabems-projects.vercel.app)  
-
+- **Testadores**: Victor e Miguel
 ---
 
 ## 🧪 Ambiente de Testes
