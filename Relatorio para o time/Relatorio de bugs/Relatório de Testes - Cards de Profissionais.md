@@ -9,7 +9,7 @@
 ## 🧪 Ambiente de Testes
 - **Sistema Operacional:** Windows 11  
 - **Navegador:** Firefox v142.0 (64 bits)
-- **Navegador 2:** Versão 139.0.7258.139 (Compilação oficial) (64 bits)
+- **Navegador 2:** Chrome Versão 139.0.7258.139 (Compilação oficial) (64 bits)
 
 ---
 
