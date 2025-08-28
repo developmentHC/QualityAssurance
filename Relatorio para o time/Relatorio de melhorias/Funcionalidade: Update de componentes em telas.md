@@ -70,6 +70,7 @@ Versão do Chromium: 135.0.7049.115
 - O fluxo de cadastro está **quebrado**, sendo necessário correção imediata para permitir que usuários consigam finalizar o processo.  
 - Recomendação de **atualizar o Swagger** para facilitar a validação dos testes manuais e automatizados.  
 - Bug encontrado na versão mobile ao clicar no backStepButton
+- a task no que pretendia fazer que é atualizar o visual dos componentes está finalizada.
 ---
 
 ## 📎 Evidências
