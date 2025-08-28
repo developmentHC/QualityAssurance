@@ -1,4 +1,4 @@
-# 📋 Relatório de Testes - Task: Atualização de Componentes de Login e Cadastro
+# 📋 Relatório de Testes(atualizado) - Task: Atualização de Componentes de Login e Cadastro
 
 ## 🔗 Links da Task
 - **Pull Request:** [feat: update components on screens](https://github.com/developmentHC/conectaBemFront/pull/28)  
@@ -29,30 +29,47 @@
 
 ## 🔍 Resultados dos Testes
 
-### 1. **Swagger**
+### 1. **Swagger**(pendente)
 - ❌ Swagger desatualizado → dificulta o acesso à API e execução de testes manuais/automatizados.  
   **Sugestão:** atualizar documentação para melhor suporte ao QA e Devs.
 
 ---
 
-### 2. **Fluxo de Cadastro**
+### 2. **Fluxo de Cadastro**(pendente)
 - 🚨 **Bug Bloqueante**: Após receber e enviar o código com sucesso, o usuário é redirecionado para a **Home**, ao invés de continuar o fluxo de cadastro.  
   **Impacto:** impede a conclusão do cadastro.  
 
 ---
 
-### 3. **Botão "Reenviar código"**
+### 3. **Botão "Reenviar código"**(corrigido)
 - ⚠️ **Inconsistência visual**:
   - No **Figma (fluxo novo)** → botão está alinhado à **direita**.  
-  - No **site em produção** → botão aparece alinhado à **esquerda**.  
+  - No **site em produção** → botão aparece alinhado à **esquerda**. 
+
+### 4. **BackStepButton(versão mobile na tela de login) não redireciona ao ser clicado rapidamente **(pendente)
+- ⚠️ **Bug de redirecionamento**:
+  - Ao clicar no botão pelo navegador firefox v142 o usuario não é redirecionado de volta a home**.
+  - Ao clicar no botão pelo navegador OperaGx o usuario é redirecionado corretamente
+  - Evidencia: https://drive.google.com/file/d/1RhrcZ1qYGmTqPBMwIZYwhDXGlfu9XTv0/view. 
+ambientes testado:
+QA -
+Sistema: windows 11 64 bits
+Navegador firefox 142
+
+Dev -
+OperagX
+Fluxo de atualização: Early Access
+Core: 120.0.5543.204
+Sistema: Windows 10 64-bit
+Versão do Chromium: 135.0.7049.115
+ 
 
 ---
 
-## 📌 Conclusão
-- Foram identificados **ajustes pendentes** para alinhar a implementação ao design definido no Figma.  
+## 📌 Conclusão 
 - O fluxo de cadastro está **quebrado**, sendo necessário correção imediata para permitir que usuários consigam finalizar o processo.  
 - Recomendação de **atualizar o Swagger** para facilitar a validação dos testes manuais e automatizados.  
-
+- Bug encontrado na versão mobile ao clicar no backStepButton
 ---
 
 ## 📎 Evidências
