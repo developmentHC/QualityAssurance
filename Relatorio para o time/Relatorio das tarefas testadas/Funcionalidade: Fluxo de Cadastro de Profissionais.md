@@ -70,7 +70,7 @@
 - **Bugs Pendentes:** 
   - Etapa 4: link dos termos de uso (aguardando implementação da página).  
 
-✅ O fluxo de cadastro encontra-se mais estável, com a maioria dos problemas corrigidos. Restam pendências ligadas ao **Design** e à **implementação de funcionalidades futuras**.  
+✅ O fluxo de cadastro encontra-se mais estável, com a maioria dos problemas corrigidos faltando apenas à **implementação de funcionalidades futuras**.  
 
 ---
 
