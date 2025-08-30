@@ -1,7 +1,7 @@
-# CT_MD1.0: Cadastro (Prioridade: ALTA).
+# CT_MD1.0: Cadastro de Paciente (Prioridade: ALTA).
 
 # 🧪 Plano de Testes Manuais - ConectaBem
-> Funcionalidade: Autenticação de Usuário (Paciente)
+> Funcionalidade: Cadastro de Usuário (Paciente)
 
 > Sistema: [ConectaBem](https://conecta-bem-front.vercel.app/)
 
@@ -49,34 +49,11 @@
 
 ___ 
 
-## Caso 2: Cadastro de Médico com sucesso (Google)
+
+## Caso 2: Cadastro de Paciente com sucesso (Facebook)
 | ID                | Descrição                                           |
 | :---------------- | :-------------------------------------------------- |
-| CADS\_SOCIAL\_002 | O cadastro será realizado como Médico com Google. |
-
-| **Pré-condições**                                 |
-| :------------------------------------------------ |
-| Usuário com conta Google válida vinculada ao ConectaBem. |
-
-| **Passos**                                                  |
-| :---------------------------------------------------------- |
-| **DADO** que o usuário está na Home do ConectaBem           |
-| **QUANDO** clica em "Entrar" e seleciona "Login com Google" |
-| **E** autoriza o acesso com credenciais válidas             |
-| **E** escolhe o perfil “Médico” |
-| **E** preenche os dados Obrigatórios, consultório, qualificações e serviços | 
-| **ENTÃO** o cadastro é concluido e o usuário é redirecionado para a Home |
-
-| **Critérios de aceitação**                                                 |
-| :------------------------------------------------------------------------- |
-| O sistema deve cadastrar o médico e exibir a Home autenticada |
-
-___ 
-
-## Caso 3: Cadastro de Paciente com sucesso (Facebook)
-| ID                | Descrição                                           |
-| :---------------- | :-------------------------------------------------- |
-| CADS\_SOCIAL\_003 | O cadastro será realizado como Paciente com Facebook.. |
+| CADS\_SOCIAL\_002 | O cadastro será realizado como Paciente com Facebook.. |
 
 | **Pré-condições**                                 |
 | :------------------------------------------------ |
@@ -97,34 +74,10 @@ ___
 
 ___ 
 
-## Caso 4: Cadastro de Médico com sucesso (Facebook)
+## Caso 3: Cadastro de Paciente com sucesso (E-mail)
 | ID                | Descrição                                           |
 | :---------------- | :-------------------------------------------------- |
-| CADS\_SOCIAL\_004 | O cadastro será realizado como Médico com Facebook. |
-
-| **Pré-condições**                                 |
-| :------------------------------------------------ |
-| Usuário com conta Facebook válida vinculada ao ConectaBem. |
-
-| **Passos**                                                  |
-| :---------------------------------------------------------- |
-| **DADO** que o usuário está na Home do ConectaBem           |
-| **QUANDO** clica em "Entrar" e seleciona "Login com Facebook" |
-| **E** autoriza o acesso com credenciais válidas             |
-| **E** escolhe o perfil “Médico” |
-| **E** preenche os dadosobrigatórios, consultório, qualificações e serviços | 
-| **ENTÃO** o cadastro é concluido e o usuário é redirecionado para a Home |
-
-| **Critérios de aceitação**                                                 |
-| :------------------------------------------------------------------------- |
-| O sistema deve cadastrar o médico e exibir a Home autenticada |
-
-___ 
-
-## Caso 5: Cadastro de Paciente com sucesso (E-mail)
-| ID                | Descrição                                           |
-| :---------------- | :-------------------------------------------------- |
-| CADS\_EMAIL\_005 | O cadastro será realizado como Paciente via e-mail. |
+| CADS\_EMAIL\_003 | O cadastro será realizado como Paciente via e-mail. |
 
 | **Pré-condições**                                 |
 | :------------------------------------------------ |
@@ -147,34 +100,7 @@ ___
 | O sistema deve cadastrar o Paciente e exibir a Home autenticada |
 
 ___ 
-
-## Caso 6: Cadastro de Médico com sucesso (E-mail)
-| ID                | Descrição                                           |
-| :---------------- | :-------------------------------------------------- |
-| CADS\_EMAIL\_006| O cadastro será realizado como Médico via e-mail. |
-
-| **Pré-condições**                                 |
-| :------------------------------------------------ |
-| Usuário com e-mail válido |
-| Não exista cadastro anterior com este e-mail |
-
-| **Passos**                                                  |
-| :---------------------------------------------------------- |
-| **DADO** que o usuário está na Home do ConectaBem |
-| **E** clica em “Entrar”          |
-| **QUANDO** digita o E-mail no Input |
-| **E** clica em “Continuar”          |
-| **E** digite o código de validação enviado para o E-mail | 
-| **E** escolhe o perfil “Médico” |
-| **E** preenche os dadosobrigatórios, consultório, qualificações e serviços | 
-| **ENTÃO** o cadastro é concluido e o usuário é redirecionado para a Home |
-
-| **Critérios de aceitação**                                                 |
-| :------------------------------------------------------------------------- |
-| O sistema deve cadastrar o Médico e exibir a Home autenticada |
-
-
-___ 
+ 
 
 # Cenário 02 – Cadastro Inválido (Testes Negativos)
 
