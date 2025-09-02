@@ -33,11 +33,10 @@
 | **Passos**                                                  |
 | :---------------------------------------------------------- |
 | **DADO** que o usuário está na Home do ConectaBem           |
-| **QUANDO** clica em "Entrar" e seleciona "Login com Google" |
-| **E** autoriza o acesso com credenciais válidas             |
-| **E** escolhe o perfil “Médico” |
-| **E** preenche os dados Obrigatórios, consultório, qualificações e serviços | 
+| **QUANDO** o usuário acessa a opção "Entrar" e seleciona "Login com Google" | 
+| **E** autoriza o acesso e completa o cadastro como paciente preenchendo os dados obrigatórios, consultório, qualificações e serviços |
 | **ENTÃO** o cadastro é concluido e o usuário é redirecionado para a Home |
+
 
 | **Critérios de aceitação**                                                 |
 | :------------------------------------------------------------------------- |
@@ -57,10 +56,8 @@ ___
 | **Passos**                                                  |
 | :---------------------------------------------------------- |
 | **DADO** que o usuário está na Home do ConectaBem           |
-| **QUANDO** clica em "Entrar" e seleciona "Login com Facebook" |
-| **E** autoriza o acesso com credenciais válidas             |
-| **E** escolhe o perfil “Médico” |
-| **E** preenche os dadosobrigatórios, consultório, qualificações e serviços | 
+| **QUANDO** o usuário acessa a opção "Entrar" e seleciona "Login com Facebook" | 
+| **E** autoriza o acesso e completa o cadastro como paciente preenchendo os dados obrigatórios, consultório, qualificações e serviços |
 | **ENTÃO** o cadastro é concluido e o usuário é redirecionado para a Home |
 
 | **Critérios de aceitação**                                                 |
@@ -81,14 +78,10 @@ ___
 
 | **Passos**                                                  |
 | :---------------------------------------------------------- |
-| **DADO** que o usuário está na Home do ConectaBem |
-| **E** clica em “Entrar”          |
-| **QUANDO** digita o E-mail no Input |
-| **E** clica em “Continuar”          |
-| **E** digite o código de validação enviado para o E-mail | 
-| **E** escolhe o perfil “Médico” |
-| **E** preenche os dadosobrigatórios, consultório, qualificações e serviços | 
-| **ENTÃO** o cadastro é concluido e o usuário é redirecionado para a Home |
+| **DADO** que o usuário está na Home do ConectaBem |      |
+| **QUANDO** o usuário acessa "Entrar", informar o e-mail, validar o código e selecionar o perfil “Profissional” |
+| **E** preencher os dados obrigatórios, preferências e atendimento | 
+| **ENTÃO** o sistema conclui o cadastro e redireciona o usuário autenticado para a Home |
 
 | **Critérios de aceitação**                                                 |
 | :------------------------------------------------------------------------- |
