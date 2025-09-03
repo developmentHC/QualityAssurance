@@ -46,7 +46,7 @@
   - No **Figma (fluxo novo)** → botão está alinhado à **direita**.  
   - No **site em produção** → botão aparece alinhado à **esquerda**. 
 
-### 4. **BackStepButton(versão mobile na tela de login) não redireciona ao ser clicado rapidamente **(pendente)
+### 4. **BackStepButton(versão mobile na tela de login) não redireciona ao ser clicado rapidamente **(corrigido)
 - ⚠️ **Bug de redirecionamento**:
   - Ao clicar no botão pelo navegador firefox v142 o usuario não é redirecionado de volta a home**.
   - Ao clicar no botão pelo navegador OperaGx o usuario é redirecionado corretamente
