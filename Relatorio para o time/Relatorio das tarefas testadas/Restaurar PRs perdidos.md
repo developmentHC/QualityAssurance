@@ -86,7 +86,7 @@
 
 **Resultados:**  
 - Login e cadastro com Google funcionando corretamente (paciente e profissional).
-- porém ao fazer login e cadastro recebi uns erros no log da vercel.
+- porém ao fazer login e cadastro recebi uns erros no log da vercel(backend).
 - 2025-09-09T17:57:28.171Z [error] [SENDGRID] Erro ao enviar email: Client network socket disconnected before secure TLS connection was established
 - [SENDGRID] FALLOUT: sandbox também falhou: Unauthorized
 - link da print do log: https://drive.google.com/file/d/1VvNeOsFPTrAPiAoe5mV1doeh74z3bqYi/view?usp=sharing  
