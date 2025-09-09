@@ -57,7 +57,7 @@
 - Página funcionando, mas com **inconsistências visuais**.  
 - Observações:  
   - No mobile há um **backstep button** duplicado (um no header e outro no corpo da página). Recomendo remover para manter consistência.  
-  - No desktop recomendo remover em manter.  
+  - No desktop recomendo remover.  
   - No fluxo de login/cadastro (Fluxo 1), esse botão já havia sido removido.  
     [Evidência](https://drive.google.com/file/d/1I0iQdi452mBzVpJRdY-CHWY2B-KzIuog/view?usp=sharing)  
 
