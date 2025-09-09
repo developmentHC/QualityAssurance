@@ -26,7 +26,7 @@
 - Página carregando corretamente.  
 - Algumas mudanças visuais e dúvidas com o time de design precisam ser alinhadas.  
 - Observações:  
-  - Existem **duas versões da Home**. O fluxo 2 possui botão de filtro no campo de busca, enquanto o fluxo 1 não possui.  verei com os designs qual versão seguir.  
+  - Existem **duas versões da Home**. O fluxo 2 possui botão de filtro no campo de busca, enquanto o fluxo 1 não possui.  verei com os designs qual versão seguir(mas acredito que seja a versão que está no fluxo 2).  
   - **Texto principal (H1 e parágrafo):**  
     ```html
     <h1 class="lg:text-5xl text-2xl font-semibold">
