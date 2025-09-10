@@ -15,8 +15,8 @@ Este relatório apresenta as métricas iniciais de qualidade coletadas **antes d
 
 | Categoria   | Encontrados | Resolvidos     | Pendentes |
 |-------------|-------------|----------------|-----------|
-| **Bugs**    | 3           | Em andamento   | 3         |
-| **Melhorias** | 7         | 3              | 4         |
+| **Bugs**    | 7           | 7              | 0         |
+| **Melhorias** | 7         | 5              | 2         |
 
 ---
 
