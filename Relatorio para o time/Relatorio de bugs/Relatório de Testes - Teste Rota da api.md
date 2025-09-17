@@ -72,7 +72,7 @@ Unhandled Rejection: AxiosError: socket hang up
 
 ## 🔹 Observações Importantes
 
-* Caso o usuário tenha se cadastrado via **Google**, ao tentar login via **código**, o sistema não envia OTP (fluxo correto, mas sem mensagem clara para o usuário).
+* Caso o usuário tenha se cadastrado via **Google**, ao tentar login via **código**, o sistema não envia OTP (fluxo correto).
 * Também peço ajuda do backend para falar mais sobre a api e mostrar como ela funciona para facilitar os testes
 
 ---
