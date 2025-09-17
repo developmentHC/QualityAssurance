@@ -80,4 +80,4 @@ Unhandled Rejection: AxiosError: socket hang up
 ## 🔹 Conclusão da Tarefa
 
 * **Atualização da documentação Swagger** → **Concluída** ✅
-* **Bug reportado** → **Aberto para correção** ❌
+* **Bug reportado** → **irei solicitar a criação da tarefa** 
