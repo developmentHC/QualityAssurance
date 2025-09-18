@@ -1,4 +1,4 @@
-# 🐞 Relatório de Defeitos – Testes Manuais de Integração (API + Frontend)
+# 🐞 Relatório de Defeitos – Testes Manuais de Integração (API + Frontend)[STATUS: Resolvido]
 
 ## 🔹 Contexto
 
