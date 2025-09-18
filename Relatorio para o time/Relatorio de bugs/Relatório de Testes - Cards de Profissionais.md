@@ -1,4 +1,4 @@
-# 📋 Relatório de Testes - Cards de Profissionais
+# 📋 Relatório de Testes - Cards de Profissionais[STATUS: Resolvido]
 
 ## 🔗 Links
 - **Design de Referência (Figma):** [Fluxo base](https://www.figma.com/design/JFNgLEfOSw4kJmBh2gHHQQ/Squad-Design_ConectaBem--Copy-?node-id=3498-33452&p=f&t=NTC8mZdirp5ZsBU0-0)  
