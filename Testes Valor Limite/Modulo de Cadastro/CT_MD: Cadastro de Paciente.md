@@ -1,6 +1,6 @@
 | ID-PAC | Campo          | Valor Testado          | Resultado Esperado                | Resultado Obtido | Status  |
 | ------ | -------------- | ---------------------- | --------------------------------- | ---------------- | ------- |
-| P001   | Nome           | 2 caracteres ("An")    | Rejeitar – mínimo 3               | Rejeita, porém não mostra nenhuma mensagem de erro, apenas trava o avanço | ⚠ Incompleto |
+| P001   | Nome           | 2 caracteres ("An")    | Rejeitar – mínimo 3               | Rejeita, mas sem feedback para o usuário | ⚠ Incompleto |
 | P002   | Nome           | 3 caracteres ("Ana")   | Aceitar                           | O mesmo do esperado | ✔️ Passou |
 | P003   | Nome           | 4 caracteres ("Anas")  | Aceitar                           | O mesmo do esperado | ✔️ Passou |
 | P004   | Data Nasc.     | 17 anos 364 dias       | Rejeitar – "Idade mínima 18 anos" | O mesmo do esperado | ✔️ Passou |
