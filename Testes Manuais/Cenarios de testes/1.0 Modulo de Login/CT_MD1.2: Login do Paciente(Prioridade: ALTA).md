@@ -1,14 +1,11 @@
 # 🧪 Plano de Testes Manuais - ConectaBem
 > Funcionalidade: Autenticação de Usuário (Paciente)
-
 > Sistema: [ConectaBem](https://conecta-bem-front.vercel.app/)
-
-> Autor: Miguel Luis
-
-> Data: 2025-08-27
-
+> Autor: Miguel Luis e Mateus Santos
+> Data de Criação: 2025-08-27
+> Data de Atualização: 2025-09-30
+> 
 ---
-
 
 # 📊 Tabela Consolidada - Partição de Equivalência(usar esta tabela para os testes)
 
@@ -247,3 +244,117 @@
 | **DADO** que o usuário seleciona login via código          |
 | **QUANDO** insere um e-mail não cadastrado                 |
 | **ENTÃO** o sistema exibe mensagem "E-mail não cadastrado" e  não envia nenhum código |
+
+## 🔐 Cenários de Segurança e Autorização
+
+### Caso de Teste 11: Token inválido ou expirado
+
+| ID                 | Descrição                                           |
+| :----------------- | :-------------------------------------------------- |
+| AUTH_SEC_001       | Usuário tenta logar com token inválido ou expirado. |
+
+| **Pré-condições**                                  |
+| :------------------------------------------------- |
+| Token retornado pelo provedor está inválido/expirado. |
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário inicia login social                                  |
+| **QUANDO** o provedor retorna um token inválido/expirado                    |
+| **ENTÃO** o sistema rejeita o login e exibe mensagem de erro                |
+
+| **Critérios de aceitação**                                   |
+| :----------------------------------------------------------- |
+| O sistema não deve autenticar e deve orientar novo login.    |
+
+---
+
+## 📧 Cenários de Código de Verificação (Extras)
+
+### Caso de Teste 12: Reenvio de código antes do expirar
+
+| ID                 | Descrição                                             |
+| :----------------- | :---------------------------------------------------- |
+| AUTH_CODE_006      | Usuário solicita novo código antes do expirar o atual.|
+
+| **Pré-condições**                               |
+| :---------------------------------------------- |
+| Usuário já possui um código válido em andamento.|
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário solicita reenvio de código                           |
+| **QUANDO** o sistema gera um novo código                                    |
+| **ENTÃO** o anterior deve ser invalidado                                    |
+
+| **Critérios de aceitação**                                       |
+| :--------------------------------------------------------------- |
+| Apenas o último código enviado deve ser válido para login.       |
+
+---
+
+### Caso de Teste 13: Uso de código anterior
+
+| ID                 | Descrição                                      |
+| :----------------- | :--------------------------------------------- |
+| AUTH_CODE_007      | Usuário tenta validar um código antigo inválido.|
+
+| **Pré-condições**                               |
+| :---------------------------------------------- |
+| Um novo código já foi solicitado pelo usuário.  |
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário insere um código anterior                           |
+| **QUANDO** tenta validar                                                    |
+| **ENTÃO** o sistema deve recusar e exibir erro                              |
+
+| **Critérios de aceitação**                                  |
+| :---------------------------------------------------------- |
+| Sistema deve aceitar apenas o código mais recente.          |
+
+---
+
+### Caso de Teste 14: Múltiplas tentativas incorretas
+
+| ID                 | Descrição                                              |
+| :----------------- | :----------------------------------------------------- |
+| AUTH_CODE_008      | Usuário excede limite de tentativas incorretas de código.|
+
+| **Pré-condições**                                  |
+| :------------------------------------------------- |
+| Usuário insere códigos inválidos repetidamente.    |
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário tenta login com código                               |
+| **QUANDO** insere códigos incorretos mais de X vezes                        |
+| **ENTÃO** o sistema bloqueia temporariamente o login                        |
+
+| **Critérios de aceitação**                                  |
+| :---------------------------------------------------------- |
+| Sistema deve aplicar bloqueio temporário por segurança.     |
+
+---
+
+## 📱 Cenários de Dispositivos
+
+### Caso de Teste 15: Login simultâneo em dispositivos diferentes
+
+| ID                 | Descrição                                               |
+| :----------------- | :------------------------------------------------------ |
+| AUTH_DEV_001       | Usuário loga em dois dispositivos ao mesmo tempo.       |
+
+| **Pré-condições**                              |
+| :--------------------------------------------- |
+| Conta já autenticada em outro dispositivo.     |
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário já está logado em um dispositivo                      |
+| **QUANDO** realiza login em outro                                             |
+| **ENTÃO** o sistema deve decidir se mantém múltiplas sessões ou invalida a anterior |
+
+| **Critérios de aceitação**                                         |
+| :----------------------------------------------------------------- |
+| Sistema deve seguir a política definida (permitir ou invalidar).   |
