@@ -1,9 +1,9 @@
 # 🧪 Plano de Testes Manuais - Login Social (Profissional)  
 > Funcionalidade: Fluxo de Login Profissional  
 > Sistema: ConectaBem  
-> Autor: Miguel Luis  
-> Data: 2025-08-27  
-
+> Autor: Miguel Luis e Mateus Santos  
+> Data de Criação: 2025-08-27  
+> Data de Atualização: 2025-09-30
 ---
 
 # 📊 Tabela Consolidada - Partição de Equivalência
@@ -223,3 +223,112 @@
 | **Critérios de aceitação**                                       |
 | :--------------------------------------------------------------- |
 | O sistema deve invalidar o código expirado e pedir novo envio.   |
+
+## Cenário 04: Segurança e Autorização
+
+### Caso de Teste 10: Token inválido ou expirado
+| ID                  | Descrição                                                   |
+| :------------------ | :---------------------------------------------------------- |
+| AUTH_PRO_LOGIN_010  | Usuário tenta logar com token inválido ou expirado.         |
+
+| **Pré-condições**                  |
+| :--------------------------------- |
+| Token retornado pelo provedor está inválido ou expirado. |
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário inicia login social                                  |
+| **QUANDO** o provedor retorna um token inválido/expirado                    |
+| **ENTÃO** o sistema deve rejeitar o login e exibir mensagem de erro         |
+
+| **Critérios de aceitação**                                |
+| :-------------------------------------------------------- |
+| O sistema não deve autenticar e deve orientar novo login. |
+
+---
+
+## Cenário 05: Código de Verificação (Extras)
+
+### Caso de Teste 11: Reenvio de código
+| ID                  | Descrição                                              |
+| :------------------ | :----------------------------------------------------- |
+| AUTH_PRO_LOGIN_011  | Usuário solicita novo código antes do expirar o atual. |
+
+| **Pré-condições**                              |
+| :--------------------------------------------- |
+| Usuário já possui um código válido em andamento. |
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário solicita reenvio de código                           |
+| **QUANDO** novo código é gerado                                             |
+| **ENTÃO** o sistema deve invalidar o anterior                               |
+
+| **Critérios de aceitação**                                     |
+| :------------------------------------------------------------- |
+| Apenas o último código enviado deve ser válido para login.     |
+
+---
+
+### Caso de Teste 12: Uso de código anterior
+| ID                  | Descrição                                       |
+| :------------------ | :---------------------------------------------- |
+| AUTH_PRO_LOGIN_012  | Usuário tenta usar um código antigo e inválido. |
+
+| **Pré-condições**                            |
+| :------------------------------------------- |
+| Novo código já foi solicitado pelo usuário.  |
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário insere um código anterior                           |
+| **QUANDO** tenta validar                                                    |
+| **ENTÃO** o sistema deve recusar e exibir erro                              |
+
+| **Critérios de aceitação**                                |
+| :-------------------------------------------------------- |
+| Sistema deve aceitar apenas o código mais recente.        |
+
+---
+
+### Caso de Teste 13: Múltiplas tentativas incorretas
+| ID                  | Descrição                                               |
+| :------------------ | :------------------------------------------------------ |
+| AUTH_PRO_LOGIN_013  | Usuário excede limite de tentativas de códigos errados. |
+
+| **Pré-condições**                            |
+| :------------------------------------------- |
+| Usuário insere códigos inválidos repetidamente. |
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário tenta login com código                               |
+| **QUANDO** insere códigos incorretos mais de X vezes                        |
+| **ENTÃO** o sistema deve bloquear temporariamente o login                   |
+
+| **Critérios de aceitação**                                 |
+| :--------------------------------------------------------- |
+| Sistema deve aplicar bloqueio temporário por segurança.    |
+
+---
+
+## Cenário 06: Dispositivos
+
+### Caso de Teste 14: Login simultâneo em dispositivos diferentes
+| ID                  | Descrição                                                 |
+| :------------------ | :-------------------------------------------------------- |
+| AUTH_PRO_LOGIN_014  | Usuário loga em dois dispositivos ao mesmo tempo.         |
+
+| **Pré-condições**                             |
+| :-------------------------------------------- |
+| Conta já autenticada em outro dispositivo.    |
+
+| **Passos**                                                                 |
+| :--------------------------------------------------------------------------- |
+| **DADO** que o usuário já está logado em um dispositivo                      |
+| **QUANDO** realiza login em outro                                             |
+| **ENTÃO** o sistema deve decidir se mantém múltiplas sessões ou invalida a anterior |
+
+| **Critérios de aceitação**                                      |
+| :-------------------------------------------------------------- |
+| Sistema deve seguir a política definida (permitir ou invalidar). |
