@@ -58,13 +58,6 @@ Para considerar uma tela **acessível**, ela deve:
 
 ---
 
-### **Legenda de cobertura:**
-- ✅ **Automática:** O axe verifica totalmente este aspecto.  
-- ⚠️ **Parcial:** O axe detecta apenas parte (geralmente aspectos técnicos). Teste manual recomendado.  
-- ❌ **Manual:** Necessita avaliação humana (ex: navegação, foco, compreensão).
-
----
-
 ## 6. Critérios de Aceite
 
 - Nenhum erro **crítico** identificado pelas ferramentas de acessibilidade.  
