@@ -37,13 +37,31 @@ Para considerar uma tela **acessível**, ela deve:
 
 ## 5. Itens Avaliados
 
-| Categoria | O que será verificado | Exemplo de problema |
-|------------|-----------------------|----------------------|
-| **Textos e rótulos** | Se todos os campos e botões têm descrição visível ou acessível. | Botão com texto “Clique aqui” sem contexto. |
-| **Contraste de cores** | Se textos e ícones têm contraste suficiente com o fundo. | Texto cinza sobre fundo claro. |
-| **Navegação por teclado** | Se é possível acessar todos os elementos sem o mouse. | Campos que não recebem foco. |
-| **Mensagens de erro** | Se as mensagens são claras e indicam o campo com erro. | “Erro 400” em vez de “E-mail inválido”. |
-| **Imagens e ícones** | Se possuem descrição alternativa (texto alternativo). | Ícone sem descrição. |
+| Categoria | O que é verificado | Cobertura pelo Axe | Observações |
+|------------|--------------------|--------------------|--------------|
+| **Estrutura semântica** | Uso correto de tags HTML (`<main>`, `<nav>`, `<header>`, `<footer>`, cabeçalhos `h1`–`h6`). | ✅ Automática | Detecta falta de hierarquia ou uso incorreto. |
+| **Rótulos de elementos (labels)** | Associação de `label` a campos de formulário; botões e links com texto descritivo. | ✅ Automática | Detecta ausência de `label` ou `aria-label`. |
+| **Atributos ARIA** | Presença e uso correto de atributos `aria-*` (ex: `aria-hidden`, `aria-expanded`). | ✅ Automática | Valida sintaxe e uso adequado. |
+| **Contraste de cores** | Relação de contraste entre texto e fundo conforme WCAG 2.1 (nível AA/AAA). | ✅ Automática | Calcula contraste de textos e ícones. |
+| **Imagens e ícones** | Existência de texto alternativo (`alt`, `aria-label`) em imagens e ícones. | ✅ Automática | Identifica imagens decorativas sem `alt` vazio. |
+| **Elementos interativos** | Verifica se botões, links e inputs são interativos e acessíveis. | ✅ Automática | Checa se o elemento é focável e semanticamente correto. |
+| **Títulos de página** | Verifica se existe `<title>` na página. | ✅ Automática | Requer título descritivo. |
+| **Mensagens de erro associadas** | Campos com mensagens de erro relacionadas via `aria-describedby` ou similar. | ⚠️ Parcial | Detecta associação técnica, mas não clareza do texto. |
+| **Foco de teclado (tabindex)** | Elementos que não são acessíveis via teclado (`tabindex="-1"` incorreto, por exemplo). | ⚠️ Parcial | Detecta ausência técnica, mas não sequência de foco. |
+| **Ordem de leitura / foco** | Sequência lógica ao navegar com Tab. | ❌ Manual | Precisa ser testado manualmente. |
+| **Visibilidade do foco** | Se o foco é visível ao navegar pelo teclado. | ❌ Manual | Verificação visual obrigatória. |
+| **Leitura por leitores de tela** | Se o conteúdo faz sentido quando lido por leitor de tela. | ⚠️ Parcial | Detecta marcação incorreta, mas não legibilidade real. |
+| **Compreensão do conteúdo** | Clareza e simplicidade dos textos, botões e mensagens. | ❌ Manual | Ferramenta não avalia linguagem. |
+| **Conteúdos dinâmicos (modais, dropdowns, alerts)** | Se o foco muda corretamente e conteúdo é anunciado. | ⚠️ Parcial | Depende da implementação; requer teste manual. |
+| **Navegação somente por teclado** | Possibilidade de concluir fluxos (ex: login, cadastro) sem mouse. | ❌ Manual | Deve ser validado manualmente. |
+| **Tempo e movimento (animações, auto-play)** | Presença de conteúdos em movimento sem controle do usuário. | ⚠️ Parcial | Detecta apenas via atributos, não via comportamento real. |
+
+---
+
+### **Legenda de cobertura:**
+- ✅ **Automática:** O axe verifica totalmente este aspecto.  
+- ⚠️ **Parcial:** O axe detecta apenas parte (geralmente aspectos técnicos). Teste manual recomendado.  
+- ❌ **Manual:** Necessita avaliação humana (ex: navegação, foco, compreensão).
 
 ---
 
