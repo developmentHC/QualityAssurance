@@ -1,4 +1,4 @@
-# 🧩 Plano de Teste de Acessibilidade – Site (Tela Inicial, Cadastro e Login)
+# 🧩 Plano de Teste de Acessibilidade – ConectaBem
 
 ## 1. Objetivo
 Garantir que o site possa ser utilizado por todas as pessoas, incluindo usuários com deficiências visuais, motoras, auditivas ou cognitivas, conforme as diretrizes de acessibilidade **WCAG 2.1**.  
