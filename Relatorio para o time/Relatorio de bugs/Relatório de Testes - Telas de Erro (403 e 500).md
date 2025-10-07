@@ -44,4 +44,4 @@ Após o “Tentar novamente”, o estado da árvore de componentes não é resta
 ---
 
 ### 📎 Referência
-[Figma – Squad Design ConectaBem]([https://www.figma.com/file/xxxxx](https://www.figma.com/design/NtXWClFNNGscXzSd38vwmX/Squad-Design_ConectaBem_v.28.07.25?node-id=3001-40619&t=5yN0eamB1GnFeiKU-0))
+[Figma – Squad Design ConectaBem](https://www.figma.com/design/NtXWClFNNGscXzSd38vwmX/Squad-Design_ConectaBem_v.28.07.25?node-id=3001-40619&t=5yN0eamB1GnFeiKU-0)
