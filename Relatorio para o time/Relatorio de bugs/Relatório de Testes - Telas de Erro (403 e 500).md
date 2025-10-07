@@ -1,4 +1,4 @@
-# 🐞 Bug – Tela de Erro 500: Comportamento incorreto ao clicar em “Tentar novamente” seguido de “Voltar ao início”
+# 🐞 Bug – Tela de Erro 500: Comportamento incorreto ao clicar em “Tentar novamente” seguido de “Voltar ao início” [STATUS: Resolvido]
 
 **Descrição**  
 Na tela de erro **500 (Erro Interno do Servidor)**, foi identificado um comportamento incorreto na sequência de ações dos botões.  
