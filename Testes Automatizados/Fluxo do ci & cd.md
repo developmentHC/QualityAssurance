@@ -97,6 +97,70 @@ Quando o QA aprova todas as validações:
                      QA
 ```
 
+### Sugestão de outras ferramentas além do sonarqube que pensei em usar dois juntos
+
+## 1️⃣ Por que usar os dois juntos
+
+| Ferramenta  | Força principal                                                         | Limitação                                                                     | Benefício da combinação                                                               |
+| ----------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Semgrep** | Feedback rápido no PR, boas práticas, estilo, vulnerabilidades comuns   | Não consegue rastrear fluxos complexos de dados ou vulnerabilidades profundas | Dá **feedback imediato ao dev**, evitando bugs triviais antes de merge                |
+| **CodeQL**  | Análise profunda, rastreamento de dados (data flow), segurança avançada | Mais pesado, mais lento, curva de aprendizado maior                           | Garante que **vulnerabilidades reais e complexas** sejam detectadas antes de produção |
+
+✅ **Combinar ambos significa:**
+
+* Devs recebem **alertas rápidos e fáceis de entender** (Semgrep) durante o PR.
+* QA ou Security recebe **relatórios completos de segurança** (CodeQL) para auditoria e prevenção.
+* Redução de retrabalho, bugs e vulnerabilidades em produção.
+
+---
+
+## 2️⃣ Como integrar no fluxo de desenvolvimento
+
+### 🔹 Pipeline sugerido:
+
+1. **Pull Request (PR)**
+
+   * **Semgrep** roda primeiro → feedback rápido e direto no PR.
+   * Regras personalizadas de boas práticas e estilo.
+   * Falhas de segurança comuns (ex: uso de `eval`, `console.log` em produção).
+
+2. **Merge / Branch QA**
+
+   * **CodeQL** roda em segundo plano → varredura profunda de segurança.
+   * Detecta vulnerabilidades complexas (SQL Injection, XSS, Path Traversal).
+   * Relatórios vão para **Security Dashboard** e podem ser revisados pelo QA ou Security.
+
+3. **Produção**
+
+   * Apenas merges aprovados passam → alta confiança de qualidade e segurança.
+
+---
+
+## 3️⃣ Exemplo visual do fluxo
+
+```
+Dev cria PR
+   │
+   ▼
+[Semgrep] → alerta rápido no PR (estilo, boas práticas, vulnerabilidades básicas)
+   │
+   ▼
+QA revisa PR
+   │
+   ▼
+Merge aprovado → branch QA
+   │
+   ▼
+[CodeQL] → análise profunda (security, fluxos de dados, vulnerabilidades complexas)
+   │
+   ▼
+Relatórios → Dashboard QA / Security
+   │
+   ▼
+Merge final para produção
+```
+
+
 ---
 
 📄 **Última atualização:** Outubro de 2025
