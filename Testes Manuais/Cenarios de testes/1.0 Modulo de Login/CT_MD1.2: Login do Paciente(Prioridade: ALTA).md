@@ -1,5 +1,5 @@
 # 🧪 Plano de Testes Manuais - ConectaBem
-> Funcionalidade: Autenticação de Usuário (Paciente)
+> Funcionalidade: Autenticação de Usuário (Paciente) [Testes relacionados a autenticação com facebook estão invalidados]
 > Sistema: [ConectaBem](https://conecta-bem-front.vercel.app/)
 > Autor: Miguel Luis e Mateus Santos
 > Data de Criação: 2025-08-27
