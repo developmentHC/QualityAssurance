@@ -1,4 +1,4 @@
-# 🧪 Plano de Testes Manuais - Login Social (Profissional)  
+# 🧪 Plano de Testes Manuais - Login Social (Profissional)[Testes relacionados a autenticação com facebook estão invalidados]
 > Funcionalidade: Fluxo de Login Profissional  
 > Sistema: ConectaBem  
 > Autor: Miguel Luis e Mateus Santos  
