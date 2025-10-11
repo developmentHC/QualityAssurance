@@ -2,7 +2,7 @@
 
 ---
 
-## 🧩 Cenário 1: Login Social via Google
+## Cenário 1: Login Social via Google
 
 | CT  | Descrição                                         | Tipo         | Resultado             |
 |-----|---------------------------------------------------|---------------|------------------------|
@@ -12,7 +12,7 @@
 
 ---
 
-## 🧩 Cenário 2: Login Social via Facebook
+## Cenário 2: Login Social via Facebook
 
 | CT  | Descrição                                         | Tipo         | Resultado                    |
 |-----|---------------------------------------------------|---------------|-------------------------------|
@@ -22,7 +22,7 @@
 
 ---
 
-## 🧩 Cenário 3: Login via Código de Verificação
+## Cenário 3: Login via Código de Verificação
 
 | CT  | Descrição                                         | Tipo         | Resultado             |
 |-----|---------------------------------------------------|---------------|------------------------|
@@ -32,7 +32,7 @@
 
 ---
 
-## 🧩 Cenário 4: Código de Verificação (Extras)
+## Cenário 4: Código de Verificação (Extras)
 
 | CT  | Descrição                                         | Tipo         | Resultado                    |
 |-----|---------------------------------------------------|---------------|-------------------------------|
@@ -42,7 +42,7 @@
 
 ---
 
-## 🧩 Cenário 5: Dispositivos
+## Cenário 5: Dispositivos
 
 | CT  | Descrição                                         | Tipo         | Resultado                 |
 |-----|---------------------------------------------------|---------------|----------------------------|
