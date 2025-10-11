@@ -224,32 +224,11 @@
 | :--------------------------------------------------------------- |
 | O sistema deve invalidar o código expirado e pedir novo envio.   |
 
-## Cenário 04: Segurança e Autorização
-
-### Caso de Teste 10: Token inválido ou expirado
-| ID                  | Descrição                                                   |
-| :------------------ | :---------------------------------------------------------- |
-| AUTH_PRO_LOGIN_010  | Usuário tenta logar com token inválido ou expirado.         |
-
-| **Pré-condições**                  |
-| :--------------------------------- |
-| Token retornado pelo provedor está inválido ou expirado. |
-
-| **Passos**                                                                 |
-| :--------------------------------------------------------------------------- |
-| **DADO** que o usuário inicia login social                                  |
-| **QUANDO** o provedor retorna um token inválido/expirado                    |
-| **ENTÃO** o sistema deve rejeitar o login e exibir mensagem de erro         |
-
-| **Critérios de aceitação**                                |
-| :-------------------------------------------------------- |
-| O sistema não deve autenticar e deve orientar novo login. |
-
 ---
 
-## Cenário 05: Código de Verificação (Extras)
+## Cenário 04: Código de Verificação (Extras)
 
-### Caso de Teste 11: Reenvio de código
+### Caso de Teste 10: Reenvio de código
 | ID                  | Descrição                                              |
 | :------------------ | :----------------------------------------------------- |
 | AUTH_PRO_LOGIN_011  | Usuário solicita novo código antes do expirar o atual. |
@@ -270,7 +249,7 @@
 
 ---
 
-### Caso de Teste 12: Uso de código anterior
+### Caso de Teste 11: Uso de código anterior
 | ID                  | Descrição                                       |
 | :------------------ | :---------------------------------------------- |
 | AUTH_PRO_LOGIN_012  | Usuário tenta usar um código antigo e inválido. |
@@ -291,7 +270,7 @@
 
 ---
 
-### Caso de Teste 13: Múltiplas tentativas incorretas
+### Caso de Teste 12: Múltiplas tentativas incorretas
 | ID                  | Descrição                                               |
 | :------------------ | :------------------------------------------------------ |
 | AUTH_PRO_LOGIN_013  | Usuário excede limite de tentativas de códigos errados. |
@@ -312,9 +291,9 @@
 
 ---
 
-## Cenário 06: Dispositivos
+## Cenário 05: Dispositivos
 
-### Caso de Teste 14: Login simultâneo em dispositivos diferentes
+### Caso de Teste 13: Login simultâneo em dispositivos diferentes
 | ID                  | Descrição                                                 |
 | :------------------ | :-------------------------------------------------------- |
 | AUTH_PRO_LOGIN_014  | Usuário loga em dois dispositivos ao mesmo tempo.         |
