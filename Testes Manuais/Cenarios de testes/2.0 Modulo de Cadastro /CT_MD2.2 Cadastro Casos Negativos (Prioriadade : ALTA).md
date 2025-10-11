@@ -1,7 +1,7 @@
 # 🧪 Plano de Testes Manuais - ConectaBem
-> Funcionalidade: Cadastro de Usuário (Paciente/Médico) - Cenários Negativos
+> Funcionalidade: Cadastro de Usuário (Paciente/Médico) - Cenários Negativos [Testes relacionados a autenticação com facebook estão invalidados]
 
-> Sistema: [ConectaBem](https://conecta-bem-front.vercel.app/)
+> Sistema: [ConectaBem](https://conecta-bem-front.vercel.app/) 
 
 > Autor: Victor Nadoti
 
