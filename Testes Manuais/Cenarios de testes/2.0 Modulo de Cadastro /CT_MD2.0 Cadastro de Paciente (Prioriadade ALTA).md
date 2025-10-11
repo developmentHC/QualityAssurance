@@ -1,7 +1,7 @@
 # CT_MD1.0: Cadastro de Paciente (Prioridade: ALTA).
 
 # 🧪 Plano de Testes Manuais - ConectaBem
-> Funcionalidade: Cadastro de Usuário (Paciente)
+> Funcionalidade: Cadastro de Usuário (Paciente) [Testes relacionados a autenticação com facebook estão invalidados]
 
 > Sistema: [ConectaBem](https://conecta-bem-front.vercel.app/)
 
