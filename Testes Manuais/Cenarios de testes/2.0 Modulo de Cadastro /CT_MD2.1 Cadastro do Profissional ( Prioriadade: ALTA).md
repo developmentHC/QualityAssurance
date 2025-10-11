@@ -1,5 +1,5 @@
 # 🧪 Plano de Testes Manuais - ConectaBem
-> Funcionalidade: Cadastro de Usuário (Profissional)
+> Funcionalidade: Cadastro de Usuário (Profissional) [Testes relacionados a autenticação com facebook estão invalidados]
 
 > Sistema: [ConectaBem](https://conecta-bem-front.vercel.app/)
 
