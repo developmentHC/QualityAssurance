@@ -1,0 +1,98 @@
+# 📋 Plano de Testes de API – **Carga & Performance (JMeter)**
+
+### 📌 1. Identificação
+- **Nome do Projeto**: ConectaBem – Sistema de Saúde  
+- **Ambiente de Testes (API)**: [ConectaBem Back](https://conecta-bem-back.vercel.app/)  
+- **Tipo de Teste**: Testes de **Carga, Performance e Stress** (testar a cada 3 meses)  
+- **Data do Documento**: 29/09/2025  
+- **Responsáveis**: Mateus Santos e Miguel Luis
+
+---
+
+## 🔹 2. Objetivo
+Validar a **capacidade de resposta, estabilidade e escalabilidade** das APIs críticas do sistema ConectaBem, utilizando o **Apache JMeter**.  
+Garantir que a aplicação suporte o número esperado de usuários simultâneos, mantendo tempo de resposta dentro dos limites de SLA.  
+
+---
+
+## 🔹 3. Escopo
+- Ambientes: **Dev** e **Produção Controlada**  
+- Testes a realizar: **Performance, Carga, Stress e Picos**
+    
+Serão considerados os seguintes **endpoints críticos** para os testes:  
+
+### **Autenticação**
+- `POST /auth/sendOTP`
+- `POST /auth/checkOTP`
+- `POST /auth/createPatient`
+- `POST /auth/createProfessional`
+
+### **Busca**
+- `GET /search/highlightsWeek`
+- `GET /search/professionalBySpeciality/{speciality}`
+- `GET /search/searchBar/{terms}`
+
+### **Agendamentos**
+- `POST /appointments`
+- `POST /appointments/{id}/actions`
+- `GET /appointments/{id}`
+- `GET /appointments/me`
+
+---
+
+## 🔹 4. Tipos de Testes de Performance
+
+### ✅ **Teste de Performance (Baseline)**
+- Medir o tempo médio de resposta sob **baixa concorrência** (1–5 usuários).  
+- Garantir tempo de resposta **≤ 500 ms** para 95% das requisições.  
+
+### ✅ **Teste de Carga**
+- Simular **100 usuários simultâneos** realizando requisições.  
+- Medir throughput (req/segundo) e taxa de erro.  
+- Validar **estabilidade por 10 minutos contínuos**.  
+
+### ✅ **Teste de Stress**
+- Aumentar gradualmente até **300 usuários simultâneos**.  
+- Identificar o **ponto de quebra** da aplicação (tempo limite ou falhas).  
+
+### ✅ **Teste de Pico (Spike Test)**
+- Subir de **10 para 200 usuários instantaneamente**.  
+- Avaliar como a API se recupera após a sobrecarga repentina.  
+
+---
+
+## 🔹 5. Ferramentas
+- **Apache JMeter** → simulação de carga e análise de performance.  
+- **JMeter Plugins** → gráficos de throughput, response time e erros.
+  
+---
+
+## 🔹 6. Estratégia de Automação
+1. Criar **planos de teste JMX** por módulo (Auth, Usuários, Agendamentos).  
+2. Parametrizar variáveis (`baseURL`, `users.csv` com credenciais, tokens dinâmicos).  
+3. Configurar **Thread Groups**:  
+   - **Load Test** → 100 usuários / ramp-up 60s / duração 10 min.  
+   - **Stress Test** → incremento de 50 usuários a cada 2 min até falhar.  
+   - **Spike Test** → subida instantânea para 200 usuários.  
+4. Adicionar **Assertions** (tempo de resposta < 500ms, código 200).  
+5. Gerar relatórios:  
+   - **JMeter Dashboard (HTML)**  
+   - **Logs CSV** para análise de métricas.  
+
+---
+
+## 🔹 7. Métricas de Qualidade
+- **Tempo médio de resposta (ms)**  
+- **Percentil 95 e 99 de resposta**  
+- **Throughput (req/s)**  
+- **Taxa de erro (%)**  
+- **Usuários simultâneos suportados**  
+- **Uso de recursos (CPU/RAM/DB – via monitoramento)**  
+
+---
+
+## 🔹 8. Critérios de Aceite
+- 95% das requisições respondem em ≤ 500 ms.  
+- Nenhum erro acima de **2%** em cenários de carga planejada.  
+- API suporta **≥ 100 usuários simultâneos** sem degradação grave.  
+- Recuperação após teste de pico em ≤ 1 minuto.  
