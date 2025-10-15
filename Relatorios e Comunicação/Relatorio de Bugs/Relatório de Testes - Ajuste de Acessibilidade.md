@@ -1,4 +1,4 @@
-# 🐞 Bug – Erro 422 ao clicar em “Pular” na tela de Acessibilidade (Cadastro de Paciente)
+# 🐞 Bug – Erro 422 ao clicar em “Pular” na tela de Acessibilidade (Cadastro de Paciente) [Status: Corrigido]
 
 **Descrição**  
 Durante o fluxo de **cadastro de Paciente**, ao clicar no botão **“Pular”** na tela de acessibilidade, ocorre um erro **422 (Unprocessable Entity)**.  
