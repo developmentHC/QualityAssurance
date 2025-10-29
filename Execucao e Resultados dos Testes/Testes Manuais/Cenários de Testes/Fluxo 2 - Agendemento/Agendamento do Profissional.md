@@ -1,194 +1,253 @@
-# Cenários de Teste — Fluxo de Agendamento Profissional
+# Cenários de Teste — Fluxo de Agendamento Profissional  
 
----
+**Software:** ConectaBem  
+**QA responsável:** Mateus QA
 
 ## Cenário 1 – Visualizar agendamentos pendentes na tela inicial
 
-**Pré-condição:** Profissional está logado no sistema.
-
-**Passos:**
+**Descrição:** Testar se o profissional consegue visualizar corretamente todos os agendamentos pendentes na tela inicial.  
+**Tipo de Teste:** Funcional  
+**Prioridade:** Alta  
+**Dados de teste:** Profissional logado, agendamentos pendentes existentes ou não  
+**Passos:**  
 1. Acessar a tela inicial (home do profissional).  
 2. Verificar a lista de agendamentos pendentes.  
 
 **Resultado Esperado:**  
-- Sistema exibe corretamente todos os agendamentos pendentes.  
+- Sistema exibe todos os agendamentos pendentes.  
 - Cada agendamento mostra nome do paciente, serviço, data e hora.  
-- Se não houver pendentes, aparece mensagem: **“Não há agendamentos pendentes.”**
+- Se não houver pendentes, aparece mensagem: **“Não há agendamentos pendentes.”**  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 2 – Visualizar informações completas de um agendamento pendente
 
-**Pré-condição:** Profissional possui pelo menos um agendamento pendente.
-
-**Passos:**
+**Descrição:** Verificar se o profissional pode acessar a página com detalhes completos de um agendamento pendente.  
+**Tipo de Teste:** Funcional  
+**Prioridade:** Alta  
+**Dados de teste:** Profissional logado, agendamento pendente disponível  
+**Passos:**  
 1. Na tela inicial, localizar um agendamento pendente.  
 2. Clicar em **“Informações do Agendamento”**.  
 
 **Resultado Esperado:**  
-- Sistema redireciona para a página de detalhes do agendamento.  
-- São exibidas informações completas: paciente, serviço, data, hora e status atual (**Pendente de Confirmação**).  
+- Sistema redireciona para a página de detalhes.  
+- Exibe paciente, serviço, data, hora e status (**“Pendente de Confirmação”**).  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 3 – Confirmar agendamento a partir da tela inicial
 
-**Pré-condição:** Profissional possui um agendamento pendente.  
-
+**Descrição:** Testar a confirmação de agendamento diretamente pela tela inicial.  
+**Tipo de Teste:** Funcional  
+**Prioridade:** Alta  
+**Dados de teste:** Profissional logado, agendamento pendente disponível  
 **Passos:**  
 1. Na tela inicial, localizar o agendamento desejado.  
 2. Clicar em **“Confirmar Agendamento”**.  
 
 **Resultado Esperado:**  
-- Status do agendamento muda para **“Agendamento Confirmado”**.  
-- Mensagem de confirmação é exibida.  
-- Paciente recebe notificação informando que o agendamento foi confirmado.  
+- Status muda para **“Agendamento Confirmado”**.  
+- Mensagem de confirmação exibida.  
+- Paciente recebe notificação da confirmação.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 4 – Acessar a página “Meus Agendamentos”
 
-**Pré-condição:** Profissional está logado.  
-
+**Descrição:** Verificar acesso à página que mostra o calendário completo dos agendamentos.  
+**Tipo de Teste:** Funcional  
+**Prioridade:** Média  
+**Dados de teste:** Profissional logado com agendamentos diversos  
 **Passos:**  
 1. Na tela inicial, clicar em **“Ver todos os agendamentos”**.  
 
 **Resultado Esperado:**  
 - Sistema redireciona para a página **“Meus Agendamentos”**.  
-- É exibido o calendário com os agendamentos de cada dia.  
-- Agendamentos são organizados por status: **Confirmados**, **Pendentes** e **Cancelados**.  
+- Exibe calendário com agendamentos organizados por status.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 5 – Filtrar agendamentos no calendário
 
-**Pré-condição:** Profissional possui agendamentos em diferentes dias e com diferentes status.
-
+**Descrição:** Testar o filtro de agendamentos por datas diferentes no calendário.  
+**Tipo de Teste:** Funcional  
+**Prioridade:** Média  
+**Dados de teste:** Profissional com agendamentos em várias datas e status  
 **Passos:**  
 1. Acessar a página **“Meus Agendamentos”**.  
 2. Selecionar datas diferentes no calendário.  
 
 **Resultado Esperado:**  
-- O calendário atualiza automaticamente para mostrar apenas os agendamentos do dia selecionado.  
-- Cada agendamento exibe o status com rótulo visual distinto.  
+- Calendário atualiza para mostrar agendamentos do dia selecionado.  
+- Cada agendamento apresenta status com rótulos visuais distintos.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 6 – Confirmar agendamento pela página de informações
 
-**Pré-condição:** Profissional acessou as informações de um agendamento pendente.
-
+**Descrição:** Verificar confirmação do agendamento na página detalhada do agendamento.  
+**Tipo de Teste:** Funcional  
+**Prioridade:** Alta  
+**Dados de teste:** Profissional na página de informações de agendamento pendente  
 **Passos:**  
 1. Clicar em **“Confirmar Agendamento”** na tela de informações.  
 
 **Resultado Esperado:**  
-- Status do agendamento muda para **“Agendamento Confirmado”**.  
-- Mensagem é atualizada na tela substituindo “Pendente de Confirmação” por “Agendamento Confirmado”.  
-- Paciente recebe notificação de confirmação.  
+- Status atualiza para **“Agendamento Confirmado”**.  
+- Mensagem na tela muda de “Pendente de Confirmação” para “Agendamento Confirmado”.  
+- Paciente recebe notificação da confirmação.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 7 – Cancelar agendamento
 
-**Pré-condição:** Profissional acessou um agendamento pendente ou confirmado.  
-
+**Descrição:** Testar o cancelamento de um agendamento pendente ou confirmado.  
+**Tipo de Teste:** Funcional  
+**Prioridade:** Alta  
+**Dados de teste:** Profissional logado, agendamento pendente ou confirmado  
 **Passos:**  
 1. Clicar em **“Cancelar Agendamento”**.  
 2. Confirmar a ação, se solicitado.  
 
 **Resultado Esperado:**  
-- Status do agendamento muda para **“Agendamento Cancelado”**.  
-- Mensagem de confirmação do cancelamento é exibida.  
-- Paciente recebe notificação informando o cancelamento.  
+- Status muda para **“Agendamento Cancelado”**.  
+- Mensagem de confirmação exibida.  
+- Paciente é notificado do cancelamento.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 8 – Tentativa de confirmar agendamento já cancelado
 
-**Pré-condição:** Agendamento já se encontra no status **Cancelado**.
-
+**Descrição:** Verificar que o sistema impede confirmação de agendamento com status cancelado.  
+**Tipo de Teste:** Validação  
+**Prioridade:** Média  
+**Dados de teste:** Agendamento com status cancelado  
 **Passos:**  
-1. Acessar a página de informações do agendamento cancelado.  
+1. Acessar página de informações do agendamento cancelado.  
 2. Clicar em **“Confirmar Agendamento”**.  
 
 **Resultado Esperado:**  
-- Sistema impede a ação e exibe mensagem: **“Agendamento já cancelado.”**  
-- Status permanece como **Cancelado**.  
+- Sistema exibe mensagem: **“Agendamento já cancelado.”**.  
+- Status permanece como **“Cancelado”**.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 9 – Falha ao confirmar ou cancelar agendamento
 
-**Pré-condição:** Sistema com instabilidade ou erro de comunicação com o servidor.  
-
+**Descrição:** Testar resposta do sistema em caso de erro de comunicação ao confirmar ou cancelar.  
+**Tipo de Teste:** Robustez  
+**Prioridade:** Alta  
+**Dados de teste:** Simulação de falha do servidor  
 **Passos:**  
-1. Tentar confirmar ou cancelar um agendamento.  
+1. Tentar confirmar ou cancelar agendamento.  
 
 **Resultado Esperado:**  
-- Sistema exibe mensagem: **“Ops! Não conseguimos concluir a ação.”**  
-- Nenhuma alteração de status é aplicada.  
-- Usuário pode tentar novamente.  
+- Mensagem: **“Ops! Não conseguimos concluir a ação.”**  
+- Nenhuma alteração de status executada.  
+- Permite nova tentativa pelo usuário.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 10 – Ver atualização automática de status
 
-**Pré-condição:** Profissional confirmou ou cancelou um agendamento recentemente.
-
+**Descrição:** Verifica se a lista de agendamentos atualiza automaticamente após ação.  
+**Tipo de Teste:** Funcional  
+**Prioridade:** Média  
+**Dados de teste:** Profissional que confirmou ou cancelou agendamento recentemente  
 **Passos:**  
-1. Voltar para a tela inicial ou “Meus Agendamentos”.  
+1. Voltar para tela inicial ou para **“Meus Agendamentos”**.  
 
 **Resultado Esperado:**  
-- Lista de agendamentos é atualizada automaticamente.  
-- O status exibido reflete a última ação realizada (Confirmado ou Cancelado).  
+- Lista atualiza com status refletindo última ação (Confirmado ou Cancelado).  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 11 – Sessão expirada durante ação
 
-**Pré-condição:** Sessão do profissional expirada.  
-
+**Descrição:** Testar comportamento do sistema quando a sessão do profissional expira em meio a um processo.  
+**Tipo de Teste:** Segurança / Sessão  
+**Prioridade:** Alta  
+**Dados de teste:** Sessão expirada no sistema  
 **Passos:**  
 1. Tentar acessar **“Meus Agendamentos”** ou confirmar um agendamento.  
 
 **Resultado Esperado:**  
-- Sistema redireciona para a tela de login.  
-- Mensagem exibida: **“Sessão expirada. Faça login novamente.”**  
+- Redireciona para tela de login.  
+- Mensagem: **“Sessão expirada. Faça login novamente.”** exibida.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 12 – Validação de interface
 
+**Descrição:** Verificar funcionamento dos botões, clareza dos textos e responsividade da interface.  
+**Tipo de Teste:** Interface / Usabilidade  
+**Prioridade:** Média  
+**Dados de teste:** Interface carregada em dispositivos diversos  
 **Passos:**  
-1. Verificar a presença e o funcionamento dos botões (**“Confirmar Agendamento”**, **“Cancelar Agendamento”**, **“Ver todos os agendamentos”**).  
+1. Verificar funcionamento dos botões (**“Confirmar Agendamento”**, **“Cancelar Agendamento”**, **“Ver todos os agendamentos”**).  
 2. Validar textos e mensagens exibidas.  
 3. Testar visualização em dispositivos móveis.  
 
 **Resultado Esperado:**  
-- Todos os botões funcionam corretamente.  
-- Textos estão claros, padronizados e sem erros.  
-- Layout é responsivo e mantém usabilidade adequada.  
+- Botões funcionam corretamente.  
+- Textos claros, padronizados e corretos.  
+- Layout responsivo e usável em todas as telas.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 13 – Teste de fluxo completo (confirmação)
 
+**Descrição:** Validar o fluxo completo de confirmação de agendamento desde login até notificação.  
+**Tipo de Teste:** Funcional / Fluxo completo  
+**Prioridade:** Alta  
+**Dados de teste:** Profissional válido, agendamento pendente  
 **Passos:**  
 1. Logar como profissional.  
 2. Visualizar agendamentos pendentes.  
 3. Acessar informações de um agendamento.  
 4. Confirmar o agendamento.  
-5. Verificar atualização na tela inicial e na página “Meus Agendamentos”.  
+5. Verificar atualização nas telas correspondentes.  
 
 **Resultado Esperado:**  
-- Fluxo completo ocorre sem erros.  
-- Agendamento é confirmado e visível nas duas telas.  
-- Paciente é notificado com sucesso.  
+- Fluxo ocorre sem erros.  
+- Agendamento confirmado e visível nas telas.  
+- Paciente notificado com sucesso.  
 
----
+**Resultado Obtido:** Passou / Não passou
+
+***
 
 ## Cenário 14 – Teste de fluxo completo (cancelamento)
 
+**Descrição:** Validar fluxo completo de cancelamento do agendamento.  
+**Tipo de Teste:** Funcional / Fluxo completo  
+**Prioridade:** Alta  
+**Dados de teste:** Profissional logado, agendamento pendente ou confirmado  
 **Passos:**  
 1. Logar como profissional.  
 2. Acessar um agendamento pendente ou confirmado.  
@@ -196,6 +255,12 @@
 4. Verificar atualização na tela inicial e no calendário.  
 
 **Resultado Esperado:**  
-- Agendamento é cancelado corretamente.  
-- Status atualizado para **Cancelado** em todas as telas.  
-- Paciente é notificado do cancelamento.  
+- Agendamento cancelado corretamente.  
+- Status atualizado para **“Cancelado”** em todas as telas.  
+- Paciente notificado do cancelamento.  
+
+**Resultado Obtido:** Passou / Não passou
+
+***
+
+Quer que eu prepare estes testes para exportação ou ajude em um template padrão para execução?
