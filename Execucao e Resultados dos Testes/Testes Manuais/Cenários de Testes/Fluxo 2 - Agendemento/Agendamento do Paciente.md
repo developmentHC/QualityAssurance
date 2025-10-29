@@ -1,4 +1,4 @@
-# Cenários de Teste — Fluxo de Agendamento
+# Cenários de Teste — Fluxo de Agendamento Paciente
 
 ---
 
