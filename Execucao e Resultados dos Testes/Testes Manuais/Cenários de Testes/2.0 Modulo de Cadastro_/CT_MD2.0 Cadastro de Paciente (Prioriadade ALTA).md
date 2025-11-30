@@ -1,17 +1,16 @@
-# CT_MD1.0: Cadastro de Paciente (Prioridade: ALTA).
+# CT_MD1.0: Cadastro de Paciente (Prioridade: ALTA)
 
 # 🧪 Plano de Testes Manuais - ConectaBem
-> Funcionalidade: Cadastro de Usuário (Paciente) [Testes relacionados a autenticação com facebook estão invalidados]
-
-> Sistema: [ConectaBem](https://conecta-bem-front.vercel.app/)
-
-> Autor: Victor Nadoti
-
+> Funcionalidade: Cadastro de Usuário (Paciente)  
+> Testes relacionados à autenticação com Facebook estão invalidados.  
+> Sistema: ConectaBem  
+> Autor: Victor Nadoti  
 > Data: 2025-08-28
 
 ---
 
-# 📊 Tabela Consolidada - Partição de Equivalência(usar esta tabela para os testes)
+# 📊 Tabela Consolidada - Partição de Equivalência
+(Usar esta tabela para os testes)
 
 | Tipo de Cadastro    | Partição Válida                                    | Partição Inválida                                       |
 | ------------------- | -------------------------------------------------- | ------------------------------------------------------- |
@@ -20,127 +19,109 @@
 | **Código (E-mail)** | E-mail cadastrado + código correto dentro de 5 min | E-mail inexistente / código incorreto / código expirado |
 | **Dispositivo**     | Login com código válido em qualquer dispositivo    | Código inválido ou expirado em outro dispositivo        |
 
---- 
+---
+
+# 📌 Passos Comuns ao Cadastro de Paciente (Refatorado)
+
+1. Sistema exibe tela de seleção de perfil.
+2. Usuário seleciona **Paciente**.
+3. Sistema exibe formulário **Etapa 1/4**.
+4. Usuário preenche corretamente:
+   - Nome (mín. 3 caracteres)
+   - Data de nascimento válida (18–110 anos)
+   - CEP no formato `00000-000`
+   - Logradouro, Número, Bairro, Cidade, Estado
+5. Sistema valida CEP via ViaCEP e preenche automaticamente quando possível.
+6. Botão **“Continuar”** habilita apenas com todos os campos válidos.
+7. Usuário avança para **Etapa 2/4**, depois 3/4 e 4/4.
+8. Usuário preenche preferências e necessidades conforme solicitado.
+9. Sistema salva o progresso em cada etapa.
+10. Ao finalizar a etapa 4/4, sistema conclui o cadastro.
+11. Usuário é autenticado e redirecionado para a **Home autenticada**.
+
+---
 
 # Cenário 01: Cadastro com Sucesso
 
-## Caso 1: Cadastro de Paciente com sucesso (Google)
+---
 
-| ID                | Descrição                                           |
-| :---------------- | :-------------------------------------------------- |
-| CADS_SOCIAL_001   | O cadastro será realizado como Paciente com Google. |
+## Caso 1: Cadastro de Paciente com Sucesso (Google)
 
-| **Pré-condições**                                   |
-| :-------------------------------------------------- |
-| Usuário com conta Google válida. |
-| Permissão de compartilhamento de dados autorizada. |
-| Não existir cadastro prévio vinculado ao mesmo e-mail Google. |
-| API ViaCEP funcionando para validação de endereço. |
+| Campo | Descrição |
+|-------|-----------|
+| **ID** | CADS_SOCIAL_001 |
+| **Descrição** | Cadastro de paciente utilizando autenticação Google. |
 
-| **Passos** |
-| :--------- |
-| **DADO** que o usuário está na Home do ConectaBem |
-| **QUANDO** acessa “Entrar” e seleciona a opção **Login com Google** |
-| **E** concede permissão à conta Google |
-| **ENTÃO** o sistema redireciona para a seleção de perfil |
-| **QUANDO** o usuário seleciona o perfil **Paciente** |
-| **ENTÃO** o sistema exibe o formulário de cadastro (Etapa 1/4) |
-| **QUANDO** o usuário preenche todos os campos obrigatórios corretamente, incluindo: |
-| — Nome (mín. 3 caracteres) |
-| — Data de nascimento (idade entre 18 e 110 anos) |
-| — CEP válido no formato 00000-000 |
-| — Logradouro, Número, Bairro, Cidade e Estado válidos |
-| **E** o CEP digitado é validado com sucesso e os campos são preenchidos automaticamente quando possível |
-| **E** o botão “Continuar” é habilitado após todos os campos válidos |
-| **QUANDO** o usuário clica em “Continuar” |
-| **ENTÃO** o sistema valida os dados, salva o progresso do cadastro e avança para a Etapa 2/4 |
-| **E** após completar todas as etapas até a 4/4, o sistema conclui o cadastro e autentica o usuário |
-| **ENTÃO** o usuário é redirecionado à Home autenticada |
+### Pré-condições
+- Conta Google válida.
+- Permissão de compartilhamento de dados autorizada.
+- E-mail Google não vinculado a outro cadastro.
+- API ViaCEP funcionando.
 
-| **Critérios de aceitação** |
-| :-------------------------- |
-| O Sistema deve validar todos os campos obrigatórios conforme regras definidas. |
-| Em caso de erro (ex.: CEP inválido), deve exibir mensagem e impedir continuação. |
-| O botão “Continuar” só habilita com todos os campos válidos. |
-| O cadastro deve ser concluído e a Home autenticada exibida. |
+### Passos
+1. **DADO** que o usuário está na Home do ConectaBem  
+2. **QUANDO** acessa “Entrar” e seleciona **Login com Google**  
+3. **E** concede permissão ao Google  
+4. **ENTÃO** sistema exibe a seleção de perfil  
+5. **E** o usuário executa os **Passos Comuns ao Cadastro de Paciente**  
+
+### Critérios de Aceitação
+- Todos os campos obrigatórios validados.
+- Sistema bloqueia avanço em caso de erro.
+- Cadastro concluído com sucesso.
+- Home autenticada exibida.
 
 ---
 
-## Caso 2: Cadastro de Paciente com sucesso (Facebook)
-| ID                | Descrição                                           |
-| :---------------- | :-------------------------------------------------- |
-| CADS_SOCIAL_002   | O cadastro será realizado como Paciente com Facebook. |
+## Caso 2: Cadastro de Paciente com Sucesso (Facebook)
 
-| **Pré-condições**                                   |
-| :-------------------------------------------------- |
-| Usuário com conta Facebook válida. |
-| Permissão de compartilhamento de dados autorizada. |
-| (Obs.: autenticação via Facebook está inválida para teste, mas mantida para documentação.) |
-| API ViaCEP funcionando. |
+| Campo | Descrição |
+|-------|-----------|
+| **ID** | CADS_SOCIAL_002 |
+| **Descrição** | Cadastro de paciente utilizando autenticação Facebook. (Funcionalidade inválida para teste, mas documentada.) |
 
-| **Passos** |
-| :--------- |
-| **DADO** que o usuário está na Home do ConectaBem |
-| **QUANDO** acessa “Entrar” e seleciona **Login com Facebook** |
-| **E** autoriza o acesso aos dados |
-| **ENTÃO** o sistema exibe a tela de seleção de perfil |
-| **QUANDO** o usuário seleciona **Paciente** |
-| **ENTÃO** o sistema abre o formulário de cadastro (Etapa 1/4) |
-| **QUANDO** o usuário preenche corretamente Nome, Data de Nascimento, CEP e endereço |
-| **E** o CEP é reconhecido e os campos são preenchidos automaticamente quando possível |
-| **E** o botão “Continuar” é habilitado apenas após campos válidos |
-| **QUANDO** o usuário clica em “Continuar” |
-| **ENTÃO** o sistema valida, salva o progresso e avança para a Etapa 2/4 |
-| **E** após finalizar a Etapa 4/4, o sistema autentica o usuário |
-| **ENTÃO** o usuário é redirecionado para a Home autenticada |
+### Pré-condições
+- Conta Facebook válida.
+- Permissão de compartilhamento de dados autorizada.
+- API ViaCEP ativa.
 
-| **Critérios de aceitação** |
-| :-------------------------- |
-| Campos obrigatórios devem seguir validações de nome, idade e endereço. |
-| Sistema deve impedir continuação em caso de erro. |
-| Cadastro deve ser concluído exibindo a Home autenticada. |
+### Passos
+1. **DADO** que o usuário está na Home do ConectaBem  
+2. **QUANDO** acessa “Entrar” e seleciona **Login com Facebook**  
+3. **E** autoriza compartilhamento de dados  
+4. **ENTÃO** sistema exibe a seleção de perfil  
+5. **E** o usuário executa os **Passos Comuns ao Cadastro de Paciente**  
+
+### Critérios de Aceitação
+- Mesmo conjunto de regras do Caso 1.
 
 ---
 
-## Caso 3: Cadastro de Paciente com sucesso (E-mail)
-| ID              | Descrição                                          |
-| :-------------- | :------------------------------------------------- |
-| CADS_EMAIL_003  | O cadastro será realizado como Paciente via e-mail.|
+## Caso 3: Cadastro de Paciente com Sucesso (E-mail)
 
-| **Pré-condições** |
-| :---------------- |
-| E-mail válido informado. |
-| Usuário não possui cadastro prévio com o mesmo e-mail. |
-| Capacidade de envio de código (OTP) funcionando. |
-| Limite de tentativas e regras de expiração configuradas. |
-| API ViaCEP ativa. |
+| Campo | Descrição |
+|-------|-----------|
+| **ID** | CADS_EMAIL_003 |
+| **Descrição** | Cadastro de paciente utilizando e-mail + código OTP. |
 
-| **Passos** |
-| :--------- |
-| **DADO** que o usuário está na Home do ConectaBem |
-| **QUANDO** acessa “Entrar” e informa um e-mail válido |
-| **ENTÃO** o sistema envia um código de verificação |
-| **QUANDO** o usuário insere o código dentro do prazo (≤5 min) |
-| **E** o código é validado com sucesso, desabilitando botão e link durante a validação |
-| **ENTÃO** o sistema exibe a seleção de perfil |
-| **QUANDO** o usuário escolhe **Paciente** |
-| **ENTÃO** o sistema exibe o formulário de cadastro (Etapa 1/4) |
-| **QUANDO** o usuário preenche corretamente os seguintes campos: |
-| — Nome (≥3 caracteres) |
-| — Data de nascimento válida (≥18 anos) |
-| — CEP válido |
-| — Logradouro, Número, Bairro, Cidade, Estado |
-| **E** o CEP é validado via ViaCEP e retorna endereço correto |
-| **E** o botão “Continuar” habilita após todos os dados válidos |
-| **QUANDO** o usuário avança para a Etapa 2/4 |
-| **E** preenche preferências e necessidades de atendimento |
-| **E** finaliza todas as etapas até a 4/4 |
-| **ENTÃO** o sistema conclui o cadastro e autentica o usuário |
+### Pré-condições
+- E-mail válido.
+- E-mail não vinculado a outro cadastro.
+- Envio de OTP funcional.
+- Regras de expiração e tentativas configuradas.
+- ViaCEP operante.
 
-| **Critérios de aceitação** |
-| :-------------------------- |
-| O sistema deve validar o formato do e-mail antes do envio. |
-| O código deve respeitar tempo de expiração e tentativas. |
-| O formulário deve validar todos os campos conforme regras. |
-| O cadastro deve ser gerado com sucesso e a Home autenticada exibida. |
-| O sistema deve cadastrar o Paciente e exibir a Home autenticada |
+### Passos
+1. **DADO** que o usuário está na Home do ConectaBem  
+2. **QUANDO** insere um e-mail válido  
+3. **ENTÃO** sistema envia código de verificação  
+4. **QUANDO** usuário informa o código dentro da validade  
+5. **E** o sistema valida o OTP  
+6. **ENTÃO** exibe seleção de perfil  
+7. **E** o usuário executa os **Passos Comuns ao Cadastro de Paciente**  
+
+### Critérios de Aceitação
+- Validação de e-mail antes do envio.
+- Código respeita tempo, tentativas e expiração.
+- Formulário segue regras de validação.
+- Cadastro é concluído e Home autenticada exibida.
