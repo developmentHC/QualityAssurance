@@ -137,8 +137,6 @@
 | **E** finaliza todas as etapas até a 4/4 |
 | **ENTÃO** o sistema conclui o cadastro e autentica o usuário |
 
----
-
 | **Critérios de aceitação** |
 | :-------------------------- |
 | O sistema deve validar o formato do e-mail antes do envio. |
@@ -146,5 +144,3 @@
 | O formulário deve validar todos os campos conforme regras. |
 | O cadastro deve ser gerado com sucesso e a Home autenticada exibida. |
 | O sistema deve cadastrar o Paciente e exibir a Home autenticada |
-
-___ 
