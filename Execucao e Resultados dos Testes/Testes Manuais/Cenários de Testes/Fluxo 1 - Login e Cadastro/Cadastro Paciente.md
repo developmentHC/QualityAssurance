@@ -306,5 +306,3 @@
 ## **Caso de Teste 19 – Falha de conexão durante o cadastro**  
 **ID:** CAD_PAC_RESTR_019  
 - Passo: simular falha de conexão → processo interrompido e usuário informado para tentar novamente.
-
----
