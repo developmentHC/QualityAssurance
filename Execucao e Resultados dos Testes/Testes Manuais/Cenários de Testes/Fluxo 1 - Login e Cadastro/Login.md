@@ -1,12 +1,9 @@
-## Funcionalidade: Fluxo de Login
-## Sistema: ConectaBem
-## Autor: Miguel Luis e Mateus Santos
-## Data de Criação: 2025-08-27
-## Data de Atualização: 2025-09-30
-
-# 🧪 Plano de Testes Manuais – Login (WEB – Profissional)
-
-> Testes relacionados a autenticação com Facebook estão invalidados
+# 🧪 Plano de Testes Manuais - Login
+> Funcionalidade: Fluxo de Login Profissional  
+> Sistema: ConectaBem  
+> Autor: Miguel Luis e Mateus Santos  
+> Data de Criação: 2025-08-27  
+> Data de Atualização: 2025-11-30
 
 ---
 
