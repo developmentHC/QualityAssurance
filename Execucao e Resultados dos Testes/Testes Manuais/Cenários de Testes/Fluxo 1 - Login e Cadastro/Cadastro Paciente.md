@@ -12,7 +12,6 @@
 | Tipo de Cadastro    | Partição Válida                                    | Partição Inválida                                       |
 | ------------------- | -------------------------------------------------- | ------------------------------------------------------- |
 | **Google**          | Conta Google existente + autorização concedida     | Conta inexistente / autorização negada                  |
-| **Facebook**        | Conta Facebook existente + autorização concedida   | Conta inexistente / autorização negada                  |
 | **E-mail (OTP)**    | E-mail válido + código correto dentro da validade  | Formato inválido / código incorreto / expirado / limite excedido |
 | **CEP**             | CEP existente (ViaCEP)                             | CEP inexistente / formato inválido                      |
 | **Campos Obrigatórios** | Dados completos + formatos válidos            | Dados vazios / inválidos                                |
@@ -38,9 +37,7 @@
 
 ---
 
-# Cenário 01: Cadastro via Provedores (Google / Facebook)
-
----
+# Cenário 01: Cadastro via Provedores (Google)
 
 ## **Caso de Teste 01 – Cadastro com Google (Happy Path)**  
 **ID:** CAD_PAC_SOCIAL_001  
@@ -51,7 +48,7 @@
 - Permissão concedida para compartilhar nome/e-mail.  
 - E-mail não cadastrado previamente.
 
-### **Passos (EXPANDIDO — inclui os passos comuns repetidos)**
+### **Passos (inclui os passos comuns repetidos)**
 1. **DADO** que o usuário está na Home do ConectaBem.  
 2. **QUANDO** clica em **“Entrar com Google”**.  
 3. **E** concede permissão de compartilhamento.  
@@ -77,39 +74,14 @@
 
 ---
 
-## **Caso de Teste 02 – Cadastro com Facebook (Documentado / Inativado)**  
+## **Caso de Teste 02 – Cadastro Social sem permissão de dados (Negativo)**  
 **ID:** CAD_PAC_SOCIAL_002  
-**Descrição:** Usuário realiza cadastro como Paciente utilizando Facebook (fluxo documentado; funcionalidade inativada).
+**Descrição:** Usuário social nega permissão de compartilhamento (Google) — cadastro não conclui.
 
 ### **Pré-condições**
-- Conta Facebook válida.  
-- Permissão concedida para compartilhar nome/e-mail.  
-- E-mail não cadastrado previamente.
+- Conta Google válida.
 
-### **Passos (EXPANDIDO — inclui os passos comuns repetidos)**
-1. **DADO** que o usuário está na Home do ConectaBem.  
-2. **QUANDO** clica em **“Entrar com Facebook”**.  
-3. **E** concede permissão de compartilhamento.  
-4. **ENTÃO** o sistema exibe tela de seleção de perfil.  
-5. **QUANDO** seleciona **Paciente**.  
-6. **ENTÃO** o sistema exibe o formulário **Etapa 1/4**.  
-7. **QUANDO** preenche **Nome**, **Data de nascimento**, **CEP** e endereço conforme regras.  
-8. **ENTÃO** validações de CEP (ViaCEP) e campos ocorrem; usuário avança pelas etapas 2/4 → 3/4 → 4/4.  
-9. **ENTÃO** ao finalizar, cadastro é concluído, data/hora registrada, e usuário autenticado e redirecionado para Home.
-
-### **Critérios de Aceitação**
-- Mesmo conjunto de critérios do Caso 01 (quando a funcionalidade estiver ativa).
-
----
-
-## **Caso de Teste 03 – Cadastro Social sem permissão de dados (Negativo)**  
-**ID:** CAD_PAC_SOCIAL_003  
-**Descrição:** Usuário social nega permissão de compartilhamento (Google/Facebook) — cadastro não conclui.
-
-### **Pré-condições**
-- Conta Google/Facebook válida.
-
-### **Passos (EXPANDIDO — fluxo social interrompido)**
+### **Passos (fluxo social interrompido)**
 1. **DADO** que o usuário iniciou login social.  
 2. **QUANDO** nega permissão de acesso a nome/e-mail no provedor.  
 3. **ENTÃO** o sistema não recebe os dados básicos e exibe mensagem de erro indicando que é necessário conceder permissão para continuar.  
@@ -123,17 +95,15 @@
 
 # Cenário 02: Cadastro via E-mail (OTP)
 
----
-
-## **Caso de Teste 04 – Envio e Validação de Código OTP (Happy Path)**  
-**ID:** CAD_PAC_EMAIL_004  
+## **Caso de Teste 03 – Envio e Validação de Código OTP (Happy Path)**  
+**ID:** CAD_PAC_EMAIL_003  
 **Descrição:** Cadastro iniciado por e-mail com validação correta do código.
 
 ### **Pré-condições**
 - E-mail válido e não cadastrado.  
 - Envio de código funcional.
 
-### **Passos (EXPANDIDO — inclui confirmação por OTP + passos comuns)**
+### **Passos (inclui confirmação por OTP + passos comuns)**
 1. **DADO** que o usuário está na Home do ConectaBem.  
 2. **QUANDO** insere e-mail válido no formulário de login/cadastro.  
 3. **ENTÃO** o sistema valida formato do e-mail e envia código OTP com contagem regressiva visível.  
@@ -153,8 +123,8 @@
 
 ---
 
-## **Caso de Teste 05 – Código incorreto (Negativo)**  
-**ID:** CAD_PAC_EMAIL_005  
+## **Caso de Teste 04 – Código incorreto (Negativo)**  
+**ID:** CAD_PAC_EMAIL_004  
 
 ### **Pré-condições**
 - Código inserido é incorreto.
@@ -172,8 +142,8 @@
 
 ---
 
-## **Caso de Teste 06 – Código expirado (Alternativo)**  
-**ID:** CAD_PAC_EMAIL_006  
+## **Caso de Teste 05 – Código expirado (Alternativo)**  
+**ID:** CAD_PAC_EMAIL_005  
 
 ### **Pré-condições**
 - Código expirado (tempo configurado entre 30s e 5min).
@@ -185,8 +155,8 @@
 
 ---
 
-## **Caso de Teste 07 – Reenvio de código (Limite)**  
-**ID:** CAD_PAC_EMAIL_007  
+## **Caso de Teste 06 – Reenvio de código (Limite)**  
+**ID:** CAD_PAC_EMAIL_006  
 
 ### **Pré-condições**
 - Usuário solicitou múltiplos reenvios.
@@ -200,15 +170,13 @@
 
 # Cenário 03: Dados Obrigatórios
 
----
-
-## **Caso de Teste 08 – Preenchimento Completo das Etapas (Happy Path)**  
-**ID:** CAD_PAC_DADOS_008  
+## **Caso de Teste 07 – Preenchimento Completo das Etapas (Happy Path)**  
+**ID:** CAD_PAC_DADOS_007  
 
 ### **Pré-condições**
 - Usuário validou e-mail ou login social.
 
-### **Passos (EXPANDIDO — inclui verificação detalhada de cada etapa)**
+### **Passos (inclui verificação detalhada de cada etapa)**
 1. **DADO** que o usuário está na Etapa 1/4 após seleção de perfil.  
 2. **QUANDO** preenche:  
    - **Nome** ≥ 3 caracteres.  
