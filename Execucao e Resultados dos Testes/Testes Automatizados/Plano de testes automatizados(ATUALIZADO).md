@@ -27,7 +27,7 @@ Além disso, será utilizada a ferramenta **SonarQube** para **análise de quali
 
 ## 🧩 3. Escopo dos Testes Automatizados
 
-### 🔹 3.1 Testes de Integração
+### 🔹 3.1 Testes de Integração(validar se os frontend envia corretamente para a api )
 
 Os testes de integração visam verificar se os módulos e componentes do sistema se comunicam corretamente, simulando trocas reais entre o **frontend, backend e banco de dados**.
 
@@ -45,7 +45,7 @@ Os testes de integração visam verificar se os módulos e componentes do sistem
 
 ---
 
-### 🔹 3.2 Testes End-to-End (E2E)
+### 🔹 3.2 Testes End-to-End (E2E) é apenas 10% da automação com o fluxo de ponta a ponta do usuario
 
 Os testes E2E simulam o **comportamento do usuário real**, validando o fluxo completo da aplicação desde o login até a execução das principais funcionalidades.
 
@@ -65,7 +65,7 @@ Os testes E2E simulam o **comportamento do usuário real**, validando o fluxo co
 
 ---
 
-### 🔹 3.3 Testes de Acessibilidade
+### 🔹 3.3 Testes de Acessibilidade(testar se o site está acessivel para multiplos usuarios)
 
 Os testes de acessibilidade garantem que o sistema possa ser utilizado por todos os usuários, incluindo pessoas com deficiências visuais, auditivas ou motoras.
 
@@ -85,24 +85,7 @@ Os testes de acessibilidade garantem que o sistema possa ser utilizado por todos
 
 ---
 
-### 🔹 3.4 SonarQube no Ciclo de Integração Contínua
-
-O **SonarQube** será integrado ao pipeline de CI/CD para **análise estática de código**, garantindo que cada commit e pull request seja avaliado quanto à qualidade e segurança antes do merge.  
-
-**Objetivos:**
-- Detectar vulnerabilidades, code smells e duplicações.  
-- Garantir padrões de qualidade e boas práticas de desenvolvimento.  
-- Gerar métricas como cobertura de testes, complexidade e manutenção.  
-- Acompanhar a evolução da qualidade do código ao longo do tempo.
-
-**Execução:**
-- O SonarQube será executado automaticamente no pipeline **antes dos testes automatizados**, analisando o código mais recente do branch.  
-- Caso o código não atenda aos critérios de qualidade definidos, o pipeline **será interrompido** até que os problemas sejam corrigidos.  
-- Os relatórios serão enviados para o **dashboard SonarQube** e **GitHub Actions**, permitindo acompanhamento em tempo real.
-
----
-
-## ⚙️ 4. Integração com CI/CD
+## ⚙️ 4. Integração com CI/CD(CI/CD deu erro está para ser arrumado)
 
 Os testes serão executados automaticamente em cada **push, merge request ou deploy**, dentro do pipeline CI/CD definido no repositório QA.  
 O pipeline é responsável por:
@@ -122,13 +105,11 @@ O pipeline é responsável por:
 | Tipo de Teste       | Cobertura Esperada | Frequência | Gatilho CI/CD | Resultado Esperado |
 |---------------------|-------------------|-------------|----------------|--------------------|
 | Integração          | 70% dos endpoints principais | Diária | Push / Merge | Nenhum erro HTTP |
-| End-to-End          | 80% dos fluxos críticos | Diária / PR | Deploy / Merge | Todos fluxos aprovados |
+| End-to-End          | 10% dos fluxos críticos | Diária / PR | Deploy / Merge | Todos fluxos aprovados |
 | Acessibilidade      | 100% das telas principais | Semanal | Deploy QA | Score ≥ 90 (Lighthouse) |
-| SonarQube           | 100% dos PRs analisados | Diária / PR | Push / Merge | Nenhum code smell ou vulnerabilidade crítica |
 
 ---
 
 ## 🧠 6. Conclusão
 
-A automação dos testes de **integração**, **E2E**, **acessibilidade** e a **análise contínua de código com SonarQube** formarão uma base sólida para garantir qualidade, segurança e manutenibilidade do sistema ConectaBem.  
-A integração com o pipeline de **CI/CD** reforça a cultura de qualidade contínua, prevenindo que falhas, vulnerabilidades ou más práticas cheguem à produção.
+A automação dos testes de **integração**, **E2E**, **acessibilidade** e formarão uma base sólida para garantir qualidade, segurança e manutenibilidade do sistema ConectaBem.  
