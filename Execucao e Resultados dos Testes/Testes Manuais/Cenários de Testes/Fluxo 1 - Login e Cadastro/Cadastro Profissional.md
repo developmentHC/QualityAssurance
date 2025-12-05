@@ -1,4 +1,4 @@
-# 🧪 Plano de Testes Manuais - ConectaBem
+# Plano de Testes Manuais - ConectaBem
 > Funcionalidade: Cadastro de Usuário (Profissional)  
 > Testes com Facebook permanecem invalidados, porém documentados.  
 > Sistema: ConectaBem  
@@ -7,7 +7,7 @@
 
 ---
 
-## 📌 Passos Comuns ao Cadastro de Profissional (Refatorado)
+## Passos Comuns ao Cadastro de Profissional (Refatorado)
 
 1. Selecionar o perfil **“Profissional”** após autenticação.
 2. Preencher **Nome completo** (mín. 10 caracteres, apenas letras, apenas 1 espaço entre palavras).
