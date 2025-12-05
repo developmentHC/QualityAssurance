@@ -12,7 +12,6 @@
 | Tipo de Login       | Partição Válida                                    | Partição Inválida                                       |
 | ------------------- | -------------------------------------------------- | ------------------------------------------------------- |
 | **Google**          | Conta Google existente + autorização concedida     | Conta inexistente / autorização negada                  |
-| **Facebook**        | Conta Facebook existente + autorização concedida   | Conta inexistente / autorização negada                  |
 | **Código (E-mail)** | E-mail cadastrado + código correto dentro de 5 min | E-mail inexistente / código incorreto / código expirado |
 | **Dispositivo**     | Login com código válido em qualquer dispositivo    | Código inválido ou expirado em outro dispositivo        |
 
@@ -76,35 +75,10 @@
 
 ---
 
-# Cenário 02: Login Social via Facebook  
-*(Invalidados – mas documentados)*
+# Cenário 02: Login via Código de Verificação
 
----
-
-## **Caso de Teste 04 – Login com Facebook (Happy Path)**  
-**ID:** AUTH_PRO_LOGIN_004  
-*(Inativado / não utilizado atualmente)*
-
----
-
-## **Caso de Teste 05 – Login Facebook com conta inválida**  
-**ID:** AUTH_PRO_LOGIN_005  
-*(Inativado / não utilizado atualmente)*
-
----
-
-## **Caso de Teste 06 – Login Facebook cancelado**  
-**ID:** AUTH_PRO_LOGIN_006  
-*(Inativado / não utilizado atualmente)*
-
----
-
-# Cenário 03: Login via Código de Verificação
-
----
-
-## **Caso de Teste 07 – Código válido (Happy Path)**  
-**ID:** AUTH_PRO_LOGIN_007  
+## **Caso de Teste 04 – Código válido (Happy Path)**  
+**ID:** AUTH_PRO_LOGIN_004
 **Descrição:** login bem-sucedido usando código enviado por e-mail.
 
 ### **Pré-condições**
@@ -121,8 +95,8 @@
 
 ---
 
-## **Caso de Teste 08 – Código incorreto (Negativo)**  
-**ID:** AUTH_PRO_LOGIN_008  
+## **Caso de Teste 05 – Código incorreto (Negativo)**  
+**ID:** AUTH_PRO_LOGIN_005  
 
 ### **Pré-condições**
 - Código inválido informado.
@@ -137,8 +111,8 @@
 
 ---
 
-## **Caso de Teste 09 – Código expirado (Alternativo)**  
-**ID:** AUTH_PRO_LOGIN_009  
+## **Caso de Teste 06 – Código expirado (Alternativo)**  
+**ID:** AUTH_PRO_LOGIN_006 
 
 ### **Pré-condições**
 - Código expirado (> 5 min).
@@ -152,10 +126,8 @@
 
 # Cenário 04: Código – Casos Extras
 
----
-
-## **Caso de Teste 10 – Reenvio de código**  
-**ID:** AUTH_PRO_LOGIN_011  
+## **Caso de Teste 07 – Reenvio de código**  
+**ID:** AUTH_PRO_LOGIN_07  
 
 ### **Pré-condições**
 - Usuário já possui código ativo.
@@ -167,8 +139,8 @@
 
 ---
 
-## **Caso de Teste 11 – Uso de código anterior**  
-**ID:** AUTH_PRO_LOGIN_012  
+## **Caso de Teste 08 – Uso de código anterior**  
+**ID:** AUTH_PRO_LOGIN_08  
 
 ### **Pré-condições**
 - Novo código já foi solicitado.
@@ -180,8 +152,8 @@
 
 ---
 
-## **Caso de Teste 12 – Múltiplas tentativas incorretas**  
-**ID:** AUTH_PRO_LOGIN_013  
+## **Caso de Teste 09 – Múltiplas tentativas incorretas**  
+**ID:** AUTH_PRO_LOGIN_09  
 
 ### **Pré-condições**
 - Usuário tentou várias vezes com códigos invalidos.
@@ -191,14 +163,12 @@
 2. **QUANDO** excede limite  
 3. **ENTÃO** sistema bloqueia temporariamente
 
----
-
-# Cenário 05: Dispositivos
+# Cenário 04: Dispositivos
 
 ---
 
-## **Caso de Teste 13 – Login simultâneo em dispositivos diferentes**  
-**ID:** AUTH_PRO_LOGIN_014  
+## **Caso de Teste 10 – Login simultâneo em dispositivos diferentes**  
+**ID:** AUTH_PRO_LOGIN_010  
 
 ### **Pré-condições**
 - Conta logada em outro dispositivo.
@@ -210,4 +180,3 @@
 
 ### **Critérios de Aceitação**
 - Deve seguir a política de múltiplas sessões configurada no sistema.
-
