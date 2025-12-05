@@ -1,4 +1,4 @@
-# 🧪 Plano de Testes Manuais – Cadastro de Paciente  
+# Plano de Testes Manuais – Cadastro de Paciente  
 > Funcionalidade: Fluxo de Cadastro (Paciente)  
 > Sistema: ConectaBem  
 > Autor: Adaptado por ChatGPT  
@@ -7,7 +7,7 @@
 
 ---
 
-# 📊 Tabela Consolidada – Partição de Equivalência  
+# Tabela Consolidada – Partição de Equivalência  
 
 | Tipo de Cadastro    | Partição Válida                                    | Partição Inválida                                       |
 | ------------------- | -------------------------------------------------- | ------------------------------------------------------- |
@@ -19,7 +19,7 @@
 
 ---
 
-## 📌 Passos Comuns ao Cadastro de Paciente (Refatorado)
+## Passos Comuns ao Cadastro de Paciente (Refatorado)
 1. Sistema exibe tela de seleção de perfil.  
 2. Usuário seleciona **Paciente**.  
 3. Sistema exibe formulário **Etapa 1/4**.  
@@ -38,7 +38,7 @@
 
 ---
 
-# 🔹 Cenário 01: Cadastro via Provedores (Google / Facebook)
+# Cenário 01: Cadastro via Provedores (Google / Facebook)
 
 ---
 
@@ -121,7 +121,7 @@
 
 ---
 
-# 🔹 Cenário 02: Cadastro via E-mail (OTP)
+# Cenário 02: Cadastro via E-mail (OTP)
 
 ---
 
@@ -198,7 +198,7 @@
 
 ---
 
-# 🔹 Cenário 03: Dados Obrigatórios
+# Cenário 03: Dados Obrigatórios
 
 ---
 
@@ -250,9 +250,7 @@
 
 ---
 
-# 🔹 Cenário 04: Validações de Formulário (Paciente)
-
-*(Baseado nas regras 3.1.1 — repetições aplicadas em casos relevantes)*
+# Cenário 04: Validações de Formulário (Paciente)
 
 ## **Caso de Teste 11 – Validação do Nome**  
 **ID:** CAD_PAC_VALID_011  
@@ -276,7 +274,7 @@
 
 ---
 
-# 🔹 Cenário 05: Fluxo de Conclusão
+# Cenário 05: Fluxo de Conclusão
 
 ## **Caso de Teste 16 – Finalização do Cadastro**  
 **ID:** CAD_PAC_END_016  
@@ -293,7 +291,7 @@
 
 ---
 
-# 🔹 Cenário 06: Restrições Gerais
+# Cenário 06: Restrições Gerais
 
 ## **Caso de Teste 17 – E-mail já cadastrado (Negativo)**  
 **ID:** CAD_PAC_RESTR_017  
