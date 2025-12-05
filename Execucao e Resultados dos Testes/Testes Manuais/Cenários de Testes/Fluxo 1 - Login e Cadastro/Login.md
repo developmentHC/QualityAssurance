@@ -1,4 +1,4 @@
-# 🧪 Plano de Testes Manuais - Login
+# Plano de Testes Manuais - Login
 > Funcionalidade: Fluxo de Login Profissional  
 > Sistema: ConectaBem  
 > Autor: Miguel Luis e Mateus Santos  
@@ -7,7 +7,7 @@
 
 ---
 
-# 📊 Tabela Consolidada – Partição de Equivalência
+# Tabela Consolidada – Partição de Equivalência
 
 | Tipo de Login       | Partição Válida                                    | Partição Inválida                                       |
 | ------------------- | -------------------------------------------------- | ------------------------------------------------------- |
@@ -18,7 +18,7 @@
 
 ---
 
-# 🔹 Cenário 01: Login Social via Google
+# Cenário 01: Login Social via Google
 
 ---
 
@@ -76,7 +76,7 @@
 
 ---
 
-# 🔹 Cenário 02: Login Social via Facebook  
+# Cenário 02: Login Social via Facebook  
 *(Invalidados – mas documentados)*
 
 ---
@@ -99,7 +99,7 @@
 
 ---
 
-# 🔹 Cenário 03: Login via Código de Verificação
+# Cenário 03: Login via Código de Verificação
 
 ---
 
@@ -150,7 +150,7 @@
 
 ---
 
-# 🔹 Cenário 04: Código – Casos Extras
+# Cenário 04: Código – Casos Extras
 
 ---
 
@@ -193,7 +193,7 @@
 
 ---
 
-# 🔹 Cenário 05: Dispositivos
+# Cenário 05: Dispositivos
 
 ---
 
