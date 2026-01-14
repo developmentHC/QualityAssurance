@@ -3,7 +3,6 @@
 > **Sistema**: ConectaBem  
 > **Versão**: 2.0 (Otimizada)  
 > **Status**: Consolidação Inteligente  
-> **Filosofia**: Reduzir 74% dos casos mantendo 100% da cobertura de risco
 
 ---
 
