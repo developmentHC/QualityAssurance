@@ -210,48 +210,7 @@ CENÁRIO 3: Limite de reenvios
 | Qualquer | Retorno | Fechar navegador | Recupera dados |
 | Etapa 4 | Home | Finalizar | Autentica |
 
-#### Cenários
-
-```
-CENÁRIO: Persistência  
-DADO que completei a Etapa 1  
-E avancei para Etapa 2  
-QUANDO fecho o navegador  
-E retorno ao sistema  
-ENTÃO volto para Etapa 2  
-E meus dados estão preservados  
-```
-
----
-
-## Cenários Críticos de Negócio
-
-```gherkin
-Crítico 01: Bloqueio de Duplo Cadastro  
-ID: CAD_PAC_CRIT_001  
-  DADO que um email já está cadastrado como Profissional  
-  QUANDO tento cadastrar como Paciente  
-  ENTÃO o sistema deve bloquear  
-  E exibir mensagem clara  
-
-Crítico 02: Idade Mínima Legal  
-ID: CAD_PAC_CRIT_002  
-  DADO que informo idade menor que 18  
-  QUANDO tento avançar  
-  ENTÃO o sistema bloqueia  
-  E oferece opção para responsável legal  
-
-Crítico 03: Persistência contra Perda de Dados  
-ID: CAD_PAC_CRIT_003  
-  DADO que completei 3 etapas  
-  QUANDO ocorre falha de conexão  
-  ENTÃO retorno exatamente para a Etapa 4  
-  E todos os dados anteriores permanecem  
-```
-
----
-
-## 📈 Matriz de Cobertura
+## Matriz de Cobertura
 
 | Requisito | Caso | Risco | Status |
 |----------|------|-------|--------|
@@ -262,35 +221,3 @@ ID: CAD_PAC_CRIT_003
 | RF05 | CAD_PAC_EXC_003 | Médio | OK |
 
 ---
-
-## Processo de Execução
-
-**Ordem**
-1. Casos críticos  
-2. Fluxo principal  
-3. Validações  
-4. Exceções  
-5. Workflow  
-
-**Frequência**
-- Críticos: todo deploy  
-- Smoke: diário  
-- Regressão: semanal  
-
----
-
-## Notas de Manutenção
-
-- Nova validação → atualizar CAD_PAC_VALID_002  
-- Novo login → atualizar CAD_PAC_MAIN_001  
-- Nova etapa → atualizar CAD_PAC_STATE_004  
-
-**Métricas**
-- Tempo de execução  
-- Bugs por hora  
-- Regressões em produção  
-- Percentual de automação  
-
----
-
-✅ Resultado final: **79% menos casos, 100% da cobertura essencial e foco total em risco real.**
