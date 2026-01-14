@@ -3,7 +3,7 @@
 > **Funcionalidade**: Fluxo de Cadastro (Paciente)  
 > **Sistema**: ConectaBem  
 > **Versão**: 2.0 (Otimizada)  
-> **Filosofia**: Testar melhor, não testar mais
+> **Filosofia**: *Testar melhor, não testar mais*
 
 ---
 
@@ -21,72 +21,71 @@
 
 ---
 
-### Caso 01: Fluxo Principal Completo
+## Caso 01: Fluxo Principal Completo
 
 **ID:** CAD_PAC_MAIN_001  
 **Técnica:** Particionamento de Equivalência + Tabela de Decisão  
 **Risco:** Alto  
-**Automatizável:** Sim
+**Automatizável:** Sim  
 
-#### Descrição
-Testa o caminho feliz completo do cadastro, cobrindo múltiplos métodos de autenticação em um único fluxo.
+### Descrição
+Valida o caminho feliz completo do cadastro de paciente, cobrindo múltiplos métodos de autenticação em um único fluxo.
 
-#### Pré-condições
+### Pré-condições
 - Ambiente de teste configurado  
-- Contas de teste disponíveis (Google e Email)
+- Contas de teste válidas (Google e Email)
 
-#### Cenários Cobertos (1 teste → múltiplas validações)
+### Cenários Cobertos
 - Login via Google com permissão concedida  
 - Login via Email com OTP válido  
 - Idade mínima (18) e máxima (110)  
-- CEP válido (formato + ViaCEP)  
-- Preenchimento das 4 etapas  
-- Autenticação automática e redirecionamento  
+- CEP válido (formato e ViaCEP)  
+- Preenchimento das 4 etapas do cadastro  
+- Autenticação automática e redirecionamento final  
 
-#### Passos do Teste (Gherkin)
+### Passos do Teste
 
-```gherkin
-DADO que o usuário acessa o ConectaBem  
-QUANDO seleciona método de login {Google | Email}  
-E concede permissões necessárias (Google) OU valida OTP (Email)  
-E seleciona perfil "Paciente"  
-E preenche a Etapa 1/4 com:
-- Nome válido (≥ 3 caracteres)  
-- Data de nascimento válida  
-- CEP existente e no formato correto  
-- Endereço completo  
+1. Acessar o sistema ConectaBem  
+2. Selecionar o método de login (Google ou Email)  
+3. Realizar autenticação:
+   - Conceder permissões (Google) **ou**
+   - Validar OTP (Email)  
+4. Selecionar o perfil **Paciente**  
+5. Preencher a **Etapa 1/4**:
+   - Nome válido (mínimo 3 caracteres)  
+   - Data de nascimento válida  
+   - CEP existente e em formato correto  
+   - Endereço completo  
+6. Avançar para a **Etapa 2/4**:
+   - Preencher preferências **ou** pular  
+7. Avançar para a **Etapa 3/4**:
+   - Preencher necessidades **ou** pular  
+8. Avançar para a **Etapa 4/4**  
+9. Finalizar o cadastro  
 
-E avança para Etapa 2/4  
-E preenche preferências ou pula se permitido  
-E avança para Etapa 3/4  
-E preenche necessidades ou pula se permitido  
-E avança para Etapa 4/4  
-E finaliza o cadastro  
+### Resultado Esperado
+- Registro da data e hora do cadastro  
+- Autenticação automática  
+- Redirecionamento para a Home autenticada  
+- Confirmação visual de cadastro  
 
-ENTÃO o sistema deve:
-- Registrar data e hora do cadastro  
-- Autenticar automaticamente  
-- Redirecionar para a Home autenticada  
-- Exibir confirmação de cadastro  
-```
-
-#### Critérios de Aceitação
-- Todos os métodos de login funcionam no mesmo fluxo  
+### Critérios de Aceitação
+- Ambos os métodos de login funcionam no mesmo fluxo  
 - Validações em tempo real  
-- Botão “Continuar” habilita apenas com campos válidos  
-- Progresso salvo automaticamente entre etapas  
+- Botão **Continuar** habilita apenas com campos válidos  
+- Progresso salvo automaticamente  
 - Persistência ao recarregar a página  
 
 ---
 
-### Caso 02: Tabela de Validações de Campos
+## Caso 02: Tabela de Validações de Campos
 
 **ID:** CAD_PAC_VALID_002  
 **Técnica:** Tabela de Decisão + Análise de Valor Limite  
 **Risco:** Alto  
-**Automatizável:** Sim
+**Automatizável:** Sim  
 
-#### Matriz de Validações
+### Matriz de Validações
 
 | Campo | Valor Testado | Tipo | Comportamento Esperado | Criticidade |
 |------|--------------|------|-----------------------|-------------|
@@ -99,108 +98,87 @@ ENTÃO o sistema deve:
 | CEP | "12345" | Inválido | Erro de formato | Média |
 | CEP | "00000-000" | Inválido | CEP não encontrado | Média |
 | CEP | "01001-000" | Válido | Autocompleta endereço | Média |
-| Email | já cadastrado | Inválido | Email já cadastrado | Alta |
-| Campo obrigatório | vazio | Inválido | Campo obrigatório | Alta |
+| Email | Já cadastrado | Inválido | Email já cadastrado | Alta |
+| Campo obrigatório | Vazio | Inválido | Campo obrigatório | Alta |
 
-#### Passos do Teste
+### Passos do Teste
 
-```gherkin
-PARA CADA linha da matriz de validações  
-  DADO que estou na etapa correspondente  
-  QUANDO insiro o valor testado  
-  ENTÃO vejo o comportamento esperado  
-  E o botão “Continuar” reflete o status correto  
-```
+Para cada linha da matriz:
+1. Acessar a etapa correspondente  
+2. Inserir o valor testado  
+3. Validar mensagem ou comportamento  
+4. Verificar estado do botão **Continuar**
 
-#### Dados de Teste para Combinações
+### Combinações Críticas
 
-```
-{
-  "cenarios_criticos": [
-    {
-      "nome": "Jo",
-      "idade": 17,
-      "cep": "12345",
-      "esperado": "Múltiplos erros simultâneos"
-    },
-    {
-      "nome": "Maria",
-      "idade": 18,
-      "cep": "01001-000",
-      "esperado": "Avança para próxima etapa"
-    }
-  ]
-}
-```
+- **Cenário 1 – Múltiplos erros**
+  - Nome: Jo  
+  - Idade: 17  
+  - CEP: 12345  
+  - Resultado: múltiplos erros simultâneos  
+
+- **Cenário 2 – Fluxo válido**
+  - Nome: Maria  
+  - Idade: 18  
+  - CEP: 01001-000  
+  - Resultado: avanço de etapa  
 
 ---
 
-### Caso 03: Exceções de Autenticação
+## Caso 03: Exceções de Autenticação
 
 **ID:** CAD_PAC_EXC_003  
 **Técnica:** Particionamento de Equivalência  
 **Risco:** Médio  
-**Automatizável:** Sim
+**Automatizável:** Sim  
 
-#### Partições Testadas
+### Partições Testadas
 
 | Cenário | Comportamento Esperado |
 |-------|------------------------|
-| Google sem permissão | Fluxo interrompido + mensagem clara |
-| OTP incorreto | Mensagem de erro + contador |
+| Google sem permissão | Mensagem clara + retorno |
+| OTP incorreto | Erro + contador |
 | 5 tentativas inválidas | Bloqueio por 5 minutos |
-| OTP expirado | Mensagem + opção reenviar |
+| OTP expirado | Mensagem + reenvio |
 | Limite de reenvios | Bloqueio por 1 hora |
 | Email inválido | Erro em tempo real |
 
-#### Cenários de Teste
+### Cenários
 
-```gherkin
-CENÁRIO 1: Google sem permissão  
-  DADO que iniciei login com Google  
-  QUANDO nego a permissão  
-  ENTÃO vejo mensagem explicativa  
-  E retorno à tela inicial  
+- **Google sem permissão**
+  - Negar permissão
+  - Exibir mensagem
+  - Retornar à tela inicial
 
-CENÁRIO 2: OTP inválido  
-  DADO que solicitei código por email  
-  QUANDO insiro código incorreto  
-  ENTÃO vejo mensagem de erro  
-  E após 5 tentativas sou bloqueado  
+- **OTP inválido**
+  - Inserir código incorreto
+  - Exibir erro
+  - Bloquear após 5 tentativas
 
-CENÁRIO 3: Limite de reenvios  
-  DADO que já reenviei o código 4 vezes  
-  QUANDO tento o 5º reenvio  
-  ENTÃO vejo mensagem de limite atingido  
-  E o botão fica desabilitado  
-```
+- **Limite de reenvio**
+  - Atingir limite
+  - Exibir mensagem
+  - Desabilitar botão
 
 ---
 
-### Caso 04: Workflow e Persistência
+## Caso 04: Workflow e Persistência
 
 **ID:** CAD_PAC_STATE_004  
 **Técnica:** Transição de Estados  
 **Risco:** Médio  
-**Automatizável:** Parcial
+**Automatizável:** Parcial  
 
-#### Diagrama de Estados
+### Estados do Fluxo
 
-```
-[Início]  
-↓  
-[Etapa 1] ↔ validação em tempo real  
-↓  
-[Etapa 2] ↔ campos opcionais  
-↓  
-[Etapa 3] ↔ persistência  
-↓  
-[Etapa 4] ↔ confirmação  
-↓  
-[Concluído] → Home autenticada  
-```
+- Início  
+- Etapa 1 (validação em tempo real)  
+- Etapa 2 (campos opcionais)  
+- Etapa 3 (persistência)  
+- Etapa 4 (confirmação)  
+- Concluído (Home autenticada)  
 
-#### Transições Testadas
+### Transições Testadas
 
 | De | Para | Condição | Resultado |
 |----|-----|----------|----------|
@@ -209,6 +187,8 @@ CENÁRIO 3: Limite de reenvios
 | Etapa 2 | Etapa 3 | Pular opcional | Avança |
 | Qualquer | Retorno | Fechar navegador | Recupera dados |
 | Etapa 4 | Home | Finalizar | Autentica |
+
+---
 
 ## Matriz de Cobertura
 
@@ -219,5 +199,3 @@ CENÁRIO 3: Limite de reenvios
 | RF03 | CAD_PAC_STATE_004 | Alto | OK |
 | RF04 | CAD_PAC_CRIT_001 | Alto | OK |
 | RF05 | CAD_PAC_EXC_003 | Médio | OK |
-
----
