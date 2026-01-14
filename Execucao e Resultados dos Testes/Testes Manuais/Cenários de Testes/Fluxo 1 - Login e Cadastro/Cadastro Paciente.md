@@ -7,7 +7,7 @@
 
 ---
 
-## 📊 Resumo da Otimização
+## Resumo da Otimização
 
 | Métrica | Original | Otimizado | Redução |
 |--------|----------|-----------|---------|
@@ -17,11 +17,11 @@
 
 ---
 
-## 🎯 Casos de Teste Essenciais
+## Casos de Teste Essenciais
 
 ---
 
-### 🔹 Caso 01: Fluxo Principal Completo
+### Caso 01: Fluxo Principal Completo
 
 **ID:** CAD_PAC_MAIN_001  
 **Técnica:** Particionamento de Equivalência + Tabela de Decisão  
@@ -45,7 +45,7 @@ Testa o caminho feliz completo do cadastro, cobrindo múltiplos métodos de aute
 
 #### Passos do Teste (Gherkin)
 
-```
+```gherkin
 DADO que o usuário acessa o ConectaBem  
 QUANDO seleciona método de login {Google | Email}  
 E concede permissões necessárias (Google) OU valida OTP (Email)  
@@ -79,7 +79,7 @@ ENTÃO o sistema deve:
 
 ---
 
-### 🔹 Caso 02: Tabela de Validações de Campos
+### Caso 02: Tabela de Validações de Campos
 
 **ID:** CAD_PAC_VALID_002  
 **Técnica:** Tabela de Decisão + Análise de Valor Limite  
@@ -104,12 +104,12 @@ ENTÃO o sistema deve:
 
 #### Passos do Teste
 
-```
+```gherkin
 PARA CADA linha da matriz de validações  
-DADO que estou na etapa correspondente  
-QUANDO insiro o valor testado  
-ENTÃO vejo o comportamento esperado  
-E o botão “Continuar” reflete o status correto  
+  DADO que estou na etapa correspondente  
+  QUANDO insiro o valor testado  
+  ENTÃO vejo o comportamento esperado  
+  E o botão “Continuar” reflete o status correto  
 ```
 
 #### Dados de Teste para Combinações
@@ -135,7 +135,7 @@ E o botão “Continuar” reflete o status correto
 
 ---
 
-### 🔹 Caso 03: Exceções de Autenticação
+### Caso 03: Exceções de Autenticação
 
 **ID:** CAD_PAC_EXC_003  
 **Técnica:** Particionamento de Equivalência  
@@ -155,29 +155,29 @@ E o botão “Continuar” reflete o status correto
 
 #### Cenários de Teste
 
-```
+```gherkin
 CENÁRIO 1: Google sem permissão  
-DADO que iniciei login com Google  
-QUANDO nego a permissão  
-ENTÃO vejo mensagem explicativa  
-E retorno à tela inicial  
+  DADO que iniciei login com Google  
+  QUANDO nego a permissão  
+  ENTÃO vejo mensagem explicativa  
+  E retorno à tela inicial  
 
 CENÁRIO 2: OTP inválido  
-DADO que solicitei código por email  
-QUANDO insiro código incorreto  
-ENTÃO vejo mensagem de erro  
-E após 5 tentativas sou bloqueado  
+  DADO que solicitei código por email  
+  QUANDO insiro código incorreto  
+  ENTÃO vejo mensagem de erro  
+  E após 5 tentativas sou bloqueado  
 
 CENÁRIO 3: Limite de reenvios  
-DADO que já reenviei o código 4 vezes  
-QUANDO tento o 5º reenvio  
-ENTÃO vejo mensagem de limite atingido  
-E o botão fica desabilitado  
+  DADO que já reenviei o código 4 vezes  
+  QUANDO tento o 5º reenvio  
+  ENTÃO vejo mensagem de limite atingido  
+  E o botão fica desabilitado  
 ```
 
 ---
 
-### 🔹 Caso 04: Workflow e Persistência
+### Caso 04: Workflow e Persistência
 
 **ID:** CAD_PAC_STATE_004  
 **Técnica:** Transição de Estados  
@@ -224,28 +224,30 @@ E meus dados estão preservados
 
 ---
 
-## 🎯 Cenários Críticos de Negócio
+## Cenários Críticos de Negócio
 
+```gherkin
 Crítico 01: Bloqueio de Duplo Cadastro  
 ID: CAD_PAC_CRIT_001  
-DADO que um email já está cadastrado como Profissional  
-QUANDO tento cadastrar como Paciente  
-ENTÃO o sistema deve bloquear  
-E exibir mensagem clara  
+  DADO que um email já está cadastrado como Profissional  
+  QUANDO tento cadastrar como Paciente  
+  ENTÃO o sistema deve bloquear  
+  E exibir mensagem clara  
 
 Crítico 02: Idade Mínima Legal  
 ID: CAD_PAC_CRIT_002  
-DADO que informo idade menor que 18  
-QUANDO tento avançar  
-ENTÃO o sistema bloqueia  
-E oferece opção para responsável legal  
+  DADO que informo idade menor que 18  
+  QUANDO tento avançar  
+  ENTÃO o sistema bloqueia  
+  E oferece opção para responsável legal  
 
 Crítico 03: Persistência contra Perda de Dados  
 ID: CAD_PAC_CRIT_003  
-DADO que completei 3 etapas  
-QUANDO ocorre falha de conexão  
-ENTÃO retorno exatamente para a Etapa 4  
-E todos os dados anteriores permanecem  
+  DADO que completei 3 etapas  
+  QUANDO ocorre falha de conexão  
+  ENTÃO retorno exatamente para a Etapa 4  
+  E todos os dados anteriores permanecem  
+```
 
 ---
 
@@ -261,7 +263,7 @@ E todos os dados anteriores permanecem
 
 ---
 
-## 🔄 Processo de Execução
+## Processo de Execução
 
 **Ordem**
 1. Casos críticos  
@@ -277,7 +279,7 @@ E todos os dados anteriores permanecem
 
 ---
 
-## 📝 Notas de Manutenção
+## Notas de Manutenção
 
 - Nova validação → atualizar CAD_PAC_VALID_002  
 - Novo login → atualizar CAD_PAC_MAIN_001  
