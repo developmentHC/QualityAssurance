@@ -1,182 +1,168 @@
-# Plano de Testes Manuais - Login
-> Funcionalidade: Fluxo de Login Profissional  
-> Sistema: ConectaBem  
-> Autor: Miguel Luis e Mateus Santos  
-> Data de Criação: 2025-08-27  
-> Data de Atualização: 2025-11-30
+# Plano de Testes Otimizado – Login Profissional
+
+> **Sistema**: ConectaBem  
+> **Versão**: 2.0 (Otimizada)  
+> **Status**: Consolidação Inteligente  
 
 ---
 
-# Tabela Consolidada – Partição de Equivalência
+## Resumo da Otimização
 
-| Tipo de Login       | Partição Válida                                    | Partição Inválida                                       |
-| ------------------- | -------------------------------------------------- | ------------------------------------------------------- |
-| **Google**          | Conta Google existente + autorização concedida     | Conta inexistente / autorização negada                  |
-| **Código (E-mail)** | E-mail cadastrado + código correto dentro de 5 min | E-mail inexistente / código incorreto / código expirado |
-| **Dispositivo**     | Login com código válido em qualquer dispositivo    | Código inválido ou expirado em outro dispositivo        |
-
----
-
-# Cenário 01: Login Social via Google
+| Métrica | Original | Otimizado | Redução |
+|---------|----------|-----------|---------|
+| Casos de Teste | 10 | 3 | 70% |
+| Cenários Separados | 4 | 1 (estruturado) | 75% |
+| Validações Individuais | 10+ | 1 matriz | 90% |
 
 ---
 
-## **Caso de Teste 01 – Login com Google (Happy Path)**  
-**ID:** AUTH_PRO_LOGIN_001  
-**Descrição:** Usuário profissional realiza login com Google com sucesso.
-
-### **Pré-condições**
-- Conta Google válida e vinculada ao ConectaBem.
-
-### **Passos**
-1. **DADO** que o usuário está na página inicial do ConectaBem  
-2. **QUANDO** ele clica em **"Entrar com Google"**  
-3. **QUANDO** é redirecionado para a tela de autenticação do Google  
-4. **QUANDO** insere credenciais válidas  
-5. **ENTÃO** é autenticado e redirecionado para o **dashboard do profissional**
-
-### **Critérios de Aceitação**
-- O sistema deve autenticar e direcionar o usuário ao painel profissional.
+## Casos de Teste
 
 ---
 
-## **Caso de Teste 02 – Login Google com conta inválida (Negativo)**  
-**ID:** AUTH_PRO_LOGIN_002  
-**Descrição:** Conta inválida ou não vinculada.
+## Caso 01: Fluxos Principais de Login do Profissional
 
-### **Pré-condições**
-- Conta Google não vinculada ou inexistente.
+**ID:** LOGIN_PRO_MAIN_001  
+**Técnica:** Particionamento de Equivalência + Fluxo Principal  
+**Risco:** Alto  
+**Automatizável:** Sim  
 
-### **Passos**
-1. **DADO** que o usuário está na tela de login  
-2. **QUANDO** clica em **"Entrar com Google"**  
-3. **QUANDO** insere uma conta inválida / não vinculada  
-4. **ENTÃO** o sistema exibe mensagem de falha de autenticação
+### Descrição
+Valida todos os caminhos felizes de autenticação do profissional, garantindo acesso correto ao dashboard em diferentes métodos de login e dispositivos.
 
-### **Critérios de Aceitação**
-- Login não deve ocorrer e deve apresentar mensagem de erro.
+### Cenários Cobertos
 
----
+| Método | Condição | Resultado Esperado | Criticidade |
+|------|----------|-------------------|-------------|
+| Google | Conta vinculada e permissões aceitas | Login realizado | Alta |
+| Email/OTP | Email cadastrado + OTP válido | Login realizado | Alta |
+| Sessão | Novo dispositivo | Permitido ou bloqueado conforme política | Média |
 
-## **Caso de Teste 03 – Login Google cancelado (Alternativo)**  
-**ID:** AUTH_PRO_LOGIN_003  
-**Descrição:** Usuário cancela o login no Google.
+### Dados de Teste Estratégicos
 
-### **Pré-condições**
-- Usuário iniciou o fluxo de login Google.
+- Conta Google previamente vinculada  
+- Email profissional cadastrado  
+- OTP válido dentro de 5 minutos  
+- Usuário já logado em Desktop  
+- Segundo dispositivo (Mobile)  
 
-### **Passos**
-1. **DADO** que o usuário clicou em **"Entrar com Google"**  
-2. **QUANDO** cancela a autenticação no Google  
-3. **ENTÃO** deve retornar para a tela de login do ConectaBem
+### Passos do Teste
 
-### **Critérios de Aceitação**
-- O sistema deve retornar o usuário à tela inicial de login.
+1. Acessar a página inicial do ConectaBem  
+2. Selecionar o método de login:
+   - Google **ou**
+   - Email com envio de OTP  
+3. Concluir autenticação com credenciais válidas  
+4. Verificar redirecionamento para dashboard profissional  
+5. Validar dados do perfil exibidos  
+6. Realizar login adicional em outro dispositivo (se aplicável)  
 
----
+### Resultado Esperado
 
-# Cenário 02: Login via Código de Verificação
-
-## **Caso de Teste 04 – Código válido (Happy Path)**  
-**ID:** AUTH_PRO_LOGIN_004
-**Descrição:** login bem-sucedido usando código enviado por e-mail.
-
-### **Pré-condições**
-- E-mail cadastrado.
-- Código válido dentro de 5 minutos.
-
-### **Passos**
-1. **DADO** que o usuário insere e-mail cadastrado  
-2. **QUANDO** recebe o código e insere um código válido  
-3. **ENTÃO** o sistema autentica e redireciona ao dashboard profissional
-
-### **Critérios de Aceitação**
-- Login deve ser concluído com sucesso.
+- Sessão criada com sucesso  
+- Dashboard profissional exibido  
+- Nome e perfil corretos  
+- Comportamento de múltiplos dispositivos conforme política definida  
 
 ---
 
-## **Caso de Teste 05 – Código incorreto (Negativo)**  
-**ID:** AUTH_PRO_LOGIN_005  
+## Caso 02: Matriz Completa de Exceções e Erros de Login
 
-### **Pré-condições**
-- Código inválido informado.
+**ID:** LOGIN_PRO_ERROR_002  
+**Técnica:** Tabela de Decisão Expandida + Particionamento de Equivalência  
+**Risco:** Alto  
+**Automatizável:** Sim  
 
-### **Passos**
-1. **DADO** que solicitou login via código  
-2. **QUANDO** insere código incorreto  
-3. **ENTÃO** o sistema exibe mensagem de erro
+### Matriz de Erros e Exceções
 
-### **Critérios de Aceitação**
-- O sistema não deve autenticar.
+| Método | Cenário | Comportamento Esperado | Criticidade |
+|------|--------|------------------------|-------------|
+| Google | Conta não vinculada | Mensagem: “Conta não encontrada. Cadastre-se primeiro.” | Alta |
+| Google | Permissão negada | Retorno à tela inicial com aviso | Média |
+| Google | Autenticação cancelada | Retorno silencioso à tela inicial | Baixa |
+| Email/OTP | Email não cadastrado | Erro imediato | Alta |
+| Email/OTP | Código incorreto | Mensagem com contador de tentativas | Alta |
+| Email/OTP | Código expirado (>5 min) | Solicitação de novo código | Média |
+| Email/OTP | Código antigo após reenvio | Código rejeitado | Média |
+| Email/OTP | 5 tentativas inválidas | Bloqueio por 15 minutos | Alta |
+| Email/OTP | Reenvio em menos de 1 minuto | Mensagem de espera (60s) | Baixa |
+| Geral | Falha de conexão | Mensagem de erro e opção de retry | Média |
 
----
+### Combinações Críticas
 
-## **Caso de Teste 06 – Código expirado (Alternativo)**  
-**ID:** AUTH_PRO_LOGIN_006 
+- Código incorreto + múltiplas tentativas:
+  - Contador decrementado corretamente  
+  - Bloqueio aplicado após limite  
 
-### **Pré-condições**
-- Código expirado (> 5 min).
+- Reenvio de OTP:
+  - Código anterior invalidado  
+  - Apenas o último código é aceito  
 
-### **Passos**
-1. **DADO** que recebeu um código  
-2. **QUANDO** tenta usá-lo após expirar  
-3. **ENTÃO** o sistema recusa e solicita novo envio
+### Resultado Esperado
 
----
-
-# Cenário 04: Código – Casos Extras
-
-## **Caso de Teste 07 – Reenvio de código**  
-**ID:** AUTH_PRO_LOGIN_07  
-
-### **Pré-condições**
-- Usuário já possui código ativo.
-
-### **Passos**
-1. **DADO** que solicita reenvio  
-2. **QUANDO** novo código é gerado  
-3. **ENTÃO** o anterior deve ser invalidado
+- Usuário não autenticado  
+- Dashboard inacessível  
+- Mensagens claras e consistentes  
+- Nenhuma sessão criada indevidamente  
 
 ---
 
-## **Caso de Teste 08 – Uso de código anterior**  
-**ID:** AUTH_PRO_LOGIN_08  
+## Caso 03: Segurança, Sessões e Logout
 
-### **Pré-condições**
-- Novo código já foi solicitado.
+**ID:** LOGIN_PRO_SEC_003  
+**Técnica:** Testes de Segurança + Transição de Estados  
+**Risco:** Alto  
+**Automatizável:** Parcial  
 
-### **Passos**
-1. **DADO** que usuário insere código antigo  
-2. **QUANDO** tenta validar  
-3. **ENTÃO** o sistema rejeita
+### Escopos Validados
+
+#### Política de Múltiplas Sessões
+- Login simultâneo em Desktop e Mobile  
+- Permissão ou bloqueio conforme configuração  
+- Encerramento de sessão antiga quando aplicável  
+
+#### Timeout de Sessão
+
+| Condição | Tempo | Resultado Esperado |
+|--------|------|-------------------|
+| Inatividade | 30 minutos | Sessão expirada |
+| Retorno após timeout | — | Solicita novo login |
+
+#### Tokens e Cookies
+- Exclusão manual de cookies  
+- Invalidação imediata da sessão  
+- Redirecionamento para login  
+
+#### Logout Manual
+- Ação de logout pelo usuário  
+- Invalidação de tokens  
+- Redirecionamento para tela inicial  
+
+### Passos do Teste (Resumo)
+
+1. Realizar login válido  
+2. Simular inatividade prolongada  
+3. Excluir cookies manualmente  
+4. Executar logout manual  
+5. Tentar acessar URL protegida  
+
+### Resultado Esperado
+
+- Sessões encerradas corretamente  
+- Tokens invalidados  
+- Acesso bloqueado após logout ou timeout  
 
 ---
 
-## **Caso de Teste 09 – Múltiplas tentativas incorretas**  
-**ID:** AUTH_PRO_LOGIN_09  
+## Matriz de Cobertura – Login Profissional
 
-### **Pré-condições**
-- Usuário tentou várias vezes com códigos invalidos.
-
-### **Passos**
-1. **DADO** tentativas repetidas  
-2. **QUANDO** excede limite  
-3. **ENTÃO** sistema bloqueia temporariamente
-
-# Cenário 04: Dispositivos
-
----
-
-## **Caso de Teste 10 – Login simultâneo em dispositivos diferentes**  
-**ID:** AUTH_PRO_LOGIN_010  
-
-### **Pré-condições**
-- Conta logada em outro dispositivo.
-
-### **Passos**
-1. **DADO** que já existe uma sessão ativa  
-2. **QUANDO** tenta logar em novo dispositivo  
-3. **ENTÃO** o sistema aplica política definida (permitir ou invalidar sessão anterior)
-
-### **Critérios de Aceitação**
-- Deve seguir a política de múltiplas sessões configurada no sistema.
+| Requisito | Casos Cobertos | Risco | Status |
+|----------|---------------|-------|--------|
+| RF-L01 – Login Google válido | MAIN | Alto | OK |
+| RF-L02 – Login Email/OTP | MAIN | Alto | OK |
+| RF-L03 – Tratamento erros Google | ERROR | Alto | OK |
+| RF-L04 – Tratamento erros OTP | ERROR | Alto | OK |
+| RF-L05 – Múltiplos dispositivos | MAIN + SEC | Médio | OK |
+| RF-L06 – Segurança de sessão | SEC | Alto | OK |
+| RF-L07 – Logout e timeout | SEC | Alto | OK |
+| RF-L08 – Bloqueio por tentativas | ERROR | Alto | OK |
