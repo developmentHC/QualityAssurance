@@ -16,7 +16,7 @@
 
 ---
 
-## Casos de Teste Essenciais (5 Casos Substituem 25)
+## Casos de Teste
 
 ---
 
