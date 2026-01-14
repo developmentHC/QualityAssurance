@@ -3,7 +3,6 @@
 > **Funcionalidade**: Fluxo de Cadastro (Paciente)  
 > **Sistema**: ConectaBem  
 > **Versão**: 2.0 (Otimizada)  
-> **Filosofia**: *Testar melhor, não testar mais*
 
 ---
 
