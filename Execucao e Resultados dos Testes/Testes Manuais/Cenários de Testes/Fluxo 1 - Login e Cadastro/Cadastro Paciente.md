@@ -16,7 +16,7 @@
 
 ---
 
-## Casos de Teste Essenciais
+## Casos de Teste
 
 ---
 
