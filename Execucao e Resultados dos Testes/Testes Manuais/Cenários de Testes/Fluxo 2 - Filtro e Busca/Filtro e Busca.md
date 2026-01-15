@@ -1,168 +1,188 @@
-# Cenários de Teste — Fluxo de Filtro e Busca
-> **Responsável:** Mateus QA  
-> **Software:** ConectaBem  
+# Plano de Testes Otimizado – Busca e Filtro
+
+> **Funcionalidade**: Filtro e Busca de Profissionais  
+> **Sistema**: ConectaBem  
+> **Versão**: 2.0 (Otimizada)  
+> **Status**: Consolidado em 4 Casos Principais
 
 ---
 
-## **Cenário 1 – Realizar busca por nome de especialidade**
+## 📊 Resumo da Otimização
 
-**Descrição:** Verificar se o usuário consegue realizar uma busca digitando o nome de uma especialidade na barra de busca.  
-**Tipo de Teste:** Funcional  
-**Prioridade:** Alta  
-**Dados de teste:** Usuário logado, especialidade existente (ex: “Reiki”)  
-**Passos:**  
-1. Acessar a tela de busca.  
-2. Digitar “Reiki” na **Barra de Busca**.  
-3. Pressionar “Enter” ou clicar no botão de busca.  
-
-**Resultado Esperado:**  
-- O sistema exibe os profissionais da especialidade “Reiki”.  
-- Nenhuma mensagem de erro é exibida.  
-
-**Resultado Obtido:** Passou / Não passou  
+| Métrica | Original | Otimizado | Redução |
+|-------|----------|-----------|--------|
+| Casos de Teste | 9 | 4 | 56% |
+| Cenários Separados | 9 | 1 (estruturado) | 89% |
+| Validações Dispersas | 9+ | 1 matriz | 90% |
 
 ---
 
-## **Cenário 2 – Busca com termo inexistente**
-
-**Descrição:** Testar se o sistema exibe corretamente uma mensagem ao pesquisar um termo não encontrado.  
-**Tipo de Teste:** Funcional / Validação de erro  
-**Prioridade:** Alta  
-**Dados de teste:** Termo inexistente (ex: “Inexistenteterapia”)  
-**Passos:**  
-1. Acessar a tela de busca.  
-2. Digitar o termo “Inexistenteterapia”.  
-3. Clicar em “Buscar”.  
-
-**Resultado Esperado:**  
-- Sistema exibe mensagem: **“Não há profissionais com o filtro selecionado. Tente modificar as opções.”**  
-- Usuário permanece na tela de busca.  
-
-**Resultado Obtido:** Passou / Não passou  
+## Casos de Teste
 
 ---
 
-## **Cenário 3 – Utilizar botão de filtros**
+## CASO 1: Fluxos Principais de Busca
 
-**Descrição:** Verificar se o menu de filtros é aberto corretamente e os filtros funcionam.  
-**Tipo de Teste:** Funcional  
-**Prioridade:** Alta  
-**Dados de teste:** Filtros disponíveis (ex: Especialidade, Valor, Acessibilidade)  
-**Passos:**  
-1. Clicar no **Botão Filtros**.  
-2. Selecionar um filtro (ex: “Acessibilidade”).  
-3. Aplicar os filtros.  
+**ID:** BUSCA_MAIN_001  
+**Descrição:** Testa todos os caminhos felizes de busca em um único fluxo
 
-**Resultado Esperado:**  
-- Menu de filtros é exibido corretamente.  
-- Resultados são filtrados conforme o critério selecionado.  
+### O que este caso cobre
+- Busca por especialidade
+- Busca com termos compostos
+- Uso de chips dinâmicos
+- Aplicação de filtros básicos
 
-**Resultado Obtido:** Passou / Não passou  
+### Passos Consolidados (Lista)
 
----
+#### 1. Busca simples por especialidade
+- Acessar a tela de busca
+- Digitar **"Reiki"** na barra de busca
+- Executar a busca (Enter ou botão)
+- Verificar:
+  - Lista de profissionais de Reiki
+  - Contador de resultados exibido corretamente
 
-## **Cenário 4 – Selecionar chip de especialidade**
+#### 2. Busca com termos compostos
+- Acessar a tela de busca
+- Digitar **"Terapia Holística"**
+- Executar a busca
+- Verificar:
+  - Resultados relacionados ao termo
+  - Sistema não apresenta erro ou falha
 
-**Descrição:** Validar que ao clicar em um chip de especialidade, os resultados são atualizados automaticamente.  
-**Tipo de Teste:** Funcional  
-**Prioridade:** Média  
-**Dados de teste:** Chips visíveis (ex: “Reiki”, “Cura Prânica”)  
-**Passos:**  
-1. Clicar no chip “Cura Prânica”.  
+#### 3. Uso de chips de especialidade
+- Visualizar chip **"Cura Prânica"**
+- Clicar no chip
+- Verificar:
+  - Chip fica visualmente destacado
+  - Resultados filtrados pela especialidade
+- Clicar novamente no chip
+- Verificar:
+  - Chip é removido
+  - Resultados retornam ao estado anterior
 
-**Resultado Esperado:**  
-- Resultados da especialidade “Cura Prânica” são exibidos.  
-- Chip selecionado fica visualmente destacado.  
-
-**Resultado Obtido:** Passou / Não passou  
-
----
-
-## **Cenário 5 – Adicionar e remover especialidades (chips dinâmicos)**
-
-**Descrição:** Verificar comportamento ao adicionar ou remover chips de especialidade conforme regras de negócio.  
-**Tipo de Teste:** Funcional / Regras de negócio  
-**Prioridade:** Média  
-**Dados de teste:** Chips configuráveis pelo sistema  
-**Passos:**  
-1. Clicar em um chip para adicionar/remover.  
-2. Verificar atualização dos resultados.  
-
-**Resultado Esperado:**  
-- Chips são adicionados/removidos corretamente.  
-- Resultados da busca são atualizados em tempo real.  
-
-**Resultado Obtido:** Passou / Não passou  
+#### 4. Aplicação de filtros básicos
+- Clicar no botão **Filtros**
+- Selecionar **Acessibilidade: Sim**
+- Aplicar filtros
+- Verificar:
+  - Apenas profissionais com acessibilidade são exibidos
+  - Indicação visual de filtro ativo
 
 ---
 
-## **Cenário 6 – Buscar por termos compostos**
+## CASO 2: Matriz de Estados e Erros
 
-**Descrição:** Validar que a barra de busca aceita termos compostos (ex: “Terapia Holística”).  
-**Tipo de Teste:** Funcional / Usabilidade  
-**Prioridade:** Média  
-**Dados de teste:** Termo composto  
-**Passos:**  
-1. Digitar “Terapia Holística” na barra de busca.  
-2. Pressionar Enter.  
+**ID:** BUSCA_ERROR_002  
+**Descrição:** Centraliza todas as validações de erro e estados especiais em um único caso
 
-**Resultado Esperado:**  
-- Resultados compatíveis com o termo composto são exibidos.  
-- Busca não retorna erro de validação.  
+### Matriz Completa de Estados
 
-**Resultado Obtido:** Passou / Não passou  
+| Estado | Entrada/Ação | Comportamento Esperado | Criticidade |
+|------|-------------|------------------------|------------|
+| Termo inexistente | "Inexistenteterapia" | Mensagem: "Nenhum profissional encontrado. Tente outros termos." | Alta |
+| Busca vazia | Campo vazio + buscar | Exibe todos profissionais ou mantém tela atual | Média |
+| Caracteres especiais | "Reiki@#" | Texto tratado normalmente ou aviso exibido | Baixa |
+| Múltiplos filtros | Especialidade + Acessibilidade + Valor | Interseção correta dos filtros | Alta |
+| Remover filtros | Limpar filtros ativos | Retorna ao estado inicial | Média |
+| Falha de rede | Buscar offline | Mensagem de erro + botão de retry | Alta |
+| Timeout servidor | Resposta > 10s | Loading + timeout controlado | Média |
+| Resultados paginados | Muitos resultados | Paginação ou botão "Carregar mais" | Média |
+| Filtro sem resultados | Filtro restritivo | Mensagem específica informativa | Alta |
 
----
-
-## **Cenário 7 – Exibir mensagem de erro em falha de busca**
-
-**Descrição:** Validar o comportamento do sistema em caso de erro de comunicação com o servidor.  
-**Tipo de Teste:** Robustez / Tratamento de erro  
-**Prioridade:** Alta  
-**Dados de teste:** Simulação de falha de conexão  
-**Passos:**  
-1. Realizar uma busca durante falha simulada de rede.  
-
-**Resultado Esperado:**  
-- Sistema exibe mensagem: **“Não foi possível realizar a busca. Tente novamente.”**  
-- Botão **“Tentar Novamente”** disponível.  
-
-**Resultado Obtido:** Passou / Não passou  
+### Passo Padrão para Execução
+- Para cada linha da matriz:
+  - Acessar a tela de busca
+  - Executar a ação descrita
+  - Validar o comportamento esperado correspondente
 
 ---
 
-## **Cenário 8 – Teste de interface da busca**
+## CASO 3: Combinações Complexas e Regras de Negócio
 
-**Descrição:** Verificar se todos os elementos da tela de busca estão visíveis e funcionais.  
-**Tipo de Teste:** Interface / Usabilidade  
-**Prioridade:** Média  
-**Dados de teste:** Tela carregada com todos os componentes  
-**Passos:**  
-1. Verificar exibição da **Barra de Busca**, **Botão Filtros** e **Chips**.  
-2. Validar textos e ícones.  
-3. Confirmar que todos os elementos são clicáveis.  
+**ID:** BUSCA_COMB_003  
+**Descrição:** Valida regras avançadas e combinações entre busca, filtros e persistência
 
-**Resultado Esperado:**  
-- Todos os elementos aparecem corretamente.  
-- Nenhum erro de exibição ou ortografia.  
+### 1. Combinação busca + filtros
+- Executar busca por **"Reiki"**
+- Aplicar filtro **Valor: até R$100**
+- Verificar:
+  - Resultados respeitam ambos os critérios
+  - Contador de resultados é atualizado
+- Aplicar filtro **Acessibilidade: Sim**
+- Verificar:
+  - Interseção dos três critérios
+  - Caso zero resultados, mensagem adequada é exibida
 
-**Resultado Obtido:** Passou / Não passou  
+### 2. Ordem de aplicação
+- Aplicar filtro A
+- Executar busca por termo B
+- Verificar:
+  - Filtro A permanece ativo
+  - Resultado final é a interseção filtro A + termo B
+- Remover filtro A
+- Verificar:
+  - Busca mantém apenas o termo B
+
+### 3. Persistência entre telas
+- Aplicar múltiplos filtros
+- Sair da tela de busca
+- Retornar à tela
+- Verificar:
+  - Filtros continuam ativos
+  - Resultados são recarregados automaticamente
+
+### 4. Limites e performance
+- Executar busca com termo amplo
+- Verificar:
+  - Exibição inicial limitada (20–50 itens)
+  - Paginação ou scroll infinito funcional
+  - Tempo de resposta menor que 3 segundos
 
 ---
 
-## **Cenário 9 – Fluxo completo de busca e filtro combinado**
+## CASO 4: UI/UX e Interface
 
-**Descrição:** Testar o fluxo completo de busca combinando busca por termo e filtros.  
-**Tipo de Teste:** Funcional / Fluxo completo  
-**Prioridade:** Alta  
-**Dados de teste:** Termo “Reiki” e filtro “Acessibilidade: Sim”  
-**Passos:**  
-1. Digitar “Reiki” na barra de busca.  
-2. Abrir o menu de filtros e selecionar “Acessibilidade: Sim”.  
-3. Aplicar filtros.  
+**ID:** BUSCA_UI_004  
+**Descrição:** Avaliação visual, usabilidade e acessibilidade
 
-**Resultado Esperado:**  
-- Sistema exibe resultados que atendem ambos os critérios.  
-- Nenhuma mensagem de erro é exibida.  
+### 1. Elementos Visíveis
+- Barra de busca visível e centralizada
+- Botão de filtros com ícone claro
+- Chips organizados corretamente
+- Contador de resultados visível
+- Loading spinner durante carregamento
 
-**Resultado Obtido:** Passou / Não passou  
+### 2. Comportamento Visual
+- Placeholder claro no campo de busca
+- Chips selecionados mudam de cor
+- Filtros ativos indicados visualmente
+- Estados vazio/erro com ícones adequados
+- Animações suaves
+
+### 3. Responsividade
+- Mobile: campo ocupa largura adequada
+- Tablet: layout se ajusta corretamente
+- Desktop: distribuição equilibrada
+
+### 4. Acessibilidade
+- Navegação por teclado funcional
+- Leitores de tela leem corretamente os resultados
+- Contraste de cores adequado
+- Indicação clara de foco
+
+---
+
+## Matriz de Cobertura Garantida
+
+| Requisito | Caso | Status |
+|---------|------|-------|
+| Busca por especialidade | BUSCA_MAIN_001 | ✅ |
+| Termo inexistente | BUSCA_ERROR_002 | ✅ |
+| Botão de filtros | BUSCA_MAIN_001 | ✅ |
+| Chips de especialidade | BUSCA_MAIN_001 | ✅ |
+| Chips dinâmicos | BUSCA_MAIN_001 | ✅ |
+| Termos compostos | BUSCA_MAIN_001 | ✅ |
+| Erro de conexão | BUSCA_ERROR_002 | ✅ |
+| Interface | BUSCA_UI_004 | ✅ |
+| Combinação busca + filtro | BUSCA_COMB_003 | ✅ |
