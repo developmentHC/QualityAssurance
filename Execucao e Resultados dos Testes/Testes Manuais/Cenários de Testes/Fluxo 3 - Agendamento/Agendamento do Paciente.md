@@ -1,157 +1,212 @@
-# Cenários de Teste — Fluxo de Agendamento Paciente
-> Responsavel: Mateus QA
-> Software: ConectaBem
+# Plano de Testes Otimizado – Agendamento Paciente
 
-## Cenário 1 – Acessar perfil de um profissional
+> **Funcionalidade**: Fluxo de Agendamento  
+> **Sistema**: ConectaBem  
+> **Versão**: 2.0 (Otimizada)  
+> **Status**: Consolidado em 4 Casos Principais
 
-**Descrição:** Testar se o usuário consegue acessar o perfil detalhado de um profissional a partir da tela inicial.  
-**Tipo de Teste:** Funcional  
-**Prioridade:** Alta  
-**Dados de teste:** Usuário logado, profissional disponível na lista  
-**Passos:**  
-1. Acessar a tela inicial.  
-2. Verificar a lista de profissionais disponível.  
-3. Clicar em **“Ver perfil”** de um profissional.  
+---
 
-**Resultado Esperado:**  
-- Usuário é redirecionado para a página de detalhes do profissional.  
-- As informações completas do profissional são exibidas (nome, especialidade, serviços, etc).  
+## Resumo da Otimização
 
-**Resultado Obtido:** Passou / Não passou
+| Métrica | Original | Otimizado | Redução |
+|-------|----------|-----------|--------|
+| Casos de Teste | 8 | 4 | 50% |
+| Cenários Separados | 8 | 1 (estruturado) | 87.5% |
+| Validações Dispersas | 8+ | 1 matriz | 87.5% |
 
-***
+---
 
-## Cenário 2 – Selecionar um serviço e solicitar agendamento
+## Casos de Teste
 
-**Descrição:** Verificar se é possível selecionar um serviço e enviar solicitação de agendamento com sucesso.  
-**Tipo de Teste:** Funcional  
-**Prioridade:** Alta  
-**Dados de teste:** Usuário logado, perfil profissional aberto, serviços disponíveis  
-**Passos:**  
-1. Selecionar um serviço através do checkbox.  
-2. Clicar em **“Solicitar Agendamento”**.  
-3. Escolher uma data e hora disponíveis.  
-4. Clicar novamente em **“Solicitar Agendamento”**.  
+---
 
-**Resultado Esperado:**  
-- Sistema envia a solicitação.  
-- Mensagem de sucesso: **“Solicitação enviada com sucesso”**.  
-- Detalhes do agendamento (profissional, serviço, data/hora) aparecem.  
+## CASO 1: Fluxo Completo de Agendamento
 
-**Resultado Obtido:** Passou / Não passou
+**ID:** AGEND_MAIN_001  
+**Descrição:** Testa todas as etapas do agendamento feliz (end-to-end)
 
-***
+### O que este caso cobre
+- Acesso ao perfil do profissional
+- Seleção de um ou mais serviços
+- Solicitação de agendamento
+- Seleção de data e hora
+- Confirmação com sucesso
 
-## Cenário 3 – Selecionar múltiplos serviços
+### Passos Consolidados (Lista)
 
-**Descrição:** Testar o agendamento múltiplo selecionando vários serviços ao mesmo tempo.  
-**Tipo de Teste:** Funcional  
-**Prioridade:** Média  
-**Dados de teste:** Usuário logado, múltiplos serviços disponíveis  
-**Passos:**  
-1. Marcar mais de um serviço nos checkboxes.  
-2. Clicar em **“Solicitar Agendamento”**.  
-3. Escolher data e hora.  
-4. Confirmar agendamento.  
+#### 1. Agendamento simples
+- Estar logado como paciente
+- Clicar em **"Ver perfil"** de um profissional
+- Verificar redirecionamento para a página do profissional
+- Validar exibição de:
+  - Nome
+  - Especialidade
+  - Serviços
+  - Avaliações
+- Selecionar **1 serviço** via checkbox
+- Clicar em **"Solicitar Agendamento"**
+- Selecionar data disponível
+- Selecionar horário disponível
+- Confirmar agendamento
+- Verificar:
+  - Mensagem **"Solicitação enviada com sucesso"**
+  - Exibição de profissional, serviço e data/hora
+  - Opção para voltar à lista de profissionais
 
-**Resultado Esperado:**  
-- Solicitação enviada para todos os serviços selecionados.  
-- Mensagem de sucesso exibida.  
-- Detalhes dos serviços na confirmação.  
+#### 2. Agendamento com múltiplos serviços
+- Estar na página do profissional
+- Selecionar **2 ou mais serviços**
+- Solicitar agendamento
+- Selecionar data e horário disponíveis
+- Confirmar
+- Verificar:
+  - Mensagem de sucesso
+  - Lista completa de todos os serviços agendados
 
-**Resultado Obtido:** Passou / Não passou
+#### 3. Fluxo completo (tempo de execução)
+- Iniciar login como paciente
+- Executar todo o fluxo:
+  - Perfil → Serviço → Data → Confirmação
+- Verificar:
+  - Tempo total inferior a 60 segundos
+  - Ausência de erros durante o processo
 
-***
+---
 
-## Cenário 4 – Tentativa de agendamento sem selecionar serviço
+## CASO 2: Matriz de Validações e Erros
 
-**Descrição:** Verificar comportamento do sistema quando o usuário tenta agendar sem selecionar serviço.  
-**Tipo de Teste:** Funcional / Validação de entrada  
-**Prioridade:** Alta  
-**Dados de teste:** Usuário logado, nenhum serviço selecionado  
-**Passos:**  
-1. Não selecionar nenhum checkbox.  
-2. Clicar em **“Solicitar Agendamento”**.  
+**ID:** AGEND_VALID_002  
+**Descrição:** Centraliza todas as validações, erros e estados especiais
 
-**Resultado Esperado:**  
-- Mensagem de alerta: **“Selecione pelo menos um serviço”**.  
-- Usuário permanece na mesma tela.  
+### Matriz Completa de Estados
 
-**Resultado Obtido:** Passou / Não passou
+| Estado | Entrada/Ação | Comportamento Esperado | Criticidade |
+|------|-------------|------------------------|------------|
+| Sem serviço selecionado | Clicar em "Solicitar" sem checkbox | Mensagem: "Selecione pelo menos um serviço" | Alta |
+| Data passada | Selecionar data anterior à atual | Data bloqueada ou mensagem de erro | Alta |
+| Hora indisponível | Selecionar horário já ocupado | Mensagem: "Horário indisponível" | Alta |
+| Falha servidor | Enviar durante falha de rede | Mensagem de erro + botão "Tentar novamente" | Alta |
+| Conflito de agenda | Agendar horário já reservado | Mensagem orientando escolher outro horário | Alta |
+| Timeout | Resposta > 15 segundos | Loading visível + timeout controlado | Média |
+| Serviço indisponível | Selecionar serviço desativado | Checkbox desabilitado ou mensagem | Média |
+| Limite de agendamentos | Tentar 6º agendamento no dia | Mensagem: "Limite diário atingido (5)" | Média |
+| Voltar etapas | Clicar em "Voltar" no fluxo | Manutenção ou não das seleções (regra definida) | Baixa |
+| Sessão expirada | Sessão expira no processo | Redirecionamento para login | Média |
 
-***
+### Passo Padrão para Execução
+- Para cada linha da matriz:
+  - Estar no ponto correto do fluxo de agendamento
+  - Executar a ação descrita
+  - Validar o comportamento esperado
 
-## Cenário 5 – Falha ao enviar solicitação de agendamento
+---
 
-**Descrição:** Testar se o sistema trata corretamente falhas de comunicação ou conflito de agenda.  
-**Tipo de Teste:** Teste de erro / Robustez  
-**Prioridade:** Alta  
-**Dados de teste:** Simular falha servidor ou conflito de horário  
-**Passos:**  
-1. Selecionar serviço e data/hora.  
-2. Clicar em **“Solicitar Agendamento”**.  
+## CASO 3: Regras de Negócio e Combinações
 
-**Resultado Esperado:**  
-- Mensagem: **“Ops! Não conseguimos concluir”**.  
-- Botão **“Realizar Novo Agendamento”** exibido.  
-- Ao clicar, volta para seleção de data/hora.  
+**ID:** AGEND_RULES_003  
+**Descrição:** Valida regras específicas, cálculos e combinações complexas
 
-**Resultado Obtido:** Passou / Não passou
+### 1. Antecedência mínima
+- Considerar política: **agendamento mínimo de 24h**
+- Tentar selecionar data/hora com apenas 12h de antecedência
+- Verificar:
+  - Bloqueio do agendamento
+  - Mensagem: "Agende com pelo menos 24h de antecedência"
+  - Calendário exibindo apenas datas a partir do dia seguinte
 
-***
+### 2. Horário de atendimento
+- Considerar horário do profissional: **08h às 18h**
+- Tentar selecionar horário **19:00**
+- Verificar:
+  - Bloqueio da seleção
+  - Mensagem: "Fora do horário de atendimento"
+  - Exibição apenas de slots entre 08h e 18h
 
-## Cenário 6 – Cancelar e refazer agendamento
+### 3. Duração de serviços combinados
+- Considerar:
+  - Serviço A: 30 minutos
+  - Serviço B: 60 minutos
+- Selecionar ambos serviços
+- Verificar:
+  - Cálculo automático de 90 minutos
+  - Exibição apenas de horários com slot compatível
+  - Ou sugestão para agendamento separado
 
-**Descrição:** Validar que o usuário pode refazer o agendamento após receber erro na primeira tentativa.  
-**Tipo de Teste:** Funcional / Fluxo alternativo  
-**Prioridade:** Média  
-**Dados de teste:** Mensagem de erro exibida em tentativa anterior  
-**Passos:**  
-1. Ao ver mensagem de erro, clicar em **“Realizar Novo Agendamento”**.  
-2. Selecionar nova data/hora e clicar em **“Solicitar Agendamento”**.  
+### 4. Cancelamento e reagendamento
+- Ter um agendamento iniciado
+- Receber erro e clicar em **"Realizar Novo Agendamento"**
+- Verificar:
+  - Retorno à seleção de data/hora
+  - Serviços previamente selecionados mantidos
+  - Possibilidade de escolher novo horário
 
-**Resultado Esperado:**  
-- Nova solicitação enviada com sucesso.  
-- Mensagem de sucesso exibida.  
+---
 
-**Resultado Obtido:** Passou / Não passou
+## CASO 4: UI/UX e Usabilidade
 
-***
+**ID:** AGEND_UI_004  
+**Descrição:** Avaliação visual, usabilidade e experiência do usuário
 
-## Cenário 7 – Validação de interface
+### 1. Página do Profissional
+- Foto e nome visíveis no topo
+- Especialidades claramente listadas
+- Serviços exibindo:
+  - Nome
+  - Descrição
+  - Duração
+  - Preço
+- Checkboxes alinhados e funcionais
+- Botão **"Solicitar Agendamento"** visível e claro
 
-**Descrição:** Checar se todos os elementos da interface estão visíveis, funcionais e corretamente escritos.  
-**Tipo de Teste:** Teste de Interface / Usabilidade  
-**Prioridade:** Média  
-**Dados de teste:** Interface carregada com controles ativos  
-**Passos:**  
-1. Verificar presença e funcionamento dos checkboxes.  
-2. Verificar texto dos botões (**“Ver perfil”**, **“Solicitar Agendamento”**).  
-3. Validar mensagens exibidas (ortografia, formatação, clareza).  
+### 2. Tela de Agendamento (Data/Hora)
+- Calendário exibindo apenas dias disponíveis
+- Horários livres claramente indicados
+- Datas passadas e indisponíveis desabilitadas
+- Fluxo fluido: data → hora → confirmação
+- Resumo do agendamento sempre visível
 
-**Resultado Esperado:**  
-- Todos os elementos visíveis e interativos.  
-- Textos corretos e consistentes.  
+### 3. Feedback Visual
+- Checkbox selecionado com mudança visual
+- Loading durante processamento
+- Sucesso:
+  - Ícone positivo
+  - Mensagem clara
+- Erro:
+  - Cor vermelha
+  - Ícone de alerta
+  - Mensagem específica
+- Botões com estados: normal, hover, desabilitado
 
-**Resultado Obtido:** Passou / Não passou
+### 4. Usabilidade e Acessibilidade
+- Fluxo intuitivo e guiado
+- Possibilidade de voltar e alterar escolhas
+- Informações visíveis no momento correto
+- Mobile:
+  - Calendário responsivo
+  - Interações fáceis por toque
+- Teclado:
+  - Navegação por TAB funcional
 
-***
+### Teste de Usabilidade Completo
+- Considerar usuário novo
+- Realizar primeiro agendamento
+- Verificar:
+  - Conclusão em menos de 2 minutos
+  - Nenhuma ajuda externa necessária
+  - Compreensão clara de cada etapa
 
-## Cenário 8 – Teste de usabilidade (fluxo completo)
+---
 
-**Descrição:** Validar o fluxo total do agendamento desde login até confirmação, avaliando usabilidade e tempo.  
-**Tipo de Teste:** Usabilidade / Funcional  
-**Prioridade:** Alta  
-**Dados de teste:** Usuário válido e ambiente funcional  
-**Passos:**  
-1. Logar no sistema.  
-2. Selecionar um profissional.  
-3. Escolher um serviço.  
-4. Solicitar agendamento, selecionar data/hora, confirmar.  
+## Matriz de Cobertura Garantida
 
-**Resultado Esperado:**  
-- Fluxo completo sem erros.  
-- Tempo médio aceitável para conclusão.  
-- Confirmação clara no final.  
-
-**Resultado Obtido:** Passou / Não passou
+| Requisito | Caso | Status |
+|---------|------|-------|
+| Acessar perfil profissional | AGEND_MAIN_001 | ✅ |
+| Selecionar serviço | AGEND_MAIN_001 | ✅ |
+| Selecionar múltiplos serviços | AGEND_MAIN_001 | ✅ |
+| Validação sem serviço | AGEND_VALID_002 | ✅ |
+| Falha no envio | AGEND_VALID_002 | ✅ |
+| Cancelar e refazer | AGEND_RULES_003 | ✅ |
+| Validação de interface | AGEND_UI_004 | ✅ |
+| Teste de usabilidade | AGEND_UI_004 | ✅ |
