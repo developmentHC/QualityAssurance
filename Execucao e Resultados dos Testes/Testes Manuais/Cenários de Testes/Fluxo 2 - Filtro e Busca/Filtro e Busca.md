@@ -7,7 +7,7 @@
 
 ---
 
-## 📊 Resumo da Otimização
+## Resumo da Otimização
 
 | Métrica | Original | Otimizado | Redução |
 |-------|----------|-----------|--------|
