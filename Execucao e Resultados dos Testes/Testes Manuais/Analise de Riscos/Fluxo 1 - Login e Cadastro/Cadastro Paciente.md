@@ -35,7 +35,7 @@ Os casos de teste não foram definidos apenas por funcionalidade, mas pelo **imp
 
 ---
 
-### 🔴 Risco: Falha no fluxo principal de cadastro
+### Risco: Falha no fluxo principal de cadastro
 
 **Impacto:**  
 Usuário não consegue se cadastrar no sistema.
@@ -51,7 +51,7 @@ Usuário não consegue se cadastrar no sistema.
 
 ---
 
-### 🔴 Risco: Dados inválidos persistidos no sistema
+### Risco: Dados inválidos persistidos no sistema
 
 **Impacto:**  
 Problemas legais, dados incorretos de paciente e inconsistência no sistema.
@@ -66,7 +66,7 @@ Alta (inputs manuais).
 
 ---
 
-### 🟠 Risco: Bloqueio indevido de autenticação
+### Risco: Bloqueio indevido de autenticação
 
 **Impacto:**  
 Frustração do usuário e aumento de chamados de suporte.
@@ -81,7 +81,7 @@ Média.
 
 ---
 
-### 🔴 Risco: Perda de progresso no cadastro
+### Risco: Perda de progresso no cadastro
 
 **Impacto:**  
 Abandono do fluxo de cadastro.
