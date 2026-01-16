@@ -20,7 +20,7 @@ O objetivo é identificar pontos críticos do cadastro de paciente e direcionar 
 | Cadastro | Usuário bloqueado sem feedback | Alto | Médio | 🔴 Alto |
 | UX | Botão liberar com campo inválido | Médio | Alto | 🟠 Médio |
 | Persistência | Perda de dados ao recarregar | Alto | Médio | 🔴 Alto |
-| Integração | ViaCEP fora do ar | Médio | Médio | 🟠 Médio |
+| Integração | Via CEP fora do ar | Médio | Médio | 🟠 Médio |
 | Segurança | Reuso de OTP | Alto | Baixo | 🟠 Médio |
 | Conteúdo | Mensagem de erro confusa | Médio | Baixo | 🟢 Baixo |
 
