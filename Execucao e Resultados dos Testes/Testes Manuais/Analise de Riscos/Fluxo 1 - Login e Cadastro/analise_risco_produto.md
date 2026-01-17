@@ -68,7 +68,7 @@ Envolve **dados sensíveis**, múltiplos perfis e ações com impacto no mundo r
 - Perda de credibilidade da plataforma
 - Alto custo de suporte
 
-**Risco consolidado:** 🔴🔴 Crítico  
+**Risco consolidado:** ⚠ Crítico  
 **Foco de testes:** regras de negócio, transições de estado, fluxo end-to-end
 
 ---
