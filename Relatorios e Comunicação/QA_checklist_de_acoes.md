@@ -45,8 +45,8 @@
 ---
 
 ## Organização do Board
-- [ ] Revisar todas as tarefas existentes
-- [ ] Ajustar status incorretos
-- [ ] Remover tarefas obsoletas
-- [ ] Reorganizar prioridades
-- [ ] Garantir definição clara de responsáveis
+- [x] Revisar todas as tarefas existentes
+- [x] Ajustar status incorretos
+- [x] Remover tarefas obsoletas
+- [x] Reorganizar prioridades
+- [x] Garantir definição clara de responsáveis
