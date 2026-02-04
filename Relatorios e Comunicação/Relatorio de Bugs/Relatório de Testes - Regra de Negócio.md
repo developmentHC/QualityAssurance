@@ -5,6 +5,12 @@ A validação do campo Bairro exige no mínimo 3 caracteres, porém existem bair
 
 ---
 
+***Ambiente de Teste***
+- **SO:** Windows 11
+- **Navegador:** Brave v1.86.146 
+
+---
+
 **Passos para reproduzir**
 1. Entrar na página de cadastro de paciente - https://conecta-bem-front.vercel.app/auth/registro-paciente
 2. No formulário, preencher o campo “CEP Residencial” com o valor “01001-000” (Praça da Sé)
