@@ -53,14 +53,25 @@ A sugestão é verificar se esse elemento deve existir também nesta versão do 
 
 ---
 
+---
+
 ## Tela Código de Verificação - Fornecer Código - Mobile
 
-> **Codigo de verificação:
-> Tempo de validade entre 30 segundos e 5 minutos.
-> 
-> Não informar claramente ao usuário o tempo restante por motivos de segurança:Reduz risco de interceptação.
-> Previne ataques de força bruta.
-> Protege contra acesso indevido a e-mails.
-> Segue padrões de segurança (NIST/OWASP).
-> Evita falsa sensação de segurança.
-> Menor exposição em logs e dispositivos compartilhados.**
+> **"Código de verificação possui tempo de validade entre 30 segundos e 5 minutos.**
+> **Não informar ao usuário o tempo restante do código."**
+
+Observação do QA: considerar não exibir explicitamente ao usuário o tempo restante de validade do código de verificação.
+
+Essa prática pode trazer alguns benefícios de segurança, como:
+
+- reduzir risco de interceptação do código durante o período de validade;
+- dificultar tentativas de ataque por força bruta;
+- diminuir exposição de informações sensíveis em dispositivos compartilhados;
+- seguir boas práticas de segurança adotadas em referências como **NIST** e **OWASP**.
+
+Verificar com o time de produto e segurança se a estratégia adotada para este fluxo será:
+
+- **não exibir nenhum tempo de expiração**, ou  
+- **exibir apenas uma mensagem genérica**, como “o código pode expirar em breve”.
+
+<img width="571" height="828" alt="image" src="https://github.com/user-attachments/assets/0e559701-c777-4aec-9d8c-bfa342914ebe" />
