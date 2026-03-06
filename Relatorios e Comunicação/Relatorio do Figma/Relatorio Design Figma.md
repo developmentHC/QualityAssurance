@@ -12,7 +12,7 @@
 
 > **"Quando um usuário não cadastrado entrar com Google/Facebook ele entra direto ou vai para tela de cadastro?"**
 
-<img width="608" height="617" alt="image" src="https://github.com/user-attachments/assets/9d57ada8-b509-4acc-ba61-3b28cf8b64fa" />
+<img width="608" height="617" alt="image" src="https://github.com/user-attachments/assets/0f114a2b-0e56-41d1-8a0e-61969288e6e4" />
 
 ---
 
