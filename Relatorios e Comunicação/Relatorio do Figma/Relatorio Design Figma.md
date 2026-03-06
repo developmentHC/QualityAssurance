@@ -20,7 +20,7 @@
 
 > **"design ainda não terminado"**
 
-<img width="748" height="584" alt="image" src="https://github.com/user-attachments/assets/ae730805-2d05-4a3c-b0ed-cf3648558006" />
+<img width="821" height="579" alt="image" src="https://github.com/user-attachments/assets/8a073613-482b-455c-b08a-878fe8c9b84c" />
 
 ---
 
@@ -28,4 +28,4 @@
 
 > **"não seria interessante ter um ícone que iria abrir um mini modal? Pois no site está com o ícone após estar logado."**
 
-<img width="583" height="359" alt="image" src="https://github.com/user-attachments/assets/998e11ea-8ede-4052-bf45-7d149a7a74b0" />
+<img width="748" height="584" alt="image" src="https://github.com/user-attachments/assets/f0ef64ab-34e1-443e-a6f9-493300a95801" />
