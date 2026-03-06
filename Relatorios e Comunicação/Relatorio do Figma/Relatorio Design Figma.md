@@ -50,3 +50,17 @@ Sugestão do QA: considerar adicionar um ícone que abra um mini modal com infor
 A sugestão é verificar se esse elemento deve existir também nesta versão do layout para manter consistência de navegação entre as interfaces.
 
 <img width="748" height="584" alt="image" src="https://github.com/user-attachments/assets/f0ef64ab-34e1-443e-a6f9-493300a95801" />
+
+---
+
+## Tela Código de Verificação - Fornecer Código - Mobile
+
+> **Codigo de verificação:
+> Tempo de validade entre 30 segundos e 5 minutos.
+> 
+> Não informar claramente ao usuário o tempo restante por motivos de segurança:Reduz risco de interceptação.
+> Previne ataques de força bruta.
+> Protege contra acesso indevido a e-mails.
+> Segue padrões de segurança (NIST/OWASP).
+> Evita falsa sensação de segurança.
+> Menor exposição em logs e dispositivos compartilhados.**
