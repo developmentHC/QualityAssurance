@@ -73,3 +73,43 @@ Verificar com o time de produto e segurança se a estratégia adotada para este 
 - **exibir apenas uma mensagem genérica**, como “o código pode expirar em breve”.
 
 <img width="571" height="828" alt="image" src="https://github.com/user-attachments/assets/0e559701-c777-4aec-9d8c-bfa342914ebe" />
+
+## Tela Cadastro Paciente - Dados Iniciais - Mobile
+
+> **"O Cep já busca automático e não precisa deste botão."**
+
+Observação do QA: o campo de **CEP já realiza a busca automática do endereço**, portanto o botão de busca pode se tornar redundante no fluxo.
+
+Verificar com o time de produto e design se:
+
+- a busca do endereço será **disparada automaticamente após o preenchimento completo do CEP**;
+- o botão de busca pode ser **removido da interface para simplificar o fluxo**;
+- em caso de falha na busca automática, será necessário apresentar **mensagem de erro ou opção de preenchimento manual do endereço**.
+
+Essa abordagem pode ajudar a **reduzir atrito no cadastro e simplificar a experiência do usuário em dispositivos mobile**.
+
+<img width="351" height="622" alt="image" src="https://github.com/user-attachments/assets/d46d8c01-a140-4c99-8a5e-6a1d4321a3c9" />
+
+---
+
+## Tela Cadastro Profissional
+
+> **"Em caso de falha de conexão durante o cadastro, o processo deve ser interrompido e o usuário informado para tentar novamente. oq fazer?"**
+
+Dúvida / Observação do QA: é necessário definir o comportamento da aplicação em casos de **falha de conexão durante o processo de cadastro do profissional**.
+
+Verificar com o time de produto e desenvolvimento qual será a estratégia adotada:
+
+- **interromper o fluxo e exibir mensagem de erro**, solicitando que o usuário tente novamente;
+- **salvar temporariamente os dados já preenchidos**, evitando que o usuário precise reinserir todas as informações;
+- apresentar uma **mensagem clara de falha de conexão**, como por exemplo:  
+  *“Não foi possível concluir o cadastro devido a um problema de conexão. Verifique sua internet e tente novamente.”*
+
+Também pode ser interessante avaliar se o sistema deve incluir:
+
+- **tentativa automática de reenvio da requisição**, ou
+- opção manual de **“Tentar novamente”** para o usuário.
+
+Essa definição é importante para **evitar perda de dados e frustração durante um fluxo de cadastro mais longo**.*
+
+<img width="725" height="610" alt="image" src="https://github.com/user-attachments/assets/5fc6e9e6-86f4-45e4-aeb6-002f4c578b99" />
