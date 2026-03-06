@@ -57,7 +57,7 @@ A sugestão é verificar se esse elemento deve existir também nesta versão do 
 
 ## Tela Código de Verificação - Fornecer Código - Mobile
 
-> **"Código de verificação possui tempo de validade entre 30 segundos e 5 minutos.**
+> **"Código de verificação possui tempo de validade entre 30 segundos e 5 minutos.**  
 > **Não informar ao usuário o tempo restante do código."**
 
 Observação do QA: considerar não exibir explicitamente ao usuário o tempo restante de validade do código de verificação.
