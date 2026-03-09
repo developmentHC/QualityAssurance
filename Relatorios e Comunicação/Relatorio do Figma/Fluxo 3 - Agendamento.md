@@ -67,3 +67,78 @@ Essa definição ajuda a manter **consistência visual e clareza para o usuário
 <img width="697" height="633" alt="image" src="https://github.com/user-attachments/assets/d2945ddf-51fa-484c-b473-205c0675326e" />
 
 ---
+
+## Tela Agendamento - Desktop
+
+> **"Sugestão: colocar a seleção de data e hora em um só componente"**
+
+Observação do QA: avaliar a possibilidade de **unificar a seleção de data e horário em um único componente de interface**.
+
+Atualmente, a separação desses elementos pode gerar **mais passos no fluxo de agendamento**, o que pode aumentar o tempo de interação do usuário.
+
+Verificar com o time de produto e design:
+
+- se a seleção de **data e horário pode ser feita dentro do mesmo componente**, como em calendários que exibem horários disponíveis ao selecionar o dia;
+- se essa mudança **simplificaria o fluxo de agendamento** e reduziria a quantidade de cliques;
+- se existe alguma **restrição técnica ou de design system** que impeça essa unificação.
+
+Essa melhoria pode ajudar a **tornar o processo de agendamento mais rápido e intuitivo para o usuário**.
+
+<img width="781" height="522" alt="image" src="https://github.com/user-attachments/assets/88a30a66-c8c8-4218-a924-fe946b7758dd" />
+
+---
+
+## Tela Confirmação de Agendamento - Desktop
+
+> **"Qual o objetivo do ID ?"**
+
+Dúvida do QA: é necessário esclarecer qual será a **função do ID exibido na confirmação do agendamento**.
+
+Atualmente não está claro se esse identificador terá apenas função técnica ou se será utilizado também pelo usuário durante a experiência.
+
+Validar com o time de produto e desenvolvimento se o ID deverá:
+
+- funcionar como **código de confirmação da consulta**;
+- ser utilizado para **identificação do agendamento em atendimentos ou suporte**;
+- servir como **código que o paciente pode informar ao chegar na consulta**, semelhante ao modelo utilizado em aplicativos de entrega.
+
+Caso seja um elemento visível para o usuário, é importante garantir que:
+
+- o **propósito do código esteja claro na interface**;
+- exista uma **breve explicação ou rótulo**, como por exemplo:  
+  *“Código da consulta”* ou *“ID do agendamento”*.
+
+Essa definição ajuda a **evitar confusão para o usuário e dá utilidade clara à informação exibida na tela**.
+
+<img width="655" height="637" alt="image" src="https://github.com/user-attachments/assets/cd9bf457-d6b7-4a6b-8724-cb5778c6b8f6" />
+
+---
+
+## Tela Informação Agendamento Pendente - Desktop
+
+> **"Caso ele confirme, como o usuário vai saber? Ele recebe uma notificação via email da confirmação? Isso evita o fluxo de ficar indo na mesma tela esperando a confirmação."**
+
+Observação do QA: é necessário definir **como o usuário será informado quando o profissional confirmar o agendamento**.
+
+No estado atual, o fluxo pode levar o usuário a **retornar repetidamente à tela para verificar se a consulta foi confirmada**, o que pode gerar frustração ou incerteza.
+
+Validar com o time de produto e desenvolvimento se o sistema deverá enviar notificações quando o status do agendamento mudar.
+
+Possíveis opções:
+
+- envio de **notificação por e-mail informando a confirmação da consulta**;
+- envio de **notificação push no aplicativo**, caso exista;
+- atualização do status dentro da **área de agendamentos do usuário na plataforma**;
+- possibilidade de incluir também **notificação por SMS**, dependendo da estratégia do produto.
+
+Também é importante verificar se a interface desta tela deverá:
+
+- informar claramente que o **agendamento está aguardando confirmação do profissional**;
+- indicar **quanto tempo pode levar essa confirmação**, se houver regra definida;
+- orientar o usuário sobre **onde acompanhar o status do agendamento**.
+
+Essa definição é importante para **reduzir ansiedade do usuário e melhorar a comunicação durante o processo de agendamento**.
+
+<img width="911" height="697" alt="image" src="https://github.com/user-attachments/assets/746031f0-7641-45b4-a05d-b47e96b77c41" />
+
+---
