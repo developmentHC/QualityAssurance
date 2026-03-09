@@ -6,9 +6,7 @@
 
 Observação do QA: Se o botão não tiver uma função clara ou for redundante, considerar sua remoção para evitar ruído visual.
 
-<br>
 <img width="967" height="341" alt="image" src="https://github.com/user-attachments/assets/7682e1e6-ed5d-46c8-b5f3-65df8a1734ca" />
-<br>
 
 > **"Há esta barra de pesquisa e o botão de pesquisa no header. Qual a diferença?"**
 
