@@ -142,3 +142,58 @@ Essa definição é importante para **reduzir ansiedade do usuário e melhorar a
 <img width="911" height="697" alt="image" src="https://github.com/user-attachments/assets/746031f0-7641-45b4-a05d-b47e96b77c41" />
 
 ---
+
+## Tela Cancelar Agendamento - Desktop
+
+> **"Caso o profissional confirme o agendamento e o paciente cancele após um tempo, como o profissional recebe o aviso de cancelamento?"**
+
+Observação do QA: é necessário definir **como o profissional será notificado quando um paciente cancelar um agendamento previamente confirmado**.
+
+Essa informação é importante para garantir que o profissional **tenha tempo de reorganizar sua agenda e evitar horários ociosos**.
+
+<img width="819" height="498" alt="image" src="https://github.com/user-attachments/assets/7b604d87-fa44-43f9-845a-5dba2f0d145c" />
+
+---
+
+## Tela Cancelamento Concluído - Desktop
+
+> **"Poderia notificar o profissional via email sobre o cancelamento"**
+
+Observação do QA: verificar com o time de produto e desenvolvimento se o sistema deverá **notificar automaticamente o profissional quando um cancelamento for concluído pelo paciente**.
+
+Essa notificação pode ajudar o profissional a **se manter atualizado sobre alterações em sua agenda sem precisar acessar constantemente a plataforma**.
+
+Possíveis comportamentos do sistema:
+
+- envio de **e-mail automático informando o cancelamento da consulta**;
+- inclusão de informações relevantes no e-mail, como:
+  - nome do paciente;
+  - data e horário da consulta cancelada;
+  - motivo do cancelamento (caso exista campo para isso);
+- atualização imediata do status na **agenda do profissional dentro da plataforma**.
+
+<img width="591" height="242" alt="image" src="https://github.com/user-attachments/assets/221a8098-a173-4bb8-8695-65d3808aa3b9" />
+
+---
+
+## Tela Menu Sanduíche > Usuário Deslogado - Mobile
+
+> **"Será necessário esta parte? Visando que normalmente os sistemas usam um email por cadastro no caso do profissional deveria ser outro"**
+
+Dúvida do QA: é necessário validar com o time de produto se essa opção é realmente necessária no **menu para usuários deslogados**, considerando que o sistema pode possuir **cadastros distintos para pacientes e profissionais**.
+
+Alguns pontos a serem verificados:
+
+- se o sistema permitirá **login com o mesmo e-mail para perfis diferentes (paciente e profissional)**;
+- ou se cada tipo de usuário deverá possuir **um cadastro separado com e-mails diferentes**.
+
+Dependendo dessa definição, pode ser necessário:
+
+- **separar claramente as opções de acesso**, como por exemplo:
+  - *Entrar como paciente*
+  - *Entrar como profissional*
+- ou manter **um único login**, com o sistema identificando automaticamente o tipo de perfil associado ao e-mail.
+  
+Essa definição ajuda a garantir **clareza no fluxo de autenticação e evitar erros de acesso entre perfis diferentes dentro da plataforma**.
+
+<img width="392" height="529" alt="image" src="https://github.com/user-attachments/assets/d44fc57d-fe0f-44ce-bc24-e6c0945d7a5f" />
