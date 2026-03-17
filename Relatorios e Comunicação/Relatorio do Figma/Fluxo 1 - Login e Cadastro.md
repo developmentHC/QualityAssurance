@@ -12,7 +12,9 @@ Verificar se será necessário incluir essa informação nesta tela para garanti
 ### 🎨 Retorno do Design
 Vou incluir.
 
-<img width="754" height="474" alt="image" src="https://github.com/user-attachments/assets/c11add49-65ab-4893-932b-4116843a9d78" />
+<p align="center">
+  <img width="754" height="474" alt="image" src="https://github.com/user-attachments/assets/c11add49-65ab-4893-932b-4116843a9d78" />
+</p>
 
 ---
 
@@ -31,7 +33,9 @@ Verificar se:
 O usuário será direcionado para a **tela de cadastro**.  
 Vou colocar essa regra no fluxo.
 
-<img width="608" height="617" alt="image" src="https://github.com/user-attachments/assets/0f114a2b-0e56-41d1-8a0e-61969288e6e4" />
+<p align="center">
+  <img width="608" height="617" alt="image" src="https://github.com/user-attachments/assets/0f114a2b-0e56-41d1-8a0e-61969288e6e4" />
+</p>
 
 ---
 
@@ -47,7 +51,9 @@ Será necessário completar o design desta tela incluindo:
 - opção para solicitar um novo código;
 - possibilidade de retorno ao fluxo de verificação.
 
-<img width="821" height="579" alt="image" src="https://github.com/user-attachments/assets/8a073613-482b-455c-b08a-878fe8c9b84c" />
+<p align="center">
+  <img width="821" height="579" alt="image" src="https://github.com/user-attachments/assets/8a073613-482b-455c-b08a-878fe8c9b84c" />
+</p>
 
 ---
 
@@ -60,7 +66,9 @@ Considerar adicionar um ícone que abra um mini modal com informações ou açõ
 
 A sugestão é verificar se esse elemento deve existir também nesta versão do layout para manter consistência de navegação entre as interfaces.
 
-<img width="748" height="584" alt="image" src="https://github.com/user-attachments/assets/f0ef64ab-34e1-443e-a6f9-493300a95801" />
+<p align="center">
+  <img width="748" height="584" alt="image" src="https://github.com/user-attachments/assets/f0ef64ab-34e1-443e-a6f9-493300a95801" />
+</p>
 
 ---
 
@@ -73,7 +81,9 @@ Verificar com o time de design se é possível **aumentar o espaçamento horizon
 
 Essa verificação ajuda a garantir **melhor responsividade e consistência visual em telas menores**.
 
-<img width="584" height="153" alt="image" src="https://github.com/user-attachments/assets/b237df5a-8529-45a4-8b67-1a4f57dc2857" />
+<p align="center">
+  <img width="584" height="153" alt="image" src="https://github.com/user-attachments/assets/b237df5a-8529-45a4-8b67-1a4f57dc2857" />
+</p>
 
 ---
 
@@ -97,7 +107,9 @@ Verificar com o time de produto e segurança se a estratégia adotada para este 
 - **não exibir nenhum tempo de expiração**, ou  
 - **exibir apenas uma mensagem genérica**, como “o código pode expirar em breve”.
 
-<img width="571" height="828" alt="image" src="https://github.com/user-attachments/assets/0e559701-c777-4aec-9d8c-bfa342914ebe" />
+<p align="center">
+  <img width="571" height="828" alt="image" src="https://github.com/user-attachments/assets/0e559701-c777-4aec-9d8c-bfa342914ebe" />
+</p>
 
 ---
 
@@ -116,7 +128,9 @@ Verificar com o time de produto e design se:
 
 Essa abordagem pode ajudar a **reduzir atrito no cadastro e simplificar a experiência do usuário em dispositivos mobile**.
 
-<img width="351" height="622" alt="image" src="https://github.com/user-attachments/assets/d46d8c01-a140-4c99-8a5e-6a1d4321a3c9" />
+<p align="center">
+  <img width="351" height="622" alt="image" src="https://github.com/user-attachments/assets/d46d8c01-a140-4c99-8a5e-6a1d4321a3c9" />
+</p>
 
 ---
 
@@ -146,4 +160,6 @@ Neste caso, o botão relacionado ao CEP existe para situações em que o usuári
 
 O link deve **redirecionar para o buscador de CEP dos Correios**, permitindo que o usuário encontre seu código postal e retorne ao preenchimento do cadastro.
 
-<img width="725" height="610" alt="image" src="https://github.com/user-attachments/assets/5fc6e9e6-86f4-45e4-aeb6-002f4c578b99" />
+<p align="center">
+  <img width="725" height="610" alt="image" src="https://github.com/user-attachments/assets/5fc6e9e6-86f4-45e4-aeb6-002f4c578b99" />
+</p>
