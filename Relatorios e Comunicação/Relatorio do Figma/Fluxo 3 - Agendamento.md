@@ -9,6 +9,7 @@ Definir como os métodos de pagamento aceitos pelo profissional serão exibidos 
 
 ### 🎨 Retorno do Design
 Em andamento
+
 <p align="center">
   <img width="637" height="557" alt="image" src="https://github.com/user-attachments/assets/ca4546be-5e44-4778-998d-ec88c8edc550" />
 </p>
@@ -21,7 +22,9 @@ Definir o comportamento da interface caso o profissional não informe dados de a
 ### 🎨 Retorno do Design
 Pode estar junto a descrição do profissional como tags
 
-<img width="743" height="272" alt="image" src="https://github.com/user-attachments/assets/e2025183-8a6a-4743-9cd0-6284ee6cf802" />
+<p align="center">
+  <img width="743" height="272" alt="image" src="https://github.com/user-attachments/assets/e2025183-8a6a-4743-9cd0-6284ee6cf802" />
+</p>
 
 > **"Os dados que o paciente selecionou ficariam salvos após ele fazer login - neste casos seria na visão do usuario deslogado"**
 
@@ -31,7 +34,9 @@ Verificar o comportamento quando o paciente seleciona informações de agendamen
 ### 🎨 Retorno do Design
 Check
 
-<img width="735" height="570" alt="image" src="https://github.com/user-attachments/assets/56f9d202-1a78-4025-af47-45111117f4c5" />
+<p align="center">
+  <img width="735" height="570" alt="image" src="https://github.com/user-attachments/assets/56f9d202-1a78-4025-af47-45111117f4c5" />
+</p>
 
 > **"Se estiver vazio como fica essa parte?"**
 
@@ -41,7 +46,9 @@ Definir o comportamento da interface quando não houver informações disponíve
 ### 🎨 Retorno do Design
 Se estiver vazio, colocar sugestões de outros profissionais com serviços parecidos
 
-<img width="697" height="633" alt="image" src="https://github.com/user-attachments/assets/d2945ddf-51fa-484c-b473-205c0675326e" />
+<p align="center">
+  <img width="697" height="633" alt="image" src="https://github.com/user-attachments/assets/d2945ddf-51fa-484c-b473-205c0675326e" />
+</p>
 
 ---
 
@@ -55,7 +62,9 @@ Avaliar com produto e design a possibilidade de unificar a seleção de data e h
 ### 🎨 Retorno do Design
 Check
 
-<img width="781" height="522" alt="image" src="https://github.com/user-attachments/assets/88a30a66-c8c8-4218-a924-fe946b7758dd" />
+<p align="center">
+  <img width="781" height="522" alt="image" src="https://github.com/user-attachments/assets/88a30a66-c8c8-4218-a924-fe946b7758dd" />
+</p>
 
 ---
 
@@ -69,7 +78,9 @@ Definir qual é a função do ID exibido na confirmação do agendamento, valida
 ### 🎨 Retorno do Design
 O ID precisa ser adicionado no componente "Status_agendamentos_resumo"
 
-<img width="655" height="637" alt="image" src="https://github.com/user-attachments/assets/cd9bf457-d6b7-4a6b-8724-cb5778c6b8f6" />
+<p align="center">
+  <img width="655" height="637" alt="image" src="https://github.com/user-attachments/assets/cd9bf457-d6b7-4a6b-8724-cb5778c6b8f6" />
+</p>
 
 ---
 
@@ -83,7 +94,9 @@ Definir como o paciente será informado quando o profissional confirmar o agenda
 ### 🎨 Retorno do Design
 Sugestão: Notificação via email, via mensagem whatsapp. Pode ser também uma notificação na tela "home" assim que o usuário fazer o login.
 
-<img width="911" height="697" alt="image" src="https://github.com/user-attachments/assets/746031f0-7641-45b4-a05d-b47e96b77c41" />
+<p align="center">
+  <img width="911" height="697" alt="image" src="https://github.com/user-attachments/assets/746031f0-7641-45b4-a05d-b47e96b77c41" />
+</p>
 
 ---
 
@@ -93,7 +106,10 @@ Sugestão: Notificação via email, via mensagem whatsapp. Pode ser também uma 
 
 ### 🔍 Observação do QA
 Definir como o profissional será notificado quando um paciente cancelar um agendamento previamente confirmado, garantindo que ele seja informado rapidamente para reorganizar sua agenda.
-<img width="819" height="498" alt="image" src="https://github.com/user-attachments/assets/7b604d87-fa44-43f9-845a-5dba2f0d145c" />
+
+<p align="center">
+  <img width="819" height="498" alt="image" src="https://github.com/user-attachments/assets/7b604d87-fa44-43f9-845a-5dba2f0d145c" />
+</p>
 
 ### 🎨 Retorno do Design
 Sugestão: Notificação/mensagem via email e whatsapp. Também uma notificação na tela "home" assim que o profissional efetuar o login.
@@ -110,7 +126,9 @@ Validar se o sistema deverá enviar uma notificação automática ao profissiona
 ### 🎨 Retorno do Design
 Sugestão: Também via whatsapp e notificação na tela "home"
 
-<img width="591" height="242" alt="image" src="https://github.com/user-attachments/assets/221a8098-a173-4bb8-8695-65d3808aa3b9" />
+<p align="center">
+  <img width="591" height="242" alt="image" src="https://github.com/user-attachments/assets/221a8098-a173-4bb8-8695-65d3808aa3b9" />
+</p>
 
 ---
 
@@ -120,7 +138,10 @@ Sugestão: Também via whatsapp e notificação na tela "home"
 
 ### 🔍 Observação do QA
 Validar com produto como funcionará o fluxo de login para pacientes e profissionais, definindo se haverá um login único com identificação automática do perfil ou acessos separados para cada tipo de usuário.
-<img width="392" height="529" alt="image" src="https://github.com/user-attachments/assets/d44fc57d-fe0f-44ce-bc24-e6c0945d7a5f" />
+
+<p align="center">
+  <img width="392" height="529" alt="image" src="https://github.com/user-attachments/assets/d44fc57d-fe0f-44ce-bc24-e6c0945d7a5f" />
+</p>
 
 ### 🎨 Retorno do Design
 Pensar em uma alternativa de "cadastro" em que seja utilizado o mesmo email tanto para paciente, quanto para profissional. Sem a necessidade de cadastrar com emails distintos.
