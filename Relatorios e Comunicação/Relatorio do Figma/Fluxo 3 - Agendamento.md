@@ -9,8 +9,9 @@ Definir como os métodos de pagamento aceitos pelo profissional serão exibidos 
 
 ### 🎨 Retorno do Design
 Em andamento
-
-<img width="637" height="557" alt="image" src="https://github.com/user-attachments/assets/ca4546be-5e44-4778-998d-ec88c8edc550" />
+<p align="center">
+  <img width="637" height="557" alt="image" src="https://github.com/user-attachments/assets/ca4546be-5e44-4778-998d-ec88c8edc550" />
+</p>
 
 > **"Como será esta tela se o profissional pular a etapa de acessibilidade no cadastro?"**
 
