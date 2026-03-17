@@ -10,7 +10,9 @@ Se o botão não tiver uma função clara ou for redundante, considerar sua remo
 ### 🎨 Retorno do Design
 É legal para agilizar a pesquisa quando o usuário estiver em uma página fora da página da "Home". Ao invés de voltar para página "Home" só para efetuar uma pesquisa.
 
-<img width="967" height="341" alt="image" src="https://github.com/user-attachments/assets/7682e1e6-ed5d-46c8-b5f3-65df8a1734ca" />
+<p align="center">
+  <img width="967" height="341" alt="image" src="https://github.com/user-attachments/assets/7682e1e6-ed5d-46c8-b5f3-65df8a1734ca" />
+</p>
 
 > **"Há esta barra de pesquisa e o botão de pesquisa no header. Qual a diferença?"**
 
@@ -20,7 +22,9 @@ A presença de dois elementos relacionados à busca pode gerar **ambiguidade na 
 ### 🎨 Retorno do Design
 É legal para agilizar a pesquisa quando o usuário estiver em uma página fora da página da "Home". Ao invés de voltar para página "Home" só para efetuar uma pesquisa.
 
-<img width="798" height="235" alt="image" src="https://github.com/user-attachments/assets/fc2c0241-f572-432e-97b8-94220b796c85" />
+<p align="center">
+  <img width="798" height="235" alt="image" src="https://github.com/user-attachments/assets/fc2c0241-f572-432e-97b8-94220b796c85" />
+</p>
 
 > **"O usuário pode confundir os destaques da semana com os filtros de busca. Exemplo: o usuario acha que se digitar no input e colocar um filtro irá atualizar os destaques da semana"**
 
@@ -30,7 +34,9 @@ Existe um possível problema de **hierarquia e associação visual** entre os co
 ### 🎨 Retorno do Design
 Talvez seria interessante colocar os "destaques da semana" como uma aba do filtro. A gente poderia colocar o button dele com mais destaque pra diferenciar no filtro.
 
-<img width="734" height="469" alt="image" src="https://github.com/user-attachments/assets/b479ed1a-44f4-4e70-bf73-aada1eb4e0f1" />
+<p align="center">
+  <img width="734" height="469" alt="image" src="https://github.com/user-attachments/assets/b479ed1a-44f4-4e70-bf73-aada1eb4e0f1" />
+</p>
 
 ---
 
@@ -44,4 +50,6 @@ Sugere-se a inclusão de um **filtro de valor da consulta**, seguindo o mesmo pa
 ### 🎨 Retorno do Design
 Em andamento
 
-<img width="273" height="104" alt="image" src="https://github.com/user-attachments/assets/2111f446-008f-4bf2-aa74-54b01c83e50c" />
+<p align="center">
+  <img width="273" height="104" alt="image" src="https://github.com/user-attachments/assets/2111f446-008f-4bf2-aa74-54b01c83e50c" />
+</p>
