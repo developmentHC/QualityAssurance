@@ -177,18 +177,3 @@ Permite definir:
 | Transcrição em tempo real | ❌        | ✅          |
 | TTS (fala)                | ❌        | ✅          |
 
----
-
-# 💡 Dicas práticas (nível QA / uso profissional)
-
-* Use **NotesBot** para:
-
-  * Reuniões de sprint
-  * Daily
-  * Refinamento (gera ações automaticamente)
-
-* Use **SeaVoice** para:
-
-  * Aulas
-  * Transcrição ao vivo
-  * Acessibilidade (TTS)
