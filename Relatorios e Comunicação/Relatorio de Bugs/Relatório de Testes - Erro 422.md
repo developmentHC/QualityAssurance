@@ -52,22 +52,19 @@ A requisição retorna erro **422**, informando que o campo `userId` está ausen
 
 ## Evidência  
 - **Log de Erro do Vercel:**
-<p align="center">
   <a href="https://github.com/user-attachments/assets/18d20ec8-313a-49d5-a6a8-d4deea81b9cf" target="_blank">
-    <img width="909" height="414" alt="Log de erro do Vercel" src="https://github.com/user-attachments/assets/18d20ec8-313a-49d5-a6a8-d4deea81b9cf" />
-  </a>
-</p>
+  <img width="909" height="414" alt="Log de erro do Vercel" src="https://github.com/user-attachments/assets/18d20ec8-313a-49d5-a6a8-d4deea81b9cf" />
+</a>
+
 
 - **Log de Erro do Brave:**
-<p align="center">
-  <a href="https://github.com/user-attachments/assets/c7f85be7-c7e6-4fe5-8228-cccbe13d7f70" target="_blank">
-    <img width="1579" height="571" alt="Log de erro do Brave" src="https://github.com/user-attachments/assets/c7f85be7-c7e6-4fe5-8228-cccbe13d7f70" />
-  </a>
-</p>
+
+<a href="https://github.com/user-attachments/assets/c7f85be7-c7e6-4fe5-8228-cccbe13d7f70" target="_blank">
+  <img width="1579" height="571" alt="Log de erro do Brave" src="https://github.com/user-attachments/assets/c7f85be7-c7e6-4fe5-8228-cccbe13d7f70" />
+</a>
+
 
 - **Erro acessibilidade:**
-<p align="center">
-  <a href="https://github.com/user-attachments/assets/fdc9809e-a2cf-4726-bb79-8beefb26c8ea" target="_blank">
-    <img width="830" height="241" alt="Erro de acessibilidade" src="https://github.com/user-attachments/assets/fdc9809e-a2cf-4726-bb79-8beefb26c8ea" />
-  </a>
-</p>
+<a href="https://github.com/user-attachments/assets/fdc9809e-a2cf-4726-bb79-8beefb26c8ea" target="_blank">
+  <img width="830" height="241" alt="Erro de acessibilidade" src="https://github.com/user-attachments/assets/fdc9809e-a2cf-4726-bb79-8beefb26c8ea" />
+</a>
