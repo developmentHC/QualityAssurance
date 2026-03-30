@@ -6,6 +6,7 @@ Ao tentar realizar o cadastro de paciente ou profissional, a API retorna erro **
 ---
 
 ## Ambiente de Teste 
+- **Ambientes:** Local e Homologação
 - **SO:** Windows 11  
 - **Navegador:** Brave v1.86.146  
 
