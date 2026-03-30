@@ -45,9 +45,9 @@ A requisição retorna erro **422**, informando que o campo `userId` está ausen
 * Desalinhamento entre frontend e backend (payload)
 * Possível mudança recente no contrato da API
 * Middleware de autenticação não populando `req.user`
-* Possível impacto de migração ou mistura entre
-  NextAuth.js e Better Auth
-
+* Possível impacto de migração ou mistura entre NextAuth.js e Better Auth
+* Possível erro ao campo acessibilidade ser enviado vazio (menos provável)
+  
 ---
 
 ### **Impacto**
