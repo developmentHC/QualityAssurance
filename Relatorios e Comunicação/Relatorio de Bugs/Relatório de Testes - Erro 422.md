@@ -34,7 +34,9 @@ A requisição retorna erro **422**, informando que o campo `userId` está ausen
 <p align="center">
   <img width="909" height="414" alt="log_vercel" src="https://github.com/user-attachments/assets/18d20ec8-313a-49d5-a6a8-d4deea81b9cf" />
 </p>
+
 ---
+
 <p align="center">
   <img width="1579" height="571" alt="log_brave" src="https://github.com/user-attachments/assets/c7f85be7-c7e6-4fe5-8228-cccbe13d7f70" />
 </p>
