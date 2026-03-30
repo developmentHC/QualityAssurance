@@ -30,6 +30,16 @@ A requisição retorna erro **422**, informando que o campo `userId` está ausen
 
 ---
 
+## Evidência  
+
+- [Log de Erro do Vercel](https://github.com/user-attachments/assets/18d20ec8-313a-49d5-a6a8-d4deea81b9cf)
+
+- [Log de Erro do Brave](https://github.com/user-attachments/assets/c7f85be7-c7e6-4fe5-8228-cccbe13d7f70)
+
+- [Erro de Acessibilidade](https://github.com/user-attachments/assets/fdc9809e-a2cf-4726-bb79-8beefb26c8ea)
+
+---
+
 ### **Hipóteses**
 
 * Desalinhamento entre frontend e backend (payload)
@@ -49,11 +59,3 @@ A requisição retorna erro **422**, informando que o campo `userId` está ausen
 ### **Observação adicional**
 * Fluxo OTP apresentou inconsistência (falha nas primeiras tentativas e sucesso posterior)
 * Pode indicar problema de sincronização, expiração ou múltiplas gerações de código
-
-## Evidência  
-
-- [Log de Erro do Vercel](https://github.com/user-attachments/assets/18d20ec8-313a-49d5-a6a8-d4deea81b9cf)
-
-- [Log de Erro do Brave](https://github.com/user-attachments/assets/c7f85be7-c7e6-4fe5-8228-cccbe13d7f70)
-
-- [Erro de acessibilidade](https://github.com/user-attachments/assets/fdc9809e-a2cf-4726-bb79-8beefb26c8ea)
