@@ -39,3 +39,27 @@ A requisição retorna erro **422**, informando que o campo `userId` está ausen
 <p align="center">
   <img width="1579" height="571" alt="log_brave" src="https://github.com/user-attachments/assets/c7f85be7-c7e6-4fe5-8228-cccbe13d7f70" />
 </p>
+
+---
+
+### **Hipóteses**
+
+* Desalinhamento entre frontend e backend (payload)
+* Possível mudança recente no contrato da API
+* Middleware de autenticação não populando `req.user`
+* Possível impacto de migração ou mistura entre
+  NextAuth.js e Better Auth
+
+---
+
+### **Impacto**
+
+* Bloqueia onboarding de novos usuários
+* Afeta produção diretamente
+
+---
+
+### **Observação adicional**
+
+* Fluxo OTP apresentou inconsistência (falha nas primeiras tentativas e sucesso posterior)
+* Pode indicar problema de sincronização, expiração ou múltiplas gerações de código
