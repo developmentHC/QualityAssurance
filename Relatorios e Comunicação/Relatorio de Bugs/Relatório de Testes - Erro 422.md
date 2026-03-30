@@ -12,9 +12,10 @@ Ao tentar realizar o cadastro de paciente ou profissional, a API retorna erro **
 ---
 
 **Passos para reproduzir**  
-1. Acessar a página de cadastro de paciente: https://conecta-bem-front.vercel.app/auth/registro-paciente  
-2. Preencher todos os campos obrigatórios do formulário  
-3. Submeter o cadastro  
+1. Acessar a página de cadastro: https://conecta-bem-front.vercel.app/auth
+2. Criar uma conta como paciente ou profissional
+3. Preencher todos os campos obrigatórios do formulário
+4. Submeter o cadastro
 
 ---
 
