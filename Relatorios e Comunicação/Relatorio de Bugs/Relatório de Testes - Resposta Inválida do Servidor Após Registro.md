@@ -67,12 +67,4 @@ Node.js process exited with exit status: 128.
 
 * Bloqueia onboarding de novos usuários
 * Regressão em relação ao bug anterior (422 → 200 sem persistência)
-* Fluxo OTP continua apresentando instabilidade (falhas nas primeiras tentativas)
 
----
-
-## Observação adicional
-
-* O erro anterior (422 - `userId` ausente) foi aparentemente corrigido, porém a correção expôs esta nova falha na camada de validação
-* Recomenda-se verificar `await` faltando ou transação não aguardada em `validationService.mjs` linha 10
-* O comportamento do OTP (falha nas primeiras tentativas, sucesso posterior) pode indicar problema relacionado de sincronização ou timing
