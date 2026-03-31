@@ -10,6 +10,7 @@ Ao submeter o cadastro de paciente, a API retorna **HTTP 200** porém nenhum reg
 - **Ambientes:** Homologação
 - **SO:** Windows 11
 - **Navegador:** Brave v1.86.146
+- **PR:** [Brave v1.86.146](https://github.com/developmentHC/conectaBemBack/pull/58)
 
 ---
 
