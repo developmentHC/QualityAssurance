@@ -1,8 +1,4 @@
-Aqui está um **documento completo, detalhado e explicativo** sobre a WCAG, estruturado como material de estudo e referência para QA 👇
-
----
-
-# 📘 Diretrizes de Acessibilidade – WCAG (Guia Completo para QA)
+# 📘 Diretrizes de Acessibilidade – WCAG 
 
 ---
 
