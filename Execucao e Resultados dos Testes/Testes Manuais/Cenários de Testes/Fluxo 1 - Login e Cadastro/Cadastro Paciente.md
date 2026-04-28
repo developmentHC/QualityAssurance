@@ -1,121 +1,198 @@
-# Plano de Testes — Cadastro de Paciente
-**Sistema:** ConectaBem | **Versão:** 2.0
+# Casos de Teste — Cadastro de Paciente
+Sistema: ConectaBem  
+Versão: 2.0  
 
 ---
 
-## Resumo
+## CT-001 — Cadastro com sucesso via Email
 
-| Métrica                     | Original | Otimizado | Redução |
-|-----------------------------|----------|-----------|---------|
-| Casos de Teste              | 19       | 4         | 79%     |
-| Páginas de Documentação     | 5        | 1         | 80%     |
-| Tempo Estimado de Execução  | ~60 min  | ~15 min   | 75%     |
-
----
-
-## CAD_PAC_MAIN_001 — Fluxo Principal Completo
-
-| Info | Detalhe |
-|------|---------|
-| Técnica | Particionamento de Equivalência + Tabela de Decisão |
-| Risco | Alto |
-| Automatizável | Sim |
-| Pré-condições | Ambiente configurado · Contas de teste válidas (Google e Email) |
-
-| # | Passo | Detalhe |
-|---|-------|---------|
-| 1 | Acessar o sistema | — |
-| 2 | Selecionar método de login | Google ou Email |
-| 3 | Autenticar | Google: conceder permissões · Email: validar OTP |
-| 4 | Selecionar perfil | Paciente |
-| 5 | Etapa 1/4 | Nome ≥3 chars · Data de nascimento · CEP válido · Endereço completo |
-| 6 | Etapa 2/4 | Preferências (ou pular) |
-| 7 | Etapa 3/4 | Necessidades (ou pular) |
-| 8 | Etapa 4/4 | Revisar e finalizar |
-
-| Resultado Esperado | Critério de Aceitação |
-|--------------------|-----------------------|
-| Registro de data/hora do cadastro | Ambos os métodos de login funcionam |
-| Autenticação automática | Validações em tempo real |
-| Redirecionamento para Home autenticada | Botão Continuar só habilita com campos válidos |
-| Confirmação visual de cadastro | Progresso salvo e persistente ao recarregar |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-001 |
+| Título | Cadastro de paciente com dados válidos via email |
+| Pré-condição | Usuário não cadastrado · Sistema disponível |
+| Dados de teste | Nome: Maria Silva · Idade: 25 · CEP: 01001-000 · Email válido |
+| Passos | 1. Acessar sistema <br> 2. Selecionar login por email <br> 3. Informar email válido <br> 4. Inserir OTP correto <br> 5. Preencher formulário com dados válidos <br> 6. Finalizar cadastro |
+| Resultado esperado | Cadastro realizado com sucesso · Usuário autenticado · Redirecionamento para home |
 
 ---
 
-## CAD_PAC_VALID_002 — Validações de Campos
+## CT-002 — Cadastro com sucesso via Google
 
-| Info | Detalhe |
-|------|---------|
-| Técnica | Tabela de Decisão + Análise de Valor Limite |
-| Risco | Alto |
-| Automatizável | Sim |
-
-| Campo | Valor | Tipo | Comportamento Esperado | Criticidade |
-|-------|-------|------|------------------------|-------------|
-| Nome | "Jo" | Inválido | Erro: mínimo 3 caracteres | Alta |
-| Nome | "Ana" | Válido | Campo aceito | Alta |
-| Idade | 17 | Inválido | Erro: mínimo 18 anos | Alta |
-| Idade | 18 | Válido | Campo aceito | Alta |
-| Idade | 110 | Válido | Campo aceito | Alta |
-| Idade | 111 | Inválido | Erro: máximo 110 | Alta |
-| CEP | "12345" | Inválido | Erro de formato | Média |
-| CEP | "00000-000" | Inválido | CEP não encontrado | Média |
-| CEP | "01001-000" | Válido | Autocompleta endereço | Média |
-| Email | Já cadastrado | Inválido | Email já cadastrado | Alta |
-| Campo obrigatório | Vazio | Inválido | Campo obrigatório | Alta |
-
-**Combinações críticas:**
-
-| Cenário | Nome | Idade / CEP | Resultado |
-|---------|------|-------------|-----------|
-| Múltiplos erros | "Jo" | 17 / "12345" | Múltiplos erros simultâneos |
-| Fluxo válido | "Maria" | 18 / "01001-000" | Avanço de etapa |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-002 |
+| Título | Cadastro de paciente via login Google |
+| Pré-condição | Conta Google válida · Usuário não cadastrado |
+| Dados de teste | Conta Google ativa |
+| Passos | 1. Acessar sistema <br> 2. Selecionar login Google <br> 3. Conceder permissões <br> 4. Preencher dados obrigatórios <br> 5. Finalizar cadastro |
+| Resultado esperado | Cadastro realizado com sucesso · Usuário autenticado |
 
 ---
 
-## CAD_PAC_EXC_003 — Exceções de Autenticação
+## CT-003 — Nome inválido (menos de 3 caracteres)
 
-| Info | Detalhe |
-|------|---------|
-| Técnica | Particionamento de Equivalência |
-| Risco | Médio |
-| Automatizável | Sim |
-
-| Cenário | Comportamento Esperado |
-|---------|------------------------|
-| Google sem permissão | Mensagem clara + retorno à tela inicial |
-| OTP incorreto | Erro exibido + contador de tentativas |
-| 5 tentativas inválidas | Bloqueio por 5 minutos |
-| OTP expirado | Mensagem + opção de reenvio |
-| Limite de reenvios atingido | Bloqueio por 1 hora |
-| Email inválido | Erro em tempo real |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-003 |
+| Título | Validação de nome inválido |
+| Pré-condição | Usuário na etapa de cadastro |
+| Dados de teste | Nome: "Jo" |
+| Passos | 1. Inserir nome inválido <br> 2. Tentar avançar |
+| Resultado esperado | Exibição de erro · Bloqueio de avanço |
 
 ---
 
-## CAD_PAC_STATE_004 — Workflow e Persistência
+## CT-004 — Idade menor que 18
 
-| Info | Detalhe |
-|------|---------|
-| Técnica | Transição de Estados |
-| Risco | Médio |
-| Automatizável | Parcial |
-
-| De | Para | Condição | Resultado |
-|----|------|----------|-----------|
-| Etapa 1 | Etapa 2 | Campos válidos | Avança ✓ |
-| Etapa 1 | Etapa 2 | Campos inválidos | Bloqueia ✗ |
-| Etapa 2 | Etapa 3 | Pular (opcional) | Avança ✓ |
-| Qualquer etapa | Retorno | Fechar navegador | Recupera dados ✓ |
-| Etapa 4 | Home | Finalizar | Autentica ✓ |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-004 |
+| Título | Validação de idade mínima |
+| Pré-condição | Usuário na etapa de cadastro |
+| Dados de teste | Idade: 17 |
+| Passos | 1. Inserir idade inválida <br> 2. Tentar avançar |
+| Resultado esperado | Exibição de erro · Impedir continuidade |
 
 ---
 
-## Matriz de Cobertura
+## CT-005 — Idade maior que 110
 
-| Requisito | Caso de Teste | Risco | Status |
-|-----------|---------------|-------|--------|
-| RF01 | CAD_PAC_MAIN_001 | Alto | ✓ OK |
-| RF02 | CAD_PAC_VALID_002 | Alto | ✓ OK |
-| RF03 | CAD_PAC_STATE_004 | Alto | ✓ OK |
-| RF04 | CAD_PAC_CRIT_001 | Alto | ✓ OK |
-| RF05 | CAD_PAC_EXC_003 | Médio | ✓ OK |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-005 |
+| Título | Validação de idade máxima |
+| Pré-condição | Usuário na etapa de cadastro |
+| Dados de teste | Idade: 111 |
+| Passos | 1. Inserir idade inválida <br> 2. Tentar avançar |
+| Resultado esperado | Exibição de erro |
+
+---
+
+## CT-006 — CEP inválido (formato incorreto)
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-006 |
+| Título | Validação de formato de CEP |
+| Pré-condição | Usuário na etapa de endereço |
+| Dados de teste | CEP: "12345" |
+| Passos | 1. Inserir CEP inválido <br> 2. Sair do campo |
+| Resultado esperado | Exibição de erro de formato |
+
+---
+
+## CT-007 — CEP inexistente
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-007 |
+| Título | Validação de CEP não encontrado |
+| Pré-condição | Integração com serviço de CEP ativa |
+| Dados de teste | CEP: "00000-000" |
+| Passos | 1. Inserir CEP <br> 2. Aguardar validação |
+| Resultado esperado | Mensagem de CEP não encontrado |
+
+---
+
+## CT-008 — Email já cadastrado
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-008 |
+| Título | Validação de email duplicado |
+| Pré-condição | Email já existente na base |
+| Dados de teste | Email previamente cadastrado |
+| Passos | 1. Inserir email <br> 2. Prosseguir |
+| Resultado esperado | Mensagem de erro: email já cadastrado |
+
+---
+
+## CT-009 — OTP incorreto
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-009 |
+| Título | Validação de OTP inválido |
+| Pré-condição | OTP enviado |
+| Dados de teste | OTP inválido |
+| Passos | 1. Inserir OTP incorreto |
+| Resultado esperado | Mensagem de erro · Tentativa contabilizada |
+
+---
+
+## CT-010 — OTP expirado
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-010 |
+| Título | Validação de OTP expirado |
+| Pré-condição | OTP gerado anteriormente |
+| Dados de teste | OTP expirado |
+| Passos | 1. Inserir OTP expirado |
+| Resultado esperado | Mensagem de expiração · Opção de reenvio |
+
+---
+
+## CT-011 — Limite de tentativas de OTP
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-011 |
+| Título | Bloqueio após múltiplas tentativas inválidas |
+| Pré-condição | Sistema com controle de tentativas ativo |
+| Dados de teste | OTP inválido repetido 5 vezes |
+| Passos | 1. Inserir OTP inválido 5 vezes |
+| Resultado esperado | Bloqueio temporário de autenticação |
+
+---
+
+## CT-012 — Campos obrigatórios vazios
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-012 |
+| Título | Validação de campos obrigatórios |
+| Pré-condição | Usuário na etapa de cadastro |
+| Dados de teste | Campos obrigatórios vazios |
+| Passos | 1. Tentar avançar sem preencher |
+| Resultado esperado | Exibição de erros nos campos · Bloqueio de avanço |
+
+---
+
+## CT-013 — Persistência de dados após reload
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-013 |
+| Título | Persistência de dados |
+| Pré-condição | Usuário iniciou preenchimento |
+| Dados de teste | Dados válidos parcialmente preenchidos |
+| Passos | 1. Preencher etapa 1 <br> 2. Recarregar página |
+| Resultado esperado | Dados devem ser mantidos |
+
+---
+
+## CT-014 — Navegação entre etapas
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-014 |
+| Título | Controle de avanço entre etapas |
+| Pré-condição | Usuário no fluxo de cadastro |
+| Dados de teste | Dados válidos e inválidos |
+| Passos | 1. Tentar avançar com dados inválidos <br> 2. Corrigir dados <br> 3. Avançar |
+| Resultado esperado | Bloqueio com erro · Avanço após correção |
+
+---
+
+## CT-015 — Finalização do cadastro
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-015 |
+| Título | Finalização do fluxo de cadastro |
+| Pré-condição | Todas etapas preenchidas corretamente |
+| Dados de teste | Dados válidos |
+| Passos | 1. Revisar dados <br> 2. Confirmar cadastro |
+| Resultado esperado | Cadastro concluído · Redirecionamento para home |
