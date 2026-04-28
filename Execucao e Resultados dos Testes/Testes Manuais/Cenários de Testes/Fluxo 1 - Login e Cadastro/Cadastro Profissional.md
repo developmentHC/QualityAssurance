@@ -1,36 +1,25 @@
-# Plano de Testes Otimizado – Cadastro de Profissional
-
-> **Sistema**: ConectaBem  
-> **Versão**: 2.0 (Otimizada)  
-> **Status**: Consolidação Inteligente  
+# Plano de Testes — Cadastro de Profissional
+**Sistema:** ConectaBem | **Versão:** 2.0
 
 ---
 
-## Resumo da Otimização
+## Resumo
 
-| Métrica | Original | Otimizado | Redução |
-|---------|----------|-----------|---------|
-| Casos de Teste | 25 | 5 | 80% |
-| Cenários Separados | 6 | 1 (estruturado) | 83% |
-| Validações Individuais | 11 | 1 (matriz) | 91% |
-
----
-
-## Casos de Teste
+| Métrica                    | Original | Otimizado | Redução |
+|---------------------------|----------|-----------|---------|
+| Casos de Teste             | 25       | 5         | 80%     |
+| Cenários Separados         | 6        | 1         | 83%     |
+| Validações Individuais     | 11       | 1         | 91%     |
 
 ---
 
-## Caso 01: Fluxo Principal Completo do Profissional
+## CAD_PRO_MAIN_001 — Fluxo Principal Completo
 
-**ID:** CAD_PRO_MAIN_001  
-**Técnica:** Particionamento de Equivalência + Tabela de Decisão Combinada  
-**Risco:** Alto  
-**Automatizável:** Sim  
-
-### Descrição
-Valida o fluxo completo de cadastro do profissional, cobrindo autenticação, dados pessoais, dados profissionais, especialidades, preferências e finalização.
-
-### Matriz de Cenários Cobertos
+| Info | Detalhe |
+|------|---------|
+| Técnica | Particionamento de Equivalência + Tabela de Decisão |
+| Risco | Alto |
+| Automatizável | Sim |
 
 | Componente | Cenários Incluídos | Criticidade |
 |-----------|-------------------|-------------|
@@ -42,192 +31,129 @@ Valida o fluxo completo de cadastro do profissional, cobrindo autenticação, da
 | Sugestão | Mínimo 1 caractere | Média |
 | Finalização | Autenticação + redirecionamento | Alta |
 
-### Dados de Teste Estratégicos
+| # | Passo | Detalhe |
+|---|-------|---------|
+| 1 | Acessar o ConectaBem | — |
+| 2 | Realizar login | Google ou Email |
+| 3 | Selecionar perfil | Profissional |
+| 4 | Etapa — Dados Pessoais | Nome ≥10 chars · Data nascimento · CEP residencial · Endereço completo |
+| 5 | Etapa — Dados Profissionais | Nome da clínica · CPF ou CNPJ · CEP profissional · Endereço · Número ≥1 · Complemento (opcional) |
+| 6 | Etapa — Especialidades | Selecionar ao menos 1 |
+| 7 | Etapa — Preferences | Configurar (opcional) |
+| 8 | Etapa — Sugestão | Inserir mínimo 1 caractere |
+| 9 | Finalizar cadastro | — |
 
-- Métodos de login: Google, Email  
-- Nome: mínimo 10 caracteres  
-- Idade: 18, 65 e 110  
-- CEP residencial: 01001-000  
-- CPF ou CNPJ em formato válido  
-- CEP profissional: 20021-120  
-- Especialidades: ao menos 1 selecionada  
-- Sugestão: mínimo 1 caractere  
-
-### Passos do Teste
-
-1. Acessar o ConectaBem  
-2. Realizar login via Google ou Email  
-3. Selecionar o perfil Profissional  
-4. Preencher dados pessoais:
-   - Nome válido  
-   - Data de nascimento válida  
-   - CEP residencial válido  
-   - Endereço residencial completo  
-5. Preencher dados profissionais:
-   - Nome da clínica  
-   - CPF ou CNPJ conforme tipo selecionado  
-   - CEP profissional válido  
-   - Endereço da clínica  
-   - Número maior ou igual a 1  
-   - Complemento opcional  
-6. Selecionar ao menos 1 especialidade  
-7. Configurar Service Preferences (opcional)  
-8. Inserir sugestão  
-9. Finalizar o cadastro  
-
-### Resultado Esperado
-
-- Registro da data e hora do cadastro  
-- Autenticação automática  
-- Redirecionamento para Home autenticada  
-- Perfil exibido como Profissional  
+| Resultado Esperado | Critério de Aceitação |
+|--------------------|-----------------------|
+| Registro de data/hora do cadastro | Ambos os métodos de login funcionam |
+| Autenticação automática | Validações em tempo real |
+| Redirecionamento para Home autenticada | Botão Continuar só habilita com campos válidos |
+| Perfil exibido como Profissional | Progresso salvo e persistente ao recarregar |
 
 ---
 
-## Caso 02: Matriz Completa de Validações do Profissional
+## CAD_PRO_VALID_002 — Validações de Campos
 
-**ID:** CAD_PRO_VALID_002  
-**Técnica:** Tabela de Decisão Expandida + Análise de Valor Limite  
-**Risco:** Alto  
-**Automatizável:** Sim  
+| Info | Detalhe |
+|------|---------|
+| Técnica | Tabela de Decisão + Análise de Valor Limite |
+| Risco | Alto |
+| Automatizável | Sim |
 
-### Matriz de Validações
+| Campo | Tipo | Valor Testado | Comportamento Esperado | Criticidade |
+|-------|------|--------------|------------------------|-------------|
+| Nome | Inválido | "Ana" | Erro: mínimo 10 caracteres | Alta |
+| Nome | Inválido | "João  Silva" | Erro: espaços duplicados | Média |
+| Nome | Válido | "Maria Clara Souza" | Campo aceito | Alta |
+| Idade | Inválido | 17 | Erro: mínimo 18 anos | Alta |
+| Idade | Válido | 110 | Campo aceito | Alta |
+| CPF/CNPJ | Inválido | Documento inválido | Erro de validação | Alta |
+| CPF/CNPJ | Válido | Documento válido | Campo aceito | Alta |
+| CEP Profissional | Inválido | "00000-000" | CEP não encontrado | Média |
+| Endereço Clínica | Inválido | "Rua A" | Erro: mínimo 5 caracteres | Média |
+| Número | Inválido | 0 | Erro: número ≥1 | Média |
+| Especialidades | Inválido | Nenhuma | Campo obrigatório | Alta |
+| Especialidades | Válido | Uma ou mais | Campo aceito | Alta |
+| Preferences | Opcional | Vazio ou nulo | Campo aceito | Baixa |
+| Sugestão | Inválido | Vazio | Erro: mínimo 1 caractere | Média |
 
-| Campo | Tipo | Valor Testado | Comportamento Esperado | Regra |
-|------|------|--------------|------------------------|-------|
-| Nome | Inválido | Ana | Erro: mínimo 10 caracteres | Alta |
-| Nome | Inválido | João  Silva | Erro: espaços duplicados | Média |
-| Nome | Válido | Maria Clara Souza | Aceito | Alta |
-| Idade | Inválido | 17 | Erro: mínimo 18 | Alta |
-| Idade | Válido | 110 | Aceito | Alta |
-| CPF/CNPJ | Inválido | Documento inválido | Erro | Alta |
-| CPF/CNPJ | Válido | Documento válido | Aceito | Alta |
-| CEP Profissional | Inválido | 00000-000 | CEP não encontrado | Média |
-| Endereço Clínica | Inválido | Rua A | Mínimo 5 caracteres | Média |
-| Número | Inválido | 0 | Número maior ou igual a 1 | Média |
-| Especialidades | Inválido | Nenhuma | Obrigatório | Alta |
-| Especialidades | Válido | Uma ou mais | Aceito | Alta |
-| Preferences | Opcional | Vazio ou nulo | Aceito | Baixa |
-| Sugestão | Inválido | Vazio | Mínimo 1 caractere | Média |
+**Combinações críticas:**
 
-### Combinações Críticas
-
-- Múltiplos erros simultâneos:
-  - Nome inválido  
-  - Idade inválida  
-  - CPF inválido  
-  - Nenhuma especialidade  
-  Resultado esperado: múltiplas mensagens de erro e botão Continuar desabilitado  
-
-- Transição CPF e CNPJ:
-  - CPF inserido como Pessoa Jurídica gera erro  
-  - CNPJ inserido como Pessoa Física gera erro  
-  - Documento compatível com o tipo é aceito  
+| Cenário | Campos com erro | Resultado |
+|---------|----------------|-----------|
+| Múltiplos erros | Nome inválido · Idade inválida · CPF inválido · Sem especialidade | Múltiplos erros simultâneos · Botão desabilitado |
+| CPF como PJ | CPF inserido em campo Pessoa Jurídica | Erro de tipo de documento |
+| CNPJ como PF | CNPJ inserido em campo Pessoa Física | Erro de tipo de documento |
+| Documento compatível | Tipo correto selecionado | Campo aceito |
 
 ---
 
-## Caso 03: Exceções de Autenticação e Duplicidade
+## CAD_PRO_EXC_003 — Exceções de Autenticação e Duplicidade
 
-**ID:** CAD_PRO_EXC_003  
-**Técnica:** Particionamento de Equivalência  
-**Risco:** Médio-Alto  
-**Automatizável:** Sim  
+| Info | Detalhe |
+|------|---------|
+| Técnica | Particionamento de Equivalência |
+| Risco | Médio-Alto |
+| Automatizável | Sim |
 
-### Partições Testadas
-
-| Categoria | Cenário | Resultado Esperado | Risco |
-|---------|--------|-------------------|-------|
-| Autenticação | Google sem permissão | Mensagem clara | Médio |
-| OTP | Código expirado | Solicitar novo | Médio |
-| OTP | Cinco tentativas erradas | Bloqueio temporário | Médio |
-| Duplicidade | Email já é Paciente | Bloqueio imediato | Alto |
-| Duplicidade | Email já é Profissional | Bloqueio | Alto |
-| Conexão | Falha ao salvar | Recuperação | Médio |
-
-### Fluxos Críticos
-
-- Email vinculado a Paciente:
-  - Bloqueio imediato  
-  - Mensagem explicativa  
-  - Opções de login ou uso de outro email  
-
-- Email já Profissional:
-  - Detecção no envio do OTP  
-  - Orientação para login ou recuperação de senha  
+| Cenário | Comportamento Esperado | Risco |
+|---------|------------------------|-------|
+| Google sem permissão | Mensagem clara + retorno à tela inicial | Médio |
+| OTP expirado | Mensagem + opção de reenvio | Médio |
+| 5 tentativas OTP erradas | Bloqueio temporário | Médio |
+| Email já vinculado a Paciente | Bloqueio imediato + mensagem explicativa + opções de ação | Alto |
+| Email já vinculado a Profissional | Detecção no envio do OTP · Orientação para login ou recuperação | Alto |
+| Falha ao salvar | Mensagem de erro + recuperação de dados | Médio |
 
 ---
 
-## Caso 04: Workflow Profissional e Persistência
+## CAD_PRO_STATE_004 — Workflow e Persistência
 
-**ID:** CAD_PRO_STATE_004  
-**Técnica:** Transição de Estados Expandida  
-**Risco:** Médio  
-**Automatizável:** Parcial  
+| Info | Detalhe |
+|------|---------|
+| Técnica | Transição de Estados |
+| Risco | Médio |
+| Automatizável | Parcial |
 
-### Estados do Fluxo
-
-- Início  
-- Autenticação  
-- Seleção de Perfil  
-- Dados Pessoais  
-- Dados Profissionais  
-- Especialidades  
-- Preferences e Sugestão  
-- Revisão  
-- Concluído  
-
-### Transições Testadas
-
-| Estado Atual | Ação | Condição | Resultado |
-|-------------|------|----------|----------|
-| Dados Pessoais | Avançar | CPF inválido | Bloqueia |
-| Dados Profissionais | Avançar | Sem especialidade | Bloqueia |
-| Qualquer | Salvar rascunho | Parcial válido | Salva |
-| Revisão | Voltar | Especialidades | Mantém dados |
-| Conexão perdida | Reconectar | Etapa intermediária | Recupera tudo |
-
-### Persistência
-
-- Fechamento do navegador  
-- Retorno após horas  
-- Redirecionamento correto  
-- Dados pessoais e profissionais preservados  
+| De | Para | Condição | Resultado |
+|----|------|----------|-----------|
+| Dados Pessoais | Dados Profissionais | CPF inválido | Bloqueia ✗ |
+| Dados Profissionais | Especialidades | Sem especialidade | Bloqueia ✗ |
+| Qualquer etapa | Rascunho | Dados parcialmente válidos | Salva ✓ |
+| Revisão | Especialidades | Voltar | Mantém dados ✓ |
+| Conexão perdida | Reconexão | Etapa intermediária | Recupera tudo ✓ |
+| Fechamento do navegador | Retorno | Qualquer etapa | Recupera dados ✓ |
 
 ---
 
-## Caso 05: Regras Específicas de Negócio
+## CAD_PRO_BUSINESS_005 — Regras de Negócio
 
-**ID:** CAD_PRO_BUSINESS_005  
-**Técnica:** Testes Baseados em Regras de Negócio  
-**Risco:** Alto  
-**Automatizável:** Sim  
-
-### Regras Críticas
-
-- CPF incompatível com tipo selecionado é rejeitado  
-- CNPJ incompatível com tipo selecionado é rejeitado  
-- Endereço profissional igual ao residencial é permitido com aviso  
-
-### Matriz de Decisão – Tipo de Profissional
+| Info | Detalhe |
+|------|---------|
+| Técnica | Testes Baseados em Regras de Negócio |
+| Risco | Alto |
+| Automatizável | Sim |
 
 | Pessoa Física | CNPJ | Clínica | Resultado |
-|--------------|------|---------|-----------|
-| Sim | Não | Não | Cadastro individual |
-| Sim | Sim | Sim | Cadastro com clínica |
-| Não (Jurídica) | Sim | Sim | Cadastro empresarial |
-| Não (Jurídica) | Não | - | Erro: CNPJ obrigatório |
+|:---:|:---:|:---:|---------|
+| Sim | Não | Não | Cadastro individual ✓ |
+| Sim | Sim | Sim | Cadastro com clínica ✓ |
+| Não (PJ) | Sim | Sim | Cadastro empresarial ✓ |
+| Não (PJ) | Não | — | Erro: CNPJ obrigatório ✗ |
+
+> Endereço profissional igual ao residencial é **permitido** com aviso ao usuário.
 
 ---
 
-## 📈 Matriz de Cobertura – Profissional
+## Matriz de Cobertura
 
 | Requisito | Casos Cobertos | Risco | Status |
-|----------|---------------|-------|--------|
-| RF-P01 | MAIN + VALID | Alto | OK |
-| RF-P02 | MAIN + VALID | Alto | OK |
-| RF-P03 | MAIN | Médio | OK |
-| RF-P04 | MAIN + VALID | Baixo | OK |
-| RF-P05 | EXC + BUSINESS | Alto | OK |
-| RF-P06 | VALID + BUSINESS | Alto | OK |
-| RF-P07 | STATE | Médio | OK |
-| RF-P08 | STATE | Médio | OK |
+|-----------|---------------|-------|--------|
+| RF-P01 | MAIN_001 + VALID_002 | Alto | ✓ OK |
+| RF-P02 | MAIN_001 + VALID_002 | Alto | ✓ OK |
+| RF-P03 | MAIN_001 | Médio | ✓ OK |
+| RF-P04 | MAIN_001 + VALID_002 | Baixo | ✓ OK |
+| RF-P05 | EXC_003 + BUSINESS_005 | Alto | ✓ OK |
+| RF-P06 | VALID_002 + BUSINESS_005 | Alto | ✓ OK |
+| RF-P07 | STATE_004 | Médio | ✓ OK |
+| RF-P08 | STATE_004 | Médio | ✓ OK |
