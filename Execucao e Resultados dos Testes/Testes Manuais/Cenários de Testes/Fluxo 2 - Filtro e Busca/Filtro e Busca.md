@@ -1,188 +1,213 @@
-# Plano de Testes Otimizado – Busca e Filtro
-
-> **Funcionalidade**: Filtro e Busca de Profissionais  
-> **Sistema**: ConectaBem  
-> **Versão**: 2.0 (Otimizada)  
-> **Status**: Consolidado em 4 Casos Principais
+# Casos de Teste — Busca e Filtro de Profissionais
+Sistema: ConectaBem  
+Versão: 2.0  
 
 ---
 
-## Resumo da Otimização
+## CT-001 — Busca por especialidade válida
 
-| Métrica | Original | Otimizado | Redução |
-|-------|----------|-----------|--------|
-| Casos de Teste | 9 | 4 | 56% |
-| Cenários Separados | 9 | 1 (estruturado) | 89% |
-| Validações Dispersas | 9+ | 1 matriz | 90% |
-
----
-
-## Casos de Teste
-
----
-
-## CASO 1: Fluxos Principais de Busca
-
-**ID:** BUSCA_MAIN_001  
-**Descrição:** Testa todos os caminhos felizes de busca em um único fluxo
-
-### O que este caso cobre
-- Busca por especialidade
-- Busca com termos compostos
-- Uso de chips dinâmicos
-- Aplicação de filtros básicos
-
-### Passos Consolidados (Lista)
-
-#### 1. Busca simples por especialidade
-- Acessar a tela de busca
-- Digitar **"Reiki"** na barra de busca
-- Executar a busca (Enter ou botão)
-- Verificar:
-  - Lista de profissionais de Reiki
-  - Contador de resultados exibido corretamente
-
-#### 2. Busca com termos compostos
-- Acessar a tela de busca
-- Digitar **"Terapia Holística"**
-- Executar a busca
-- Verificar:
-  - Resultados relacionados ao termo
-  - Sistema não apresenta erro ou falha
-
-#### 3. Uso de chips de especialidade
-- Visualizar chip **"Cura Prânica"**
-- Clicar no chip
-- Verificar:
-  - Chip fica visualmente destacado
-  - Resultados filtrados pela especialidade
-- Clicar novamente no chip
-- Verificar:
-  - Chip é removido
-  - Resultados retornam ao estado anterior
-
-#### 4. Aplicação de filtros básicos
-- Clicar no botão **Filtros**
-- Selecionar **Acessibilidade: Sim**
-- Aplicar filtros
-- Verificar:
-  - Apenas profissionais com acessibilidade são exibidos
-  - Indicação visual de filtro ativo
+| Campo | Descrição |
+|------|----------|
+| ID | CT-001 |
+| Título | Busca por especialidade existente |
+| Pré-condição | Profissionais cadastrados com especialidade "Reiki" |
+| Dados de teste | Termo: "Reiki" |
+| Passos | 1. Acessar tela de busca <br> 2. Inserir termo <br> 3. Executar busca |
+| Resultado esperado | Lista de profissionais exibida · Contador correto |
 
 ---
 
-## CASO 2: Matriz de Estados e Erros
+## CT-002 — Busca com termo composto
 
-**ID:** BUSCA_ERROR_002  
-**Descrição:** Centraliza todas as validações de erro e estados especiais em um único caso
-
-### Matriz Completa de Estados
-
-| Estado | Entrada/Ação | Comportamento Esperado | Criticidade |
-|------|-------------|------------------------|------------|
-| Termo inexistente | "Inexistenteterapia" | Mensagem: "Nenhum profissional encontrado. Tente outros termos." | Alta |
-| Busca vazia | Campo vazio + buscar | Exibe todos profissionais ou mantém tela atual | Média |
-| Caracteres especiais | "Reiki@#" | Texto tratado normalmente ou aviso exibido | Baixa |
-| Múltiplos filtros | Especialidade + Acessibilidade + Valor | Interseção correta dos filtros | Alta |
-| Remover filtros | Limpar filtros ativos | Retorna ao estado inicial | Média |
-| Falha de rede | Buscar offline | Mensagem de erro + botão de retry | Alta |
-| Timeout servidor | Resposta > 10s | Loading + timeout controlado | Média |
-| Resultados paginados | Muitos resultados | Paginação ou botão "Carregar mais" | Média |
-| Filtro sem resultados | Filtro restritivo | Mensagem específica informativa | Alta |
-
-### Passo Padrão para Execução
-- Para cada linha da matriz:
-  - Acessar a tela de busca
-  - Executar a ação descrita
-  - Validar o comportamento esperado correspondente
+| Campo | Descrição |
+|------|----------|
+| ID | CT-002 |
+| Título | Busca com múltiplas palavras |
+| Pré-condição | Dados relacionados existentes |
+| Dados de teste | "Terapia Holística" |
+| Passos | 1. Inserir termo composto <br> 2. Executar busca |
+| Resultado esperado | Resultados relevantes exibidos |
 
 ---
 
-## CASO 3: Combinações Complexas e Regras de Negócio
+## CT-003 — Busca sem resultados
 
-**ID:** BUSCA_COMB_003  
-**Descrição:** Valida regras avançadas e combinações entre busca, filtros e persistência
-
-### 1. Combinação busca + filtros
-- Executar busca por **"Reiki"**
-- Aplicar filtro **Valor: até R$100**
-- Verificar:
-  - Resultados respeitam ambos os critérios
-  - Contador de resultados é atualizado
-- Aplicar filtro **Acessibilidade: Sim**
-- Verificar:
-  - Interseção dos três critérios
-  - Caso zero resultados, mensagem adequada é exibida
-
-### 2. Ordem de aplicação
-- Aplicar filtro A
-- Executar busca por termo B
-- Verificar:
-  - Filtro A permanece ativo
-  - Resultado final é a interseção filtro A + termo B
-- Remover filtro A
-- Verificar:
-  - Busca mantém apenas o termo B
-
-### 3. Persistência entre telas
-- Aplicar múltiplos filtros
-- Sair da tela de busca
-- Retornar à tela
-- Verificar:
-  - Filtros continuam ativos
-  - Resultados são recarregados automaticamente
-
-### 4. Limites e performance
-- Executar busca com termo amplo
-- Verificar:
-  - Exibição inicial limitada (20–50 itens)
-  - Paginação ou scroll infinito funcional
-  - Tempo de resposta menor que 3 segundos
+| Campo | Descrição |
+|------|----------|
+| ID | CT-003 |
+| Título | Termo inexistente |
+| Pré-condição | — |
+| Dados de teste | "Inexistenteterapia" |
+| Passos | 1. Executar busca |
+| Resultado esperado | Mensagem de nenhum resultado |
 
 ---
 
-## CASO 4: UI/UX e Interface
+## CT-004 — Busca vazia
 
-**ID:** BUSCA_UI_004  
-**Descrição:** Avaliação visual, usabilidade e acessibilidade
-
-### 1. Elementos Visíveis
-- Barra de busca visível e centralizada
-- Botão de filtros com ícone claro
-- Chips organizados corretamente
-- Contador de resultados visível
-- Loading spinner durante carregamento
-
-### 2. Comportamento Visual
-- Placeholder claro no campo de busca
-- Chips selecionados mudam de cor
-- Filtros ativos indicados visualmente
-- Estados vazio/erro com ícones adequados
-- Animações suaves
-
-### 3. Responsividade
-- Mobile: campo ocupa largura adequada
-- Tablet: layout se ajusta corretamente
-- Desktop: distribuição equilibrada
-
-### 4. Acessibilidade
-- Navegação por teclado funcional
-- Leitores de tela leem corretamente os resultados
-- Contraste de cores adequado
-- Indicação clara de foco
+| Campo | Descrição |
+|------|----------|
+| ID | CT-004 |
+| Título | Comportamento com campo vazio |
+| Pré-condição | — |
+| Dados de teste | Campo vazio |
+| Passos | 1. Executar busca sem termo |
+| Resultado esperado | Exibe todos ou mantém estado |
 
 ---
 
-## Matriz de Cobertura Garantida
+## CT-005 — Uso de chip de especialidade
 
-| Requisito | Caso | Status |
-|---------|------|-------|
-| Busca por especialidade | BUSCA_MAIN_001 | ✅ |
-| Termo inexistente | BUSCA_ERROR_002 | ✅ |
-| Botão de filtros | BUSCA_MAIN_001 | ✅ |
-| Chips de especialidade | BUSCA_MAIN_001 | ✅ |
-| Chips dinâmicos | BUSCA_MAIN_001 | ✅ |
-| Termos compostos | BUSCA_MAIN_001 | ✅ |
-| Erro de conexão | BUSCA_ERROR_002 | ✅ |
-| Interface | BUSCA_UI_004 | ✅ |
-| Combinação busca + filtro | BUSCA_COMB_003 | ✅ |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-005 |
+| Título | Seleção de chip |
+| Pré-condição | Chips disponíveis |
+| Dados de teste | Chip "Cura Prânica" |
+| Passos | 1. Clicar no chip |
+| Resultado esperado | Filtro aplicado · Chip destacado |
+
+---
+
+## CT-006 — Remoção de chip
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-006 |
+| Título | Deseleção de chip |
+| Pré-condição | Chip selecionado |
+| Dados de teste | — |
+| Passos | 1. Clicar novamente no chip |
+| Resultado esperado | Filtro removido |
+
+---
+
+## CT-007 — Aplicação de filtro simples
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-007 |
+| Título | Filtro de acessibilidade |
+| Pré-condição | Profissionais com e sem acessibilidade |
+| Dados de teste | Acessibilidade: Sim |
+| Passos | 1. Abrir filtros <br> 2. Selecionar opção <br> 3. Aplicar |
+| Resultado esperado | Apenas profissionais compatíveis exibidos |
+
+---
+
+## CT-008 — Combinação de filtros
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-008 |
+| Título | Interseção de múltiplos filtros |
+| Pré-condição | Dados variados disponíveis |
+| Dados de teste | Especialidade + Acessibilidade + Valor |
+| Passos | 1. Aplicar múltiplos filtros |
+| Resultado esperado | Resultados respeitam interseção |
+
+---
+
+## CT-009 — Remoção de filtros
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-009 |
+| Título | Limpar filtros |
+| Pré-condição | Filtros ativos |
+| Dados de teste | — |
+| Passos | 1. Limpar filtros |
+| Resultado esperado | Retorno ao estado inicial |
+
+---
+
+## CT-010 — Busca + filtro combinado
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-010 |
+| Título | Busca com filtro ativo |
+| Pré-condição | — |
+| Dados de teste | "Reiki" + Valor até 100 |
+| Passos | 1. Buscar termo <br> 2. Aplicar filtro |
+| Resultado esperado | Interseção correta |
+
+---
+
+## CT-011 — Persistência de filtros
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-011 |
+| Título | Persistência ao navegar |
+| Pré-condição | Filtros aplicados |
+| Dados de teste | — |
+| Passos | 1. Sair da tela <br> 2. Retornar |
+| Resultado esperado | Filtros mantidos |
+
+---
+
+## CT-012 — Paginação ou carregamento incremental
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-012 |
+| Título | Carregamento de muitos resultados |
+| Pré-condição | Grande volume de dados |
+| Dados de teste | Busca ampla |
+| Passos | 1. Executar busca |
+| Resultado esperado | Paginação ou scroll funcional |
+
+---
+
+## CT-013 — Falha de rede
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-013 |
+| Título | Tratamento de erro de conexão |
+| Pré-condição | Simulação offline |
+| Dados de teste | — |
+| Passos | 1. Executar busca sem conexão |
+| Resultado esperado | Mensagem de erro + retry |
+
+---
+
+## CT-014 — Timeout de resposta
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-014 |
+| Título | Resposta lenta do servidor |
+| Pré-condição | Simulação de delay |
+| Dados de teste | >10s |
+| Passos | 1. Executar busca |
+| Resultado esperado | Loading + timeout controlado |
+
+---
+
+## CT-015 — UI básica da busca
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-015 |
+| Título | Verificação de elementos principais |
+| Pré-condição | Tela carregada |
+| Dados de teste | — |
+| Passos | 1. Visualizar tela |
+| Resultado esperado | Campo, botão, chips e contador visíveis |
+
+---
+
+## CT-016 — Acessibilidade básica
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-016 |
+| Título | Navegação por teclado |
+| Pré-condição | — |
+| Dados de teste | — |
+| Passos | 1. Navegar com teclado |
+| Resultado esperado | Foco visível · Navegação funcional |
+
+---
