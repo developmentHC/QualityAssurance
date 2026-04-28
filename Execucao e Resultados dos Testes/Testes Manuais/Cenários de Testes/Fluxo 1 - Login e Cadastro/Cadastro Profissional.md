@@ -1,159 +1,252 @@
-# Plano de Testes — Cadastro de Profissional
-**Sistema:** ConectaBem | **Versão:** 2.0
+# Casos de Teste — Cadastro de Profissional
+Sistema: ConectaBem  
+Versão: 2.0  
 
 ---
 
-## Resumo
+## CT-001 — Cadastro com sucesso via Email
 
-| Métrica                    | Original | Otimizado | Redução |
-|---------------------------|----------|-----------|---------|
-| Casos de Teste             | 25       | 5         | 80%     |
-| Cenários Separados         | 6        | 1         | 83%     |
-| Validações Individuais     | 11       | 1         | 91%     |
-
----
-
-## CAD_PRO_MAIN_001 — Fluxo Principal Completo
-
-| Info | Detalhe |
-|------|---------|
-| Técnica | Particionamento de Equivalência + Tabela de Decisão |
-| Risco | Alto |
-| Automatizável | Sim |
-
-| Componente | Cenários Incluídos | Criticidade |
-|-----------|-------------------|-------------|
-| Autenticação | Google com permissão / Email com OTP válido | Alta |
-| Dados Pessoais | Nome (limites), Idade (18–110), CEP residencial | Alta |
-| Dados Profissionais | Clínica, CPF/CNPJ, CEP profissional, Endereço | Alta |
-| Especialidades | Mínimo 1 selecionada | Alta |
-| Preferences | Vazio, nulo ou múltiplos itens | Média |
-| Sugestão | Mínimo 1 caractere | Média |
-| Finalização | Autenticação + redirecionamento | Alta |
-
-| # | Passo | Detalhe |
-|---|-------|---------|
-| 1 | Acessar o ConectaBem | — |
-| 2 | Realizar login | Google ou Email |
-| 3 | Selecionar perfil | Profissional |
-| 4 | Etapa — Dados Pessoais | Nome ≥10 chars · Data nascimento · CEP residencial · Endereço completo |
-| 5 | Etapa — Dados Profissionais | Nome da clínica · CPF ou CNPJ · CEP profissional · Endereço · Número ≥1 · Complemento (opcional) |
-| 6 | Etapa — Especialidades | Selecionar ao menos 1 |
-| 7 | Etapa — Preferences | Configurar (opcional) |
-| 8 | Etapa — Sugestão | Inserir mínimo 1 caractere |
-| 9 | Finalizar cadastro | — |
-
-| Resultado Esperado | Critério de Aceitação |
-|--------------------|-----------------------|
-| Registro de data/hora do cadastro | Ambos os métodos de login funcionam |
-| Autenticação automática | Validações em tempo real |
-| Redirecionamento para Home autenticada | Botão Continuar só habilita com campos válidos |
-| Perfil exibido como Profissional | Progresso salvo e persistente ao recarregar |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-001 |
+| Título | Cadastro de profissional com dados válidos via email |
+| Pré-condição | Usuário não cadastrado |
+| Dados de teste | Nome completo válido · Idade: 30 · CPF válido · CEP válido · Especialidade selecionada |
+| Passos | 1. Acessar sistema <br> 2. Selecionar login por email <br> 3. Inserir email válido <br> 4. Informar OTP correto <br> 5. Preencher dados pessoais <br> 6. Preencher dados profissionais <br> 7. Selecionar especialidade <br> 8. Finalizar cadastro |
+| Resultado esperado | Cadastro realizado com sucesso · Usuário autenticado · Redirecionamento para home |
 
 ---
 
-## CAD_PRO_VALID_002 — Validações de Campos
+## CT-002 — Cadastro com sucesso via Google
 
-| Info | Detalhe |
-|------|---------|
-| Técnica | Tabela de Decisão + Análise de Valor Limite |
-| Risco | Alto |
-| Automatizável | Sim |
-
-| Campo | Tipo | Valor Testado | Comportamento Esperado | Criticidade |
-|-------|------|--------------|------------------------|-------------|
-| Nome | Inválido | "Ana" | Erro: mínimo 10 caracteres | Alta |
-| Nome | Inválido | "João  Silva" | Erro: espaços duplicados | Média |
-| Nome | Válido | "Maria Clara Souza" | Campo aceito | Alta |
-| Idade | Inválido | 17 | Erro: mínimo 18 anos | Alta |
-| Idade | Válido | 110 | Campo aceito | Alta |
-| CPF/CNPJ | Inválido | Documento inválido | Erro de validação | Alta |
-| CPF/CNPJ | Válido | Documento válido | Campo aceito | Alta |
-| CEP Profissional | Inválido | "00000-000" | CEP não encontrado | Média |
-| Endereço Clínica | Inválido | "Rua A" | Erro: mínimo 5 caracteres | Média |
-| Número | Inválido | 0 | Erro: número ≥1 | Média |
-| Especialidades | Inválido | Nenhuma | Campo obrigatório | Alta |
-| Especialidades | Válido | Uma ou mais | Campo aceito | Alta |
-| Preferences | Opcional | Vazio ou nulo | Campo aceito | Baixa |
-| Sugestão | Inválido | Vazio | Erro: mínimo 1 caractere | Média |
-
-**Combinações críticas:**
-
-| Cenário | Campos com erro | Resultado |
-|---------|----------------|-----------|
-| Múltiplos erros | Nome inválido · Idade inválida · CPF inválido · Sem especialidade | Múltiplos erros simultâneos · Botão desabilitado |
-| CPF como PJ | CPF inserido em campo Pessoa Jurídica | Erro de tipo de documento |
-| CNPJ como PF | CNPJ inserido em campo Pessoa Física | Erro de tipo de documento |
-| Documento compatível | Tipo correto selecionado | Campo aceito |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-002 |
+| Título | Cadastro de profissional via Google |
+| Pré-condição | Conta Google válida |
+| Dados de teste | Conta Google ativa |
+| Passos | 1. Acessar sistema <br> 2. Selecionar login Google <br> 3. Conceder permissões <br> 4. Preencher dados obrigatórios <br> 5. Finalizar cadastro |
+| Resultado esperado | Cadastro realizado com sucesso |
 
 ---
 
-## CAD_PRO_EXC_003 — Exceções de Autenticação e Duplicidade
+## CT-003 — Nome inválido (menos de 10 caracteres)
 
-| Info | Detalhe |
-|------|---------|
-| Técnica | Particionamento de Equivalência |
-| Risco | Médio-Alto |
-| Automatizável | Sim |
-
-| Cenário | Comportamento Esperado | Risco |
-|---------|------------------------|-------|
-| Google sem permissão | Mensagem clara + retorno à tela inicial | Médio |
-| OTP expirado | Mensagem + opção de reenvio | Médio |
-| 5 tentativas OTP erradas | Bloqueio temporário | Médio |
-| Email já vinculado a Paciente | Bloqueio imediato + mensagem explicativa + opções de ação | Alto |
-| Email já vinculado a Profissional | Detecção no envio do OTP · Orientação para login ou recuperação | Alto |
-| Falha ao salvar | Mensagem de erro + recuperação de dados | Médio |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-003 |
+| Título | Validação de nome curto |
+| Pré-condição | Usuário na etapa de dados pessoais |
+| Dados de teste | Nome: "Ana" |
+| Passos | 1. Inserir nome inválido <br> 2. Tentar avançar |
+| Resultado esperado | Exibição de erro · Bloqueio de avanço |
 
 ---
 
-## CAD_PRO_STATE_004 — Workflow e Persistência
+## CT-004 — Nome com espaços duplicados
 
-| Info | Detalhe |
-|------|---------|
-| Técnica | Transição de Estados |
-| Risco | Médio |
-| Automatizável | Parcial |
-
-| De | Para | Condição | Resultado |
-|----|------|----------|-----------|
-| Dados Pessoais | Dados Profissionais | CPF inválido | Bloqueia ✗ |
-| Dados Profissionais | Especialidades | Sem especialidade | Bloqueia ✗ |
-| Qualquer etapa | Rascunho | Dados parcialmente válidos | Salva ✓ |
-| Revisão | Especialidades | Voltar | Mantém dados ✓ |
-| Conexão perdida | Reconexão | Etapa intermediária | Recupera tudo ✓ |
-| Fechamento do navegador | Retorno | Qualquer etapa | Recupera dados ✓ |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-004 |
+| Título | Validação de nome com espaços inválidos |
+| Pré-condição | Usuário na etapa de dados pessoais |
+| Dados de teste | Nome: "João  Silva" |
+| Passos | 1. Inserir nome <br> 2. Validar campo |
+| Resultado esperado | Exibição de erro |
 
 ---
 
-## CAD_PRO_BUSINESS_005 — Regras de Negócio
+## CT-005 — Idade menor que 18
 
-| Info | Detalhe |
-|------|---------|
-| Técnica | Testes Baseados em Regras de Negócio |
-| Risco | Alto |
-| Automatizável | Sim |
-
-| Pessoa Física | CNPJ | Clínica | Resultado |
-|:---:|:---:|:---:|---------|
-| Sim | Não | Não | Cadastro individual ✓ |
-| Sim | Sim | Sim | Cadastro com clínica ✓ |
-| Não (PJ) | Sim | Sim | Cadastro empresarial ✓ |
-| Não (PJ) | Não | — | Erro: CNPJ obrigatório ✗ |
-
-> Endereço profissional igual ao residencial é **permitido** com aviso ao usuário.
+| Campo | Descrição |
+|------|----------|
+| ID | CT-005 |
+| Título | Validação de idade mínima |
+| Pré-condição | Usuário na etapa de dados pessoais |
+| Dados de teste | Idade: 17 |
+| Passos | 1. Inserir idade inválida |
+| Resultado esperado | Exibição de erro |
 
 ---
 
-## Matriz de Cobertura
+## CT-006 — CPF inválido
 
-| Requisito | Casos Cobertos | Risco | Status |
-|-----------|---------------|-------|--------|
-| RF-P01 | MAIN_001 + VALID_002 | Alto | ✓ OK |
-| RF-P02 | MAIN_001 + VALID_002 | Alto | ✓ OK |
-| RF-P03 | MAIN_001 | Médio | ✓ OK |
-| RF-P04 | MAIN_001 + VALID_002 | Baixo | ✓ OK |
-| RF-P05 | EXC_003 + BUSINESS_005 | Alto | ✓ OK |
-| RF-P06 | VALID_002 + BUSINESS_005 | Alto | ✓ OK |
-| RF-P07 | STATE_004 | Médio | ✓ OK |
-| RF-P08 | STATE_004 | Médio | ✓ OK |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-006 |
+| Título | Validação de CPF inválido |
+| Pré-condição | Campo de documento disponível |
+| Dados de teste | CPF inválido |
+| Passos | 1. Inserir CPF inválido |
+| Resultado esperado | Exibição de erro de validação |
+
+---
+
+## CT-007 — CNPJ inválido
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-007 |
+| Título | Validação de CNPJ inválido |
+| Pré-condição | Seleção de pessoa jurídica |
+| Dados de teste | CNPJ inválido |
+| Passos | 1. Selecionar PJ <br> 2. Inserir CNPJ inválido |
+| Resultado esperado | Exibição de erro |
+
+---
+
+## CT-008 — CEP profissional inválido
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-008 |
+| Título | CEP profissional inválido |
+| Pré-condição | Etapa de dados profissionais |
+| Dados de teste | CEP: "00000-000" |
+| Passos | 1. Inserir CEP |
+| Resultado esperado | Mensagem de CEP não encontrado |
+
+---
+
+## CT-009 — Endereço com tamanho inválido
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-009 |
+| Título | Validação de endereço curto |
+| Pré-condição | Campo endereço disponível |
+| Dados de teste | "Rua A" |
+| Passos | 1. Inserir endereço |
+| Resultado esperado | Exibição de erro |
+
+---
+
+## CT-010 — Número do endereço inválido
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-010 |
+| Título | Validação de número do endereço |
+| Pré-condição | Campo número disponível |
+| Dados de teste | Número: 0 |
+| Passos | 1. Inserir número inválido |
+| Resultado esperado | Exibição de erro |
+
+---
+
+## CT-011 — Nenhuma especialidade selecionada
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-011 |
+| Título | Validação de especialidade obrigatória |
+| Pré-condição | Etapa de especialidades |
+| Dados de teste | Nenhuma selecionada |
+| Passos | 1. Tentar avançar |
+| Resultado esperado | Exibição de erro · Bloqueio de avanço |
+
+---
+
+## CT-012 — Sugestão vazia
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-012 |
+| Título | Validação de campo sugestão |
+| Pré-condição | Campo sugestão disponível |
+| Dados de teste | Campo vazio |
+| Passos | 1. Tentar finalizar |
+| Resultado esperado | Exibição de erro |
+
+---
+
+## CT-013 — Email já cadastrado como paciente
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-013 |
+| Título | Email vinculado a paciente |
+| Pré-condição | Email já cadastrado como paciente |
+| Dados de teste | Email existente |
+| Passos | 1. Inserir email <br> 2. Prosseguir |
+| Resultado esperado | Bloqueio · Mensagem explicativa |
+
+---
+
+## CT-014 — OTP inválido
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-014 |
+| Título | Validação de OTP incorreto |
+| Pré-condição | OTP enviado |
+| Dados de teste | OTP inválido |
+| Passos | 1. Inserir OTP incorreto |
+| Resultado esperado | Mensagem de erro |
+
+---
+
+## CT-015 — Limite de tentativas de OTP
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-015 |
+| Título | Bloqueio por tentativas inválidas |
+| Pré-condição | Sistema com controle de tentativas |
+| Dados de teste | OTP inválido repetido |
+| Passos | 1. Inserir OTP inválido 5 vezes |
+| Resultado esperado | Bloqueio temporário |
+
+---
+
+## CT-016 — Persistência de dados
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-016 |
+| Título | Recuperação após reload |
+| Pré-condição | Dados parcialmente preenchidos |
+| Dados de teste | Dados válidos |
+| Passos | 1. Preencher formulário <br> 2. Recarregar página |
+| Resultado esperado | Dados persistem |
+
+---
+
+## CT-017 — Cadastro Pessoa Física válido
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-017 |
+| Título | Cadastro como pessoa física |
+| Pré-condição | Seleção de PF |
+| Dados de teste | CPF válido · Sem clínica |
+| Passos | 1. Preencher dados PF <br> 2. Finalizar |
+| Resultado esperado | Cadastro realizado com sucesso |
+
+---
+
+## CT-018 — Cadastro Pessoa Jurídica válido
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-018 |
+| Título | Cadastro como pessoa jurídica |
+| Pré-condição | Seleção de PJ |
+| Dados de teste | CNPJ válido · Clínica preenchida |
+| Passos | 1. Selecionar PJ <br> 2. Preencher dados <br> 3. Finalizar |
+| Resultado esperado | Cadastro realizado com sucesso |
+
+---
+
+## CT-019 — PJ sem CNPJ
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-019 |
+| Título | Validação de CNPJ obrigatório |
+| Pré-condição | Seleção de PJ |
+| Dados de teste | CNPJ vazio |
+| Passos | 1. Tentar finalizar |
+| Resultado esperado | Exibição de erro |
+
+---
