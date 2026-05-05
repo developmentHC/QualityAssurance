@@ -1,108 +1,198 @@
-# Casos de Teste — Agendamento de Paciente
-
+# Casos de Teste — Cadastro de Paciente
 Sistema: ConectaBem  
 Versão: 2.0  
 
 ---
 
-## CT-AGEND-001 — Agendamento com sucesso (fluxo simples)
+## CT-001 — Cadastro com sucesso via Email
 
 | Campo | Descrição |
 |------|----------|
-| ID | CT-AGEND-001 |
-| Título | Agendamento de paciente com um serviço |
-| Pré-condição | Usuário logado · Profissional com agenda disponível |
-| Dados de teste | 1 serviço válido · Data futura válida · Horário disponível |
-| Passos | 1. Acessar perfil do profissional <br> 2. Selecionar 1 serviço <br> 3. Clicar em "Solicitar Agendamento" <br> 4. Selecionar data válida <br> 5. Selecionar horário disponível <br> 6. Confirmar agendamento |
-| Resultado esperado | Agendamento realizado com sucesso · Exibição correta dos dados · Mensagem de confirmação |
+| ID | CT-001 |
+| Título | Cadastro de paciente com dados válidos via email |
+| Pré-condição | Usuário não cadastrado · Sistema disponível |
+| Dados de teste | Nome: Maria Silva · Idade: 25 · CEP: 01001-000 · Email válido |
+| Passos | 1. Acessar sistema <br> 2. Selecionar login por email <br> 3. Informar email válido <br> 4. Inserir OTP correto <br> 5. Preencher formulário com dados válidos <br> 6. Finalizar cadastro |
+| Resultado esperado | Cadastro realizado com sucesso · Usuário autenticado · Redirecionamento para home |
 
 ---
 
-## CT-AGEND-002 — Agendamento com múltiplos serviços
+## CT-002 — Cadastro com sucesso via Google
 
 | Campo | Descrição |
 |------|----------|
-| ID | CT-AGEND-002 |
-| Título | Agendamento com combinação de serviços |
-| Pré-condição | Usuário logado · Serviços com durações diferentes |
-| Dados de teste | Serviço A (30min) · Serviço B (60min) |
-| Passos | 1. Acessar perfil <br> 2. Selecionar múltiplos serviços <br> 3. Solicitar agendamento <br> 4. Selecionar horário válido <br> 5. Confirmar |
-| Resultado esperado | Soma correta das durações · Horários compatíveis exibidos · Agendamento concluído |
+| ID | CT-002 |
+| Título | Cadastro de paciente via login Google |
+| Pré-condição | Conta Google válida · Usuário não cadastrado |
+| Dados de teste | Conta Google ativa |
+| Passos | 1. Acessar sistema <br> 2. Selecionar login Google <br> 3. Conceder permissões <br> 4. Preencher dados obrigatórios <br> 5. Finalizar cadastro |
+| Resultado esperado | Cadastro realizado com sucesso · Usuário autenticado |
 
 ---
 
-## CT-AGEND-003 — Validações obrigatórias
+## CT-003 — Nome inválido (menos de 3 caracteres)
 
 | Campo | Descrição |
 |------|----------|
-| ID | CT-AGEND-003 |
-| Título | Validação de campos obrigatórios no agendamento |
-| Pré-condição | Usuário no fluxo de agendamento |
-| Dados de teste | Nenhum serviço selecionado |
-| Passos | 1. Tentar solicitar agendamento sem selecionar serviço |
-| Resultado esperado | Mensagem: "Selecione pelo menos um serviço" · Bloqueio de avanço |
+| ID | CT-003 |
+| Título | Validação de nome inválido |
+| Pré-condição | Usuário na etapa de cadastro |
+| Dados de teste | Nome: "Jo" |
+| Passos | 1. Inserir nome inválido <br> 2. Tentar avançar |
+| Resultado esperado | Exibição de erro · Bloqueio de avanço |
 
 ---
 
-## CT-AGEND-004 — Validação de data e hora
+## CT-004 — Idade menor que 18
 
 | Campo | Descrição |
 |------|----------|
-| ID | CT-AGEND-004 |
-| Título | Validação de restrições de data e horário |
-| Pré-condição | Usuário no calendário |
-| Dados de teste | Data passada · Horário fora do expediente · Horário ocupado |
-| Passos | 1. Selecionar data passada <br> 2. Selecionar horário inválido <br> 3. Selecionar horário ocupado |
-| Resultado esperado | Bloqueio das seleções inválidas · Mensagens de erro apropriadas |
+| ID | CT-004 |
+| Título | Validação de idade mínima |
+| Pré-condição | Usuário na etapa de cadastro |
+| Dados de teste | Idade: 17 |
+| Passos | 1. Inserir idade inválida <br> 2. Tentar avançar |
+| Resultado esperado | Exibição de erro · Impedir continuidade |
 
 ---
 
-## CT-AGEND-005 — Regras de negócio
+## CT-005 — Idade maior que 110
 
 | Campo | Descrição |
 |------|----------|
-| ID | CT-AGEND-005 |
-| Título | Validação de regras de agendamento |
-| Pré-condição | Regras configuradas (antecedência, limite diário, etc.) |
-| Dados de teste | Agendamento < 24h · Mais de 5 agendamentos no dia |
-| Passos | 1. Tentar agendar com menos de 24h <br> 2. Exceder limite diário |
-| Resultado esperado | Bloqueio com mensagens claras · Regras aplicadas corretamente |
+| ID | CT-005 |
+| Título | Validação de idade máxima |
+| Pré-condição | Usuário na etapa de cadastro |
+| Dados de teste | Idade: 111 |
+| Passos | 1. Inserir idade inválida <br> 2. Tentar avançar |
+| Resultado esperado | Exibição de erro |
 
 ---
 
-## CT-AGEND-006 — Tratamento de erros
+## CT-006 — CEP inválido (formato incorreto)
 
 | Campo | Descrição |
 |------|----------|
-| ID | CT-AGEND-006 |
-| Título | Tratamento de falhas no agendamento |
-| Pré-condição | Sistema com possibilidade de falha simulada |
-| Dados de teste | Timeout · Falha de rede · Conflito de agenda |
-| Passos | 1. Realizar agendamento durante falha <br> 2. Simular timeout <br> 3. Gerar conflito de horário |
-| Resultado esperado | Mensagens de erro exibidas · Opção de retry · Nenhuma duplicação de agendamento |
+| ID | CT-006 |
+| Título | Validação de formato de CEP |
+| Pré-condição | Usuário na etapa de endereço |
+| Dados de teste | CEP: "12345" |
+| Passos | 1. Inserir CEP inválido <br> 2. Sair do campo |
+| Resultado esperado | Exibição de erro de formato |
 
 ---
 
-## CT-AGEND-007 — Navegação e sessão
+## CT-007 — CEP inexistente
 
 | Campo | Descrição |
 |------|----------|
-| ID | CT-AGEND-007 |
-| Título | Controle de navegação e sessão |
-| Pré-condição | Usuário em fluxo ativo |
-| Dados de teste | Sessão expirada |
-| Passos | 1. Avançar etapas <br> 2. Voltar etapas <br> 3. Expirar sessão |
-| Resultado esperado | Manutenção ou limpeza de dados conforme regra · Redirecionamento para login |
+| ID | CT-007 |
+| Título | Validação de CEP não encontrado |
+| Pré-condição | Integração com serviço de CEP ativa |
+| Dados de teste | CEP: "00000-000" |
+| Passos | 1. Inserir CEP <br> 2. Aguardar validação |
+| Resultado esperado | Mensagem de CEP não encontrado |
 
 ---
 
-## CT-AGEND-008 — UI/UX e usabilidade
+## CT-008 — Email já cadastrado
 
 | Campo | Descrição |
 |------|----------|
-| ID | CT-AGEND-008 |
-| Título | Validação de interface e experiência do usuário |
-| Pré-condição | Sistema acessível em desktop e mobile |
-| Dados de teste | Fluxo completo |
-| Passos | 1. Validar layout da página <br> 2. Validar feedback visual (erro, sucesso, loading) <br> 3. Executar fluxo completo <br> 4. Testar navegação por teclado <br> 5. Testar responsividade |
-| Resultado esperado | Interface clara · Feedback visual correto · Fluxo intuitivo · Responsividade adequada |
+| ID | CT-008 |
+| Título | Validação de email duplicado |
+| Pré-condição | Email já existente na base |
+| Dados de teste | Email previamente cadastrado |
+| Passos | 1. Inserir email <br> 2. Prosseguir |
+| Resultado esperado | Mensagem de erro: email já cadastrado |
+
+---
+
+## CT-009 — OTP incorreto
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-009 |
+| Título | Validação de OTP inválido |
+| Pré-condição | OTP enviado |
+| Dados de teste | OTP inválido |
+| Passos | 1. Inserir OTP incorreto |
+| Resultado esperado | Mensagem de erro · Tentativa contabilizada |
+
+---
+
+## CT-010 — OTP expirado
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-010 |
+| Título | Validação de OTP expirado |
+| Pré-condição | OTP gerado anteriormente |
+| Dados de teste | OTP expirado |
+| Passos | 1. Inserir OTP expirado |
+| Resultado esperado | Mensagem de expiração · Opção de reenvio |
+
+---
+
+## CT-011 — Limite de tentativas de OTP
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-011 |
+| Título | Bloqueio após múltiplas tentativas inválidas |
+| Pré-condição | Sistema com controle de tentativas ativo |
+| Dados de teste | OTP inválido repetido 5 vezes |
+| Passos | 1. Inserir OTP inválido 5 vezes |
+| Resultado esperado | Bloqueio temporário de autenticação |
+
+---
+
+## CT-012 — Campos obrigatórios vazios
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-012 |
+| Título | Validação de campos obrigatórios |
+| Pré-condição | Usuário na etapa de cadastro |
+| Dados de teste | Campos obrigatórios vazios |
+| Passos | 1. Tentar avançar sem preencher |
+| Resultado esperado | Exibição de erros nos campos · Bloqueio de avanço |
+
+---
+
+## CT-013 — Persistência de dados após reload
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-013 |
+| Título | Persistência de dados |
+| Pré-condição | Usuário iniciou preenchimento |
+| Dados de teste | Dados válidos parcialmente preenchidos |
+| Passos | 1. Preencher etapa 1 <br> 2. Recarregar página |
+| Resultado esperado | Dados devem ser mantidos |
+
+---
+
+## CT-014 — Navegação entre etapas
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-014 |
+| Título | Controle de avanço entre etapas |
+| Pré-condição | Usuário no fluxo de cadastro |
+| Dados de teste | Dados válidos e inválidos |
+| Passos | 1. Tentar avançar com dados inválidos <br> 2. Corrigir dados <br> 3. Avançar |
+| Resultado esperado | Bloqueio com erro · Avanço após correção |
+
+---
+
+## CT-015 — Finalização do cadastro
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-015 |
+| Título | Finalização do fluxo de cadastro |
+| Pré-condição | Todas etapas preenchidas corretamente |
+| Dados de teste | Dados válidos |
+| Passos | 1. Revisar dados <br> 2. Confirmar cadastro |
+| Resultado esperado | Cadastro concluído · Redirecionamento para home |
