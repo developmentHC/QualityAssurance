@@ -1,238 +1,108 @@
-# Plano de Testes Otimizado – Agendamento Profissional
+# Casos de Teste — Gestão de Agendamentos (Profissional)
 
-> **Funcionalidade**: Gestão de Agendamentos (Lado Profissional)  
-> **Sistema**: ConectaBem  
-> **Versão**: 2.0 (Otimizada)  
-> **Status**: Consolidado em 4 Casos Principais
+Sistema: ConectaBem  
+Versão: 2.0  
 
 ---
 
-## Resumo da Otimização
+## CT-PRO-AGEND-001 — Confirmação de agendamento
 
-| Métrica | Original | Otimizado | Redução |
-|-------|----------|-----------|--------|
-| Casos de Teste | 14 | 4 | 71% |
-| Cenários Separados | 14 | 1 (estruturado) | 93% |
-| Estados Testados | 14+ | 1 matriz completa | 93% |
-
----
-
-## Casos de Teste
-
----
-
-## CASO 1: Gestão Completa de Agendamentos
-
-**ID:** AGEND_PRO_MAIN_001  
-**Descrição:** Testa todas as ações principais do profissional sobre agendamentos
-
-### O que este caso cobre
-- Visualização de agendamentos pendentes
-- Acesso aos detalhes do agendamento
-- Confirmação de agendamento
-- Cancelamento de agendamento
-- Visualização em calendário
-- Atualização automática das listas
-
-### Passos Consolidados (Fluxo Principal)
-
-#### 1. Confirmação completa de agendamento
-- Estar logado como profissional
-- Acessar a home do sistema
-- Verificar:
-  - Lista de agendamentos pendentes
-  - Exibição de nome do paciente, serviço, data, hora e botões de ação
-- Clicar em **"Informações do Agendamento"**
-- Verificar página de detalhes com:
-  - Dados do paciente
-  - Serviço
-  - Data e hora
-  - Status atual
-- Clicar em **"Confirmar Agendamento"**
-- Verificar:
-  - Status alterado para **Confirmado**
-  - Mensagem de sucesso exibida
-  - Notificação enviada ao paciente (simulada ou via log)
-- Retornar à home
-- Verificar:
-  - Agendamento removido da lista de pendentes
-- Acessar **"Meus Agendamentos"**
-- Verificar:
-  - Agendamento exibido como **Confirmado** no calendário
-
-#### 2. Cancelamento completo de agendamento
-- Ter um agendamento em estado **Pendente** ou **Confirmado**
-- Acessar os detalhes do agendamento
-- Clicar em **"Cancelar Agendamento"**
-- Confirmar a ação
-- Verificar:
-  - Status alterado para **Cancelado**
-  - Mensagem de confirmação exibida
-  - Paciente notificado do cancelamento
-- Retornar às listas
-- Verificar:
-  - Agendamento exibido como **Cancelado**
-  - Impossibilidade de confirmar novamente
+| Campo | Descrição |
+|------|----------|
+| ID | CT-PRO-AGEND-001 |
+| Título | Confirmação de agendamento pelo profissional |
+| Pré-condição | Profissional logado · Agendamento em estado Pendente |
+| Dados de teste | Agendamento válido com paciente, serviço e horário |
+| Passos | 1. Acessar home <br> 2. Visualizar lista de pendentes <br> 3. Acessar detalhes do agendamento <br> 4. Validar dados exibidos <br> 5. Clicar em "Confirmar Agendamento" |
+| Resultado esperado | Status alterado para Confirmado · Mensagem de sucesso · Notificação enviada ao paciente · Agendamento removido da lista de pendentes · Exibido no calendário |
 
 ---
 
-## CASO 2: Matriz de Estados e Transições
+## CT-PRO-AGEND-002 — Cancelamento de agendamento
 
-**ID:** AGEND_PRO_STATE_002  
-**Descrição:** Centraliza todos os estados possíveis do agendamento e suas transições
-
-### Matriz de Estados do Agendamento
-
-| Estado Atual | Ação Tentada | Resultado Esperado | Criticidade |
-|------------|-------------|--------------------|------------|
-| Pendente | Confirmar | Status muda para Confirmado + notificação | Alta |
-| Pendente | Cancelar | Status muda para Cancelado + notificação | Alta |
-| Confirmado | Cancelar | Status muda para Cancelado + notificação | Alta |
-| Confirmado | Confirmar | Ação bloqueada ou mensagem "Já confirmado" | Média |
-| Cancelado | Confirmar | Mensagem "Agendamento já cancelado" | Alta |
-| Cancelado | Cancelar | Ação bloqueada ou mensagem informativa | Média |
-| Qualquer | Falha de rede | Mensagem de erro + estado mantido | Alta |
-| Lista vazia | Acessar home | Mensagem "Não há agendamentos pendentes" | Baixa |
-| Qualquer | Filtro por data | Lista filtrada corretamente | Média |
-| Qualquer | Sessão expirada | Redireciona para login | Alta |
-
-### Transições de Estado Permitidas
-- Pendente → Confirmado → Fim
-- Pendente → Cancelado → Fim
-- Confirmado → Cancelado → Fim
-
-### Transições Bloqueadas
-- Cancelado → Confirmado
-- Confirmado → Confirmado
-- Cancelado → Cancelado
-
-### Passo Padrão de Execução
-- Para cada linha da matriz:
-  - Garantir o estado inicial do agendamento
-  - Executar a ação correspondente
-  - Validar o resultado esperado
+| Campo | Descrição |
+|------|----------|
+| ID | CT-PRO-AGEND-002 |
+| Título | Cancelamento de agendamento |
+| Pré-condição | Agendamento em estado Pendente ou Confirmado |
+| Dados de teste | Agendamento existente |
+| Passos | 1. Acessar detalhes do agendamento <br> 2. Clicar em "Cancelar Agendamento" <br> 3. Confirmar ação <br> 4. (Opcional) Inserir justificativa |
+| Resultado esperado | Status alterado para Cancelado · Mensagem de confirmação · Notificação ao paciente · Bloqueio de novas ações sobre o agendamento |
 
 ---
 
-## CASO 3: Regras de Negócio e Fluxos Alternativos
+## CT-PRO-AGEND-003 — Validação de estados e transições
 
-**ID:** AGEND_PRO_RULES_003  
-**Descrição:** Valida regras específicas, efeitos colaterais e cenários alternativos
-
-### 1. Notificações e efeitos colaterais
-- Confirmar um agendamento com sucesso
-- Verificar:
-  - Notificação enviada ao paciente
-  - Agendamento removido da lista de pendentes
-  - Agendamento aparece na lista de confirmados
-  - Horário bloqueado no calendário do profissional
-
-### 2. Conflitos de agenda
-- Simular dois agendamentos no mesmo horário
-- Tentar confirmar ambos
-- Verificar:
-  - Sistema bloqueia o conflito
-  - Ou, se ocorrer falha, alerta de sobreposição exibido
-
-### 3. Timeout e reconexão
-- Iniciar confirmação de agendamento
-- Simular expiração de sessão durante a ação
-- Verificar:
-  - Redirecionamento para login
-  - Ação não concluída
-  - Ao retornar, agendamento permanece no estado original
-
-### 4. Cancelamento com justificativa
-- Cancelar um agendamento
-- Caso o sistema solicite justificativa:
-  - Inserir motivo
-  - Confirmar cancelamento
-- Verificar:
-  - Motivo registrado
-  - Motivo enviado ao paciente
+| Campo | Descrição |
+|------|----------|
+| ID | CT-PRO-AGEND-003 |
+| Título | Controle de estados do agendamento |
+| Pré-condição | Agendamentos em diferentes estados (Pendente, Confirmado, Cancelado) |
+| Dados de teste | Agendamentos com estados variados |
+| Passos | 1. Tentar confirmar agendamento pendente <br> 2. Tentar cancelar agendamento pendente <br> 3. Tentar cancelar agendamento confirmado <br> 4. Tentar reconfirmar agendamento confirmado <br> 5. Tentar alterar agendamento cancelado |
+| Resultado esperado | Transições válidas executadas corretamente · Transições inválidas bloqueadas com mensagem adequada · Estado sempre consistente |
 
 ---
 
-## CASO 4: UI/UX e Experiência do Profissional
+## CT-PRO-AGEND-004 — Tratamento de erros e falhas
 
-**ID:** AGEND_PRO_UI_004  
-**Descrição:** Avaliação de interface, usabilidade e produtividade do profissional
-
-### 1. Home do Profissional
-- Lista de pendentes com:
-  - Nome do paciente
-  - Serviço
-  - Data
-  - Hora
-- Botões claros:
-  - Informações
-  - Confirmar
-  - Cancelar
-- Estado vazio com mensagem adequada
-- Contador de pendentes visível
-- Botão **"Ver todos os agendamentos"** funcional
-
-### 2. Página de Detalhes
-- Exibição de:
-  - Paciente
-  - Serviço
-  - Data
-  - Hora
-  - Status
-- Status destacado visualmente
-- Botões de ação bem posicionados
-- Histórico de ações (se disponível)
-
-### 3. Calendário "Meus Agendamentos"
-- Visualização mensal, semanal e diária
-- Agendamentos diferenciados por status
-- Filtro por data funcional
-- Navegação entre períodos
-- Clique no agendamento abre detalhes
-
-### 4. Feedback Visual
-- Botões com estados:
-  - Normal
-  - Hover
-  - Disabled
-  - Loading
-- Confirmações com modal ou toast claro
-- Mensagens de erro específicas
-- Loading durante ações assíncronas
-
-### 5. Responsividade
-- Mobile:
-  - Lista compacta e legível
-- Tablet:
-  - Calendário aproveita espaço
-- Desktop:
-  - Informações completas sem scroll excessivo
-
-### Teste de Usabilidade Específico
-- Considerar profissional com 20+ agendamentos pendentes
-- Acessar o sistema
-- Verificar:
-  - Confirmação de 5 agendamentos em menos de 3 minutos
-  - Nenhuma confusão entre dados
-  - Ausência de cliques desnecessários
-  - Feedback claro a cada ação
+| Campo | Descrição |
+|------|----------|
+| ID | CT-PRO-AGEND-004 |
+| Título | Resiliência a falhas no fluxo de gestão |
+| Pré-condição | Sistema com possibilidade de falha simulada |
+| Dados de teste | Timeout · Falha de rede · Sessão expirada |
+| Passos | 1. Tentar confirmar agendamento durante falha de rede <br> 2. Simular timeout na ação <br> 3. Simular expiração de sessão |
+| Resultado esperado | Mensagens de erro exibidas · Estado do agendamento não alterado indevidamente · Redirecionamento para login quando necessário |
 
 ---
 
-## Matriz de Cobertura Garantida
+## CT-PRO-AGEND-005 — Regras de negócio e conflitos
 
-| Funcionalidade | Coberto por | Status |
-|---------------|-----------|-------|
-| Visualizar pendentes | MAIN + UI | ✅ |
-| Ver detalhes | MAIN | ✅ |
-| Confirmar agendamento | MAIN + STATE | ✅ |
-| Acessar calendário | MAIN + UI | ✅ |
-| Filtrar por data | MAIN | ✅ |
-| Cancelar agendamento | MAIN + STATE | ✅ |
-| Validação de estados | STATE | ✅ |
-| Falha de comunicação | STATE | ✅ |
-| Atualização automática | MAIN | ✅ |
-| Sessão expirada | STATE | ✅ |
-| Validação de interface | UI | ✅ |
-| Fluxo completo confirmação | MAIN + RULES | ✅ |
-| Fluxo completo cancelamento | MAIN + RULES | ✅ |
+| Campo | Descrição |
+|------|----------|
+| ID | CT-PRO-AGEND-005 |
+| Título | Validação de regras e conflitos de agenda |
+| Pré-condição | Agenda com múltiplos agendamentos |
+| Dados de teste | Dois agendamentos no mesmo horário |
+| Passos | 1. Tentar confirmar dois agendamentos conflitantes <br> 2. Verificar bloqueio ou alerta <br> 3. Confirmar um agendamento <br> 4. Validar bloqueio do horário |
+| Resultado esperado | Sistema impede conflitos ou alerta sobre sobreposição · Horário corretamente bloqueado após confirmação |
+
+---
+
+## CT-PRO-AGEND-006 — Navegação e persistência
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-PRO-AGEND-006 |
+| Título | Navegação entre listas e persistência de estado |
+| Pré-condição | Profissional com agendamentos |
+| Dados de teste | Lista com múltiplos estados |
+| Passos | 1. Navegar entre home e "Meus Agendamentos" <br> 2. Filtrar por data <br> 3. Retornar à lista inicial |
+| Resultado esperado | Dados consistentes entre telas · Filtros aplicados corretamente · Atualização automática das listas |
+
+---
+
+## CT-PRO-AGEND-007 — UI/UX e usabilidade
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-PRO-AGEND-007 |
+| Título | Validação de interface e experiência do profissional |
+| Pré-condição | Sistema acessível em diferentes dispositivos |
+| Dados de teste | Lista com múltiplos agendamentos |
+| Passos | 1. Validar layout da home (pendentes) <br> 2. Validar página de detalhes <br> 3. Validar calendário <br> 4. Executar ações (confirmar/cancelar) <br> 5. Testar responsividade <br> 6. Navegar via teclado |
+| Resultado esperado | Interface clara e organizada · Feedback visual adequado · Navegação fluida · Responsividade funcional |
+
+---
+
+## CT-PRO-AGEND-008 — Performance e produtividade
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-PRO-AGEND-008 |
+| Título | Eficiência no uso pelo profissional |
+| Pré-condição | Profissional com alta carga de agendamentos |
+| Dados de teste | 20+ agendamentos pendentes |
+| Passos | 1. Acessar sistema <br> 2. Confirmar múltiplos agendamentos <br> 3. Navegar entre telas |
+| Resultado esperado | Confirmação de múltiplos agendamentos em menos de 3 minutos · Sem travamentos · Feedback rápido e claro |
