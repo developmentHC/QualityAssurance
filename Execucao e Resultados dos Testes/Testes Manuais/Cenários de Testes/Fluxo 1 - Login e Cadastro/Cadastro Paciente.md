@@ -1,125 +1,108 @@
-# Caso de Teste Único — Agendamento de Paciente
+# Casos de Teste — Agendamento de Paciente
 
-**ID:** AGEND_001  
-**Título:** Validação completa do fluxo de agendamento (funcional, regras, erros e UX)  
-**Sistema:** ConectaBem  
-**Versão:** 2.0  
+Sistema: ConectaBem  
+Versão: 2.0  
 
 ---
 
-## Pré-condições
-- Usuário logado como paciente  
-- Profissional com serviços cadastrados  
-- Agenda com horários disponíveis  
-- Integrações ativas (backend, rede, etc.)
+## CT-AGEND-001 — Agendamento com sucesso (fluxo simples)
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-AGEND-001 |
+| Título | Agendamento de paciente com um serviço |
+| Pré-condição | Usuário logado · Profissional com agenda disponível |
+| Dados de teste | 1 serviço válido · Data futura válida · Horário disponível |
+| Passos | 1. Acessar perfil do profissional <br> 2. Selecionar 1 serviço <br> 3. Clicar em "Solicitar Agendamento" <br> 4. Selecionar data válida <br> 5. Selecionar horário disponível <br> 6. Confirmar agendamento |
+| Resultado esperado | Agendamento realizado com sucesso · Exibição correta dos dados · Mensagem de confirmação |
 
 ---
 
-## Dados de Teste
-- Serviços com diferentes durações (ex: 30min, 60min)  
-- Datas válidas, passadas e limites  
-- Horários disponíveis e indisponíveis  
-- Cenários de erro simulados (timeout, falha servidor)  
+## CT-AGEND-002 — Agendamento com múltiplos serviços
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-AGEND-002 |
+| Título | Agendamento com combinação de serviços |
+| Pré-condição | Usuário logado · Serviços com durações diferentes |
+| Dados de teste | Serviço A (30min) · Serviço B (60min) |
+| Passos | 1. Acessar perfil <br> 2. Selecionar múltiplos serviços <br> 3. Solicitar agendamento <br> 4. Selecionar horário válido <br> 5. Confirmar |
+| Resultado esperado | Soma correta das durações · Horários compatíveis exibidos · Agendamento concluído |
 
 ---
 
-## Passos
+## CT-AGEND-003 — Validações obrigatórias
 
-### 1. Acesso e Visualização
-1. Acessar perfil de um profissional  
-2. Validar exibição de:
-   - Nome, especialidade, serviços, avaliações  
-3. Verificar estrutura da UI (layout, botões, checkboxes)
-
----
-
-### 2. Seleção de Serviços
-4. Tentar avançar **sem selecionar serviço**  
-   - Validar mensagem de erro  
-
-5. Selecionar **1 serviço**  
-6. Selecionar **múltiplos serviços**  
-   - Validar soma de duração  
+| Campo | Descrição |
+|------|----------|
+| ID | CT-AGEND-003 |
+| Título | Validação de campos obrigatórios no agendamento |
+| Pré-condição | Usuário no fluxo de agendamento |
+| Dados de teste | Nenhum serviço selecionado |
+| Passos | 1. Tentar solicitar agendamento sem selecionar serviço |
+| Resultado esperado | Mensagem: "Selecione pelo menos um serviço" · Bloqueio de avanço |
 
 ---
 
-### 3. Agendamento (Data e Hora)
-7. Tentar selecionar:
-   - Data passada → deve bloquear  
-   - Horário fora do expediente → deve bloquear  
-   - Horário ocupado → deve exibir erro  
+## CT-AGEND-004 — Validação de data e hora
 
-8. Selecionar data e horário válidos  
-
-9. Validar:
-   - Respeito à antecedência mínima (ex: 24h)  
-   - Compatibilidade de duração dos serviços  
-
----
-
-### 4. Fluxo de Confirmação
-10. Confirmar agendamento  
-11. Validar:
-   - Mensagem de sucesso  
-   - Exibição correta dos dados (serviço, data, hora)  
+| Campo | Descrição |
+|------|----------|
+| ID | CT-AGEND-004 |
+| Título | Validação de restrições de data e horário |
+| Pré-condição | Usuário no calendário |
+| Dados de teste | Data passada · Horário fora do expediente · Horário ocupado |
+| Passos | 1. Selecionar data passada <br> 2. Selecionar horário inválido <br> 3. Selecionar horário ocupado |
+| Resultado esperado | Bloqueio das seleções inválidas · Mensagens de erro apropriadas |
 
 ---
 
-### 5. Tratamento de Erros
-12. Simular:
-   - Falha de rede  
-   - Timeout (>15s)  
-   - Conflito de agenda  
+## CT-AGEND-005 — Regras de negócio
 
-13. Validar:
-   - Mensagens apropriadas  
-   - Opção de retry  
-   - Não duplicação de agendamento  
-
----
-
-### 6. Regras de Negócio
-14. Tentar:
-   - Agendar com menos de 24h  
-   - Ultrapassar limite diário  
-   - Selecionar serviço indisponível  
-
-15. Validar bloqueios e mensagens  
+| Campo | Descrição |
+|------|----------|
+| ID | CT-AGEND-005 |
+| Título | Validação de regras de agendamento |
+| Pré-condição | Regras configuradas (antecedência, limite diário, etc.) |
+| Dados de teste | Agendamento < 24h · Mais de 5 agendamentos no dia |
+| Passos | 1. Tentar agendar com menos de 24h <br> 2. Exceder limite diário |
+| Resultado esperado | Bloqueio com mensagens claras · Regras aplicadas corretamente |
 
 ---
 
-### 7. Navegação e Estado
-16. Avançar e voltar etapas  
-17. Validar persistência (ou limpeza) dos dados conforme regra  
-18. Simular expiração de sessão  
-   - Validar redirecionamento para login  
+## CT-AGEND-006 — Tratamento de erros
+
+| Campo | Descrição |
+|------|----------|
+| ID | CT-AGEND-006 |
+| Título | Tratamento de falhas no agendamento |
+| Pré-condição | Sistema com possibilidade de falha simulada |
+| Dados de teste | Timeout · Falha de rede · Conflito de agenda |
+| Passos | 1. Realizar agendamento durante falha <br> 2. Simular timeout <br> 3. Gerar conflito de horário |
+| Resultado esperado | Mensagens de erro exibidas · Opção de retry · Nenhuma duplicação de agendamento |
 
 ---
 
-### 8. UX e Usabilidade
-19. Validar:
-   - Feedback visual (erro, sucesso, loading)  
-   - Clareza das mensagens  
-   - Estados dos botões  
+## CT-AGEND-007 — Navegação e sessão
 
-20. Executar fluxo completo como usuário novo  
-   - Validar conclusão < 2 minutos  
-   - Sem necessidade de ajuda externa  
-
-21. Validar:
-   - Responsividade (mobile)  
-   - Navegação por teclado (TAB)  
+| Campo | Descrição |
+|------|----------|
+| ID | CT-AGEND-007 |
+| Título | Controle de navegação e sessão |
+| Pré-condição | Usuário em fluxo ativo |
+| Dados de teste | Sessão expirada |
+| Passos | 1. Avançar etapas <br> 2. Voltar etapas <br> 3. Expirar sessão |
+| Resultado esperado | Manutenção ou limpeza de dados conforme regra · Redirecionamento para login |
 
 ---
 
-## Resultado Esperado
-- Fluxo completo executado com sucesso em cenários válidos  
-- Todas as validações bloqueando corretamente cenários inválidos  
-- Regras de negócio aplicadas corretamente  
-- Sistema resiliente a falhas  
-- Experiência do usuário clara, consistente e funcional  
+## CT-AGEND-008 — UI/UX e usabilidade
 
----
-
-## Observação
-Este caso consolidado reduz a quantidade de testes, porém aumenta a complexidade de execução e dificulta a identificação de falhas específicas. Recomenda-se uso complementar com casos mais granulares para cobertura detalhada.
+| Campo | Descrição |
+|------|----------|
+| ID | CT-AGEND-008 |
+| Título | Validação de interface e experiência do usuário |
+| Pré-condição | Sistema acessível em desktop e mobile |
+| Dados de teste | Fluxo completo |
+| Passos | 1. Validar layout da página <br> 2. Validar feedback visual (erro, sucesso, loading) <br> 3. Executar fluxo completo <br> 4. Testar navegação por teclado <br> 5. Testar responsividade |
+| Resultado esperado | Interface clara · Feedback visual correto · Fluxo intuitivo · Responsividade adequada |
