@@ -13,13 +13,9 @@ Melhor seria algo mais específico:
 Crie seu perfil profissional e receba agendamentos online.
 ```
 
-ou
-
 ```text
 Conecte-se a pacientes e gerencie seus agendamentos em um só lugar.
 ```
-
-ou
 
 ```text
 Aumente sua presença profissional e facilite seus agendamentos.
