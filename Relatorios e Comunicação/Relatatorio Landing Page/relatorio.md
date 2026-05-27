@@ -1,6 +1,6 @@
 # Relatório da Landing Page
 
-> Url do protótipo: (Landing Page)[https://stitch.withgoogle.com/preview/18016643559250658321?node-id=28cfb0e6f26649e4801ea51de2ced81b&raw=1]
+> Url do protótipo: [Landing Page](https://stitch.withgoogle.com/preview/18016643559250658321?node-id=28cfb0e6f26649e4801ea51de2ced81b&raw=1)
 
 ## Headline muito abstrata
 
