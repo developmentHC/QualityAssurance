@@ -240,6 +240,43 @@ Isso aumenta a necessidade de:
 
 ---
 
+# 5. Persistência de dados no formulário
+
+## Situação observada
+
+Ao avançar para etapas posteriores do formulário de cadastro e utilizar a opção de voltar, os dados preenchidos anteriormente são resetados.
+
+Isso pode gerar:
+
+* frustração
+* retrabalho
+* abandono do cadastro
+
+---
+
+## Sugestão de melhoria
+
+Garantir persistência automática dos dados preenchidos durante a navegação entre etapas.
+
+Ao voltar para etapas anteriores, os campos devem permanecer preenchidos.
+
+---
+
+## Possíveis soluções
+
+* LocalStorage / SessionStorage
+* Salvamento parcial automático
+* Auto-save progressivo
+
+---
+
+## Benefícios
+
+* Melhor experiência do usuário
+* Redução de abandono
+* Menor retrabalho
+* Melhor usabilidade em formulários longos
+
 # Conclusão
 
 As melhorias propostas ajudam diretamente em:
