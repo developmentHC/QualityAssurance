@@ -252,15 +252,11 @@ Isso pode gerar:
 * retrabalho
 * abandono do cadastro
 
----
-
 ## Sugestão de melhoria
 
 Garantir persistência automática dos dados preenchidos durante a navegação entre etapas.
 
 Ao voltar para etapas anteriores, os campos devem permanecer preenchidos.
-
----
 
 ## Possíveis soluções
 
@@ -268,14 +264,34 @@ Ao voltar para etapas anteriores, os campos devem permanecer preenchidos.
 * Salvamento parcial automático
 * Auto-save progressivo
 
----
-
 ## Benefícios
 
 * Melhor experiência do usuário
 * Redução de abandono
 * Menor retrabalho
 * Melhor usabilidade em formulários longos
+
+---
+
+# 6. Unificação do fluxo de cadastro
+
+## Situação observada
+
+Atualmente existe cadastro tanto na landing page quanto dentro da plataforma, o que pode gerar duplicidade de fluxo e confusão para o usuário.
+
+## Sugestão de melhoria
+
+Centralizar o cadastro em um único fluxo dentro da plataforma, utilizando a landing page apenas como página de apresentação e direcionamento.
+
+## Benefícios
+
+* Fluxo mais simples e intuitivo
+* Redução de etapas desnecessárias
+* Menor chance de abandono
+* Melhor manutenção do sistema
+* Experiência mais consistente para o usuário
+
+---
 
 # Conclusão
 
