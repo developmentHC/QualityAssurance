@@ -1,0 +1,199 @@
+
+<h2 class="sr-only">Dashboard de métricas de QA — ConectaBem</h2>
+
+<style>
+  .qa-wrap { padding: 1rem 0; font-family: var(--font-sans); }
+  .section-label { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin: 1.5rem 0 0.75rem; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+  .metric-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 1rem; }
+  .metric-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 6px; }
+  .metric-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); line-height: 1; }
+  .metric-sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 4px; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: var(--border-radius-md); }
+  .badge-danger { background: var(--color-background-danger); color: var(--color-text-danger); }
+  .badge-warning { background: var(--color-background-warning); color: var(--color-text-warning); }
+  .badge-success { background: var(--color-background-success); color: var(--color-text-success); }
+  .badge-info { background: var(--color-background-info); color: var(--color-text-info); }
+  .bug-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; }
+  .bug-row:last-child { border-bottom: none; }
+  .bug-name { color: var(--color-text-primary); flex: 1; }
+  .bug-meta { color: var(--color-text-secondary); font-size: 11px; margin-left: 8px; }
+  .chart-wrap { position: relative; width: 100%; height: 200px; margin-top: 0.5rem; }
+  .chart-wrap2 { position: relative; width: 100%; height: 180px; margin-top: 0.5rem; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; font-size: 12px; color: var(--color-text-secondary); }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+  .flow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .flow-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 0.85rem 1rem; }
+  .flow-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 6px; }
+  .flow-risk { font-size: 11px; margin-bottom: 8px; }
+  .flow-stat { font-size: 20px; font-weight: 500; }
+  .gap-block { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+  .gap-icon { font-size: 16px; margin-top: 1px; }
+</style>
+
+<div class="qa-wrap">
+
+  <p class="section-label">visão geral do repositório</p>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Documentos totais</div>
+      <div class="metric-value">72</div>
+      <div class="metric-sub">arquivos .md</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Relatórios de bugs</div>
+      <div class="metric-value">10</div>
+      <div class="metric-sub">documentados</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Cenários de teste</div>
+      <div class="metric-value">7</div>
+      <div class="metric-sub">arquivos de cenários</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Relatórios regressivos</div>
+      <div class="metric-value">5</div>
+      <div class="metric-sub">módulos cobertos</div>
+    </div>
+  </div>
+
+  <p class="section-label">resultado dos testes regressivos</p>
+  <div class="legend">
+    <span><span class="legend-dot" style="background:#22c55e"></span>Passou</span>
+    <span><span class="legend-dot" style="background:#ef4444"></span>Falhou</span>
+    <span><span class="legend-dot" style="background:#f59e0b"></span>Não implementado</span>
+    <span><span class="legend-dot" style="background:#6b7280"></span>Inválido</span>
+  </div>
+  <div class="chart-wrap">
+    <canvas id="chart1" role="img" aria-label="Resultados dos testes regressivos por módulo">Passou: 19, Falhou: 4, Não implementado: 15, Inválido: 6</canvas>
+  </div>
+
+  <p class="section-label">taxa de passagem por módulo</p>
+  <div class="chart-wrap2">
+    <canvas id="chart2" role="img" aria-label="Taxa de passagem por módulo testado">Login Paciente: 54%, Login Profissional: 54%, Cadastro Paciente: 64%, Cadastro Profissional: 64%, Cadastro Inválido: 89%</canvas>
+  </div>
+
+  <p class="section-label">risco por fluxo (análise de riscos)</p>
+  <div class="flow-grid">
+    <div class="flow-card">
+      <div class="flow-title">Fluxo 1 — login e cadastro</div>
+      <div class="flow-risk"><span class="badge badge-danger">🔴 Alto</span></div>
+      <div class="metric-label">CTs executados</div>
+      <div class="flow-stat">44</div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-title">Fluxo 2 — busca e filtro</div>
+      <div class="flow-risk"><span class="badge badge-warning">🟠 Médio</span></div>
+      <div class="metric-label">CTs executados</div>
+      <div class="flow-stat">—</div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-title">Fluxo 3 — agendamento</div>
+      <div class="flow-risk"><span class="badge badge-danger">⚠ Crítico</span></div>
+      <div class="metric-label">CTs executados</div>
+      <div class="flow-stat">—</div>
+    </div>
+  </div>
+
+  <p class="section-label">bugs críticos registrados</p>
+  <div class="bug-row">
+    <span class="bug-name">BUG-AUTH-001 — falha de autenticação e backend (S1)</span>
+    <span class="badge badge-danger">Crítico</span>
+  </div>
+  <div class="bug-row">
+    <span class="bug-name">Erro 422 no cadastro (userId ausente no payload)</span>
+    <span class="badge badge-danger">Crítico</span>
+  </div>
+  <div class="bug-row">
+    <span class="bug-name">Cadastro profissional travado</span>
+    <span class="badge badge-warning">Alto</span>
+  </div>
+  <div class="bug-row">
+    <span class="bug-name">OTP expirado não tratado corretamente</span>
+    <span class="badge badge-warning">Alto</span>
+  </div>
+  <div class="bug-row">
+    <span class="bug-name">Erro de feedback no cadastro de paciente (nome curto)</span>
+    <span class="badge badge-info">Médio</span>
+  </div>
+  <div class="bug-row">
+    <span class="bug-name">Telas 403 / 500 sem tratamento visual adequado</span>
+    <span class="badge badge-info">Médio</span>
+  </div>
+  <div class="bug-row">
+    <span class="bug-name">Página 404 sem centralização e sem link para home</span>
+    <span class="badge badge-info">Baixo</span>
+  </div>
+
+  <p class="section-label">gaps e pontos de atenção</p>
+  <div class="gap-block">
+    <i class="ti ti-alert-triangle gap-icon" aria-hidden="true"></i>
+    <span>Login e cadastro via <strong>Facebook</strong> — 6 casos de teste ainda não implementados</span>
+  </div>
+  <div class="gap-block">
+    <i class="ti ti-alert-triangle gap-icon" aria-hidden="true"></i>
+    <span>Bloqueio por múltiplas tentativas de OTP — não implementado em nenhum módulo</span>
+  </div>
+  <div class="gap-block">
+    <i class="ti ti-alert-triangle gap-icon" aria-hidden="true"></i>
+    <span>Fluxos 2 (busca) e 3 (agendamento) — <strong>sem relatórios de teste executados</strong></span>
+  </div>
+  <div class="gap-block">
+    <i class="ti ti-alert-triangle gap-icon" aria-hidden="true"></i>
+    <span>Testes automatizados com Cypress — planejados mas sem evidência de execução no repo</span>
+  </div>
+  <div class="gap-block">
+    <i class="ti ti-info-circle gap-icon" aria-hidden="true"></i>
+    <span>Métricas de cobertura de código — não disponíveis (sem integração com ferramenta de coverage)</span>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+  const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const textColor = isDark ? '#9ca3af' : '#6b7280';
+
+  new Chart(document.getElementById('chart1'), {
+    type: 'bar',
+    data: {
+      labels: ['Login Paciente', 'Login Profissional', 'Cadastro Paciente', 'Cadastro Profissional', 'Cadastro Inválido'],
+      datasets: [
+        { label: 'Passou', data: [4, 4, 5, 5, 8], backgroundColor: '#22c55e', borderRadius: 4 },
+        { label: 'Falhou', data: [1, 1, 1, 1, 0], backgroundColor: '#ef4444', borderRadius: 4 },
+        { label: 'Não implementado', data: [4, 4, 4, 4, 0], backgroundColor: '#f59e0b', borderRadius: 4 },
+        { label: 'Inválido', data: [2, 2, 2, 2, 1], backgroundColor: '#6b7280', borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { stacked: true, ticks: { color: textColor, font: { size: 11 } }, grid: { display: false } },
+        y: { stacked: true, ticks: { color: textColor, font: { size: 11 } }, grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('chart2'), {
+    type: 'bar',
+    data: {
+      labels: ['Login\nPaciente', 'Login\nProfissional', 'Cadastro\nPaciente', 'Cadastro\nProfissional', 'Cadastro\nInválido'],
+      datasets: [{
+        label: 'Taxa de passagem (%)',
+        data: [54, 54, 64, 64, 89],
+        backgroundColor: ['#ef4444', '#ef4444', '#f59e0b', '#f59e0b', '#22c55e'],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: textColor, font: { size: 11 } }, grid: { display: false } },
+        y: { max: 100, ticks: { color: textColor, font: { size: 11 }, callback: v => v + '%' }, grid: { color: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' } }
+      }
+    }
+  });
+</script>
